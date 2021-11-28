@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/lolazhong/CLionProjects/chess/main.cpp
+iostream
+-
+
+/Users/lolazhong/CLionProjects/chess/subject.cpp
+subject.h
+/Users/lolazhong/CLionProjects/chess/subject.h
+
+/Users/lolazhong/CLionProjects/chess/subject.h
+vector
+-
+
