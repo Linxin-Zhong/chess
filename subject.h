@@ -1,16 +1,21 @@
-#ifndef CHESS_SUBJECT_H
-#define CHESS_SUBJECT_H
+#ifndef SUBJECT_H
+#define SUBJECT_H
 
 #include <vector>
 
-class subject {
-    std::vector<observer *> observers;
-public:
-    attatch(observer
-    * o);
-    detach(observer
-    *o);
+class Observer;
 
+class Subject {
+    std::vector<Observer *> observers;
+public:
+    void attach(Observer *o);
+
+    void detach(Observer *o);
+
+    void notifyObservers();
+
+    virtual ~Subject() = default;
 };
+
 
 #endif

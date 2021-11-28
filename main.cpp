@@ -5,5 +5,3 @@ int main() {
     cout << "It works for Lola" << std::endl;
     return 0;
 }
-
-///aaaa

@@ -1,10 +1,12 @@
-//
-// Created by Lola Zhong on 2021-11-28.
-//
+#ifndef OBSERVER_H_
+#define OBSERVER_H_
 
-#ifndef CHESS_OBSERVER_H
-#define CHESS_OBSERVER_H
+class Subject;
 
+class Observer {
+public:
+    virtual void notify() = 0;
 
-//
+    virtual ~Observer() = default;
+};
 #endif //CHESS_OBSERVER_H
