@@ -5,4 +5,6 @@
 #ifndef CHESS_OBSERVER_H
 #define CHESS_OBSERVER_H
 
+
+//
 #endif //CHESS_OBSERVER_H
