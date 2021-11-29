@@ -6,7 +6,7 @@
 
 using namespace std;
 
-vector<pair<char, int>> human::generateMove() {
+vector<pair<char, int>> Human::generateMove() {
     shared_ptr<Board> b = this->getb();
 
 }
