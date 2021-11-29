@@ -5,7 +5,7 @@ class Board;
 
 class Piece {
     std::shared_ptr<Board> b;
-    int value;
+    int value;  // determine the value of a piece
     char color;
 public:
     char getx();
