@@ -4,11 +4,11 @@
 
 #include "strategy.h"
 
-class level3 : public Strategy {
+class Level3 : public Strategy {
 public:
     std::vector<std::pair<char, int>> generateMove() override;
 
-    level3(std::shared_ptr<Board> b) : Strategy(b) {};
+    Level3(std::shared_ptr<Board> b) : Strategy(b) {};
 };
 
 
