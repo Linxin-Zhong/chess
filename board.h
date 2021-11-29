@@ -2,11 +2,11 @@
 #define BOARD_H
 
 #include "strategy.h"
-#include "Human.h"
-#include "Level1.h"
-#include "Level2.h"
-#include "Level3.h"
-#include "Piece.h"
+#include "human.h"
+#include "level1.h"
+#include "level2.h"
+#include "level3.h"
+#include "piece.h"
 #include "subject.h"
 #include <vector>
 
