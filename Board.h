@@ -26,7 +26,7 @@ public:
 
     bool isCheckMate();
 
-    bool isStakemate();
+    bool isStalemate();
 
     void update(char c, int i);
 
