@@ -2,7 +2,7 @@
 // Created by Lola Zhong on 2021-11-28.
 //
 
-#include "Human.h"
+#include "human.h"
 
 using namespace std;
 
