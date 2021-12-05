@@ -1,7 +1,7 @@
 #include "king.h"
 
-King::King(char color) : Piece(color, 10) {}
+King::King(char color, std::vector<std::vector<std::shared_ptr<Piece>>> boardmap) : Piece(color, 10, boardmap) {}
 
-void King::move(char c, int i) {
-
+bool King::check(int tocol, int torow, int kingcol, int kingrow) {
+    return false;
 }

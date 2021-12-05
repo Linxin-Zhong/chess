@@ -1,7 +1,7 @@
 #include "rook.h"
 
-Rook::Rook(char color) : Piece(color, 5) {}
+Rook::Rook(char color, std::vector<std::vector<std::shared_ptr<Piece>>> boardmap) : Piece(color, 5, boardmap) {}
 
-void Rook::move(char c, int i) {
-    int col = c - 'a';
+bool Rook::check(int tocol, int torow, int kingcol, int kingrow) {
+
 }

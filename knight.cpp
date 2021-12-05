@@ -1,7 +1,8 @@
 #include "knight.h"
 
-Knight::Knight(char color) : Piece(color, 3) {}
+Knight::Knight(char color, std::vector<std::vector<std::shared_ptr<Piece>>> boardmap) : Piece(color, 3, boardmap) {}
 
-void Knight::move(char c, int i) {
+
+bool Knight::check(int tocol, int torow, int kingcol, int kingrow) {
 
 }

@@ -1,7 +1,7 @@
 #include "bishop.h"
 
-Bishop::Bishop(char color) : Piece(color, 3) {}
+Bishop::Bishop(char color, std::vector<std::vector<std::shared_ptr<Piece>>> boardmap) : Piece(color, 3, boardmap) {}
 
-void Bishop::move(char c, int i) {
+bool Bishop::check(int tocol, int torow, int kingcol, int kingrow) {
 
 }

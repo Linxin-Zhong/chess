@@ -5,9 +5,10 @@
 
 class Rook : public Piece {
 public:
-    void move(char c, int i);
 
-    Rook(char color);
+    Rook(char color, std::vector<std::vector<std::shared_ptr<Piece>>> boardmap);
+
+    bool check(int tocol, int torow, int kingcol, int kingrow);
 };
 
 #endif

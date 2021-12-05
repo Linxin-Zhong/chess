@@ -1,7 +1,7 @@
 #include "queen.h"
 
-Queen::Queen(char color) : Piece(color, 9) {}
+Queen::Queen(char color, std::vector<std::vector<std::shared_ptr<Piece>>> boardmap) : Piece(color, 9, boardmap) {}
 
-void Queen::move(char c, int i) {
+bool Queen::check(int tocol, int torow, int kingcol, int kingrow) {
 
 }

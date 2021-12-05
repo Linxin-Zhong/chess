@@ -5,9 +5,9 @@
 
 class Pawn : public Piece {
 public:
-    void move(char c, int i);
+    Pawn(char color, std::vector<std::vector<std::shared_ptr<Piece>>> boardmap);
 
-    Pawn(char color);
+    bool check(int tocol, int torow, int kingcol, int kingrow);
 };
 
 #endif

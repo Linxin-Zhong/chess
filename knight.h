@@ -5,9 +5,10 @@
 
 class Knight : public Piece {
 public:
-    void move(char c, int i);
 
-    Knight(char color);
+    Knight(char color, std::vector<std::vector<std::shared_ptr<Piece>>> boardmap);
+
+    bool check(int tocol, int torow, int kingcol, int kingrow);
 };
 
 #endif

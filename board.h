@@ -38,12 +38,16 @@ class Board : public Subject {
     /* bool isrunning;
      int WScore;
      int BScore;
-     char currentPlayer;*/
+     */
+    char currentPlayer;
     std::shared_ptr<Strategy> WPlayer;
     std::shared_ptr<Strategy> BPlayer;
     int Wpiececount;
     int Bpiececount;
-
+    int Bkingcol;
+    int Bkingrow;
+    int Wkingcol;
+    int Wkingrow;
 
 public:
     std::vector<std::vector<std::shared_ptr<Piece>>> boardmap;
@@ -53,19 +57,20 @@ public:
     void move(char fromc, int fromr, char toc, int tor);
 
     void print();
-    /* bool isCheck();
 
-     bool isCheckMate();
+    bool isCheck(int tocol, int torow);
 
-     bool isStalemate();
+    /*bool isCheckMate();
 
-     void update(char c, int i);
+    bool isStalemate();
 
-     bool isRun();
+    void update(char c, int i);
 
-     void resign();
+    bool isRun();
 
-     void render();*/
+    void resign();
+
+    void render();*/
 
 };
 
