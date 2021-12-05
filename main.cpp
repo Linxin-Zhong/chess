@@ -5,6 +5,9 @@
 using namespace std;
 int main() {
     Board a = Board('h', '1');
-    //Test pawn check
-    a.move('d', 2, 'e', 7);
+    //Test rook check
+    a.move('e', 2, 'a', 3);
+    a.print();
+    a.move('a', 8, 'e', 6);
+    a.print();
 }

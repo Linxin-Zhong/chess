@@ -1,6 +1,6 @@
 #include "pawn.h"
 
-Pawn::Pawn(char color, std::vector<std::vector<std::shared_ptr<Piece>>> boardmap) : Piece(color, 1, boardmap) {}
+Pawn::Pawn(char color, std::vector<std::vector<std::shared_ptr<Piece>>> &boardmap) : Piece(color, 1, boardmap) {}
 
 bool Pawn::check(int tocol, int torow, int kingcol, int kingrow) {
     if (color == 'W') {

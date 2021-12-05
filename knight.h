@@ -6,7 +6,7 @@
 class Knight : public Piece {
 public:
 
-    Knight(char color, std::vector<std::vector<std::shared_ptr<Piece>>> boardmap);
+    Knight(char color, std::vector<std::vector<std::shared_ptr<Piece>>> &boardmap);
 
     bool check(int tocol, int torow, int kingcol, int kingrow);
 };

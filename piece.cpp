@@ -7,9 +7,9 @@
 #include "bishop.h"
 #include "board.h"
 
-Piece::Piece(char color, int value, std::vector<std::vector<std::shared_ptr<Piece>>> boardmap) : color(color),
-                                                                                                 value(value),
-                                                                                                 boardmap(boardmap) {}
+Piece::Piece(char color, int value, std::vector<std::vector<std::shared_ptr<Piece>>> &boardmap) : color(color),
+                                                                                                  value(value),
+                                                                                                  boardmap(boardmap) {}
 
 char Piece::type() {
     if (this == nullptr) {
