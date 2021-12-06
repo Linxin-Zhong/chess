@@ -2,12 +2,13 @@
 #define LEVEL1_H
 
 #include "strategy.h"
+using namespace std;
 
 class Level1 : public Strategy {
 public:
-    std::vector<std::pair<char, int>> generateMove() override;
+    vector<pair<char, int>> generateMove() override;
 
-    Level1(std::shared_ptr<Board> b) : Strategy(b) {};
+    Level1(vector<vector<shared_ptr<Piece>>> &boardmap) : Strategy(boardmap) {};
 };
 
 #endif //LEVEL1_H
