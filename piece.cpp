@@ -11,6 +11,7 @@ Piece::Piece(char color, int value, std::vector<std::vector<std::shared_ptr<Piec
                                                                                                   value(value),
                                                                                                   boardmap(boardmap) {}
 
+
 char Piece::type() {
     if (this == nullptr) {
         return '-';

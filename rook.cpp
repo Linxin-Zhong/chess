@@ -2,7 +2,7 @@
 
 Rook::Rook(char color, std::vector<std::vector<std::shared_ptr<Piece>>> &boardmap) : Piece(color, 5, boardmap) {}
 
-bool Rook::check(int tocol, int torow, int kingcol, int kingrow) {
+bool Rook::check(int torow, int tocol, int kingrow, int kingcol) {
     if (tocol == kingcol) {
         bool check = true;
         if (torow < kingrow) {

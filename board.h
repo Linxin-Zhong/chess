@@ -49,8 +49,14 @@ class Board : public Subject {
     int Wkingcol;
     int Wkingrow;
 
+    bool
+    checkmateRecursion(std::vector<std::vector<std::shared_ptr<Piece>>> &currentboard, char kingcolor, int checkrow,
+                       int checkcol);
+
 public:
     std::vector<std::vector<std::shared_ptr<Piece>>> boardmap;
+
+    void default_init();
 
     Board(char w, char b);
 
@@ -58,11 +64,12 @@ public:
 
     void print();
 
-    bool isCheck(int tocol, int torow);
+    bool isCheck(std::vector<std::vector<std::shared_ptr<Piece>>> &b, char kingcolor, int kingrow, int kingcol,
+                 int *checkrow, int *checkcol);
 
-    /*bool isCheckMate();
+    bool isCheckMate(char kingcolor, int checkrow, int checkcol);
 
-    bool isStalemate();
+    /*bool isStalemate();
 
     void update(char c, int i);
 
