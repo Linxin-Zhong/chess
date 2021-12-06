@@ -4,13 +4,13 @@
 #include <stdio.h>
 #include <memory>
 #include <vector>
-
+using namespace std;
 
 class Board;
 
 class Piece {
 protected:
-    std::vector<std::vector<std::shared_ptr<Piece>>> &boardmap;
+    vector<vector<shared_ptr<Piece>>> &boardmap;
     int value;  // determine the value of a piece
     char color;
 public:
@@ -18,7 +18,11 @@ public:
     Piece(char color, int value, std::vector<std::vector<std::shared_ptr<Piece>>> &boardmap);
 
     virtual bool check(int torow, int tocol, int kingrow, int kingcol) = 0;
-
+    virtual vector<pair<char, int>> legalMove() = 0;
+    virtual vector<pair<char, int>> capture() = 0;
+    virtual vector<pair<char, int>> avoid() = 0;
+    virtual vector<pair<char, int>> checks() = 0;
+    
 //    virtual void move(char c, int i) = 0;
     virtual ~Piece() = default;
 
