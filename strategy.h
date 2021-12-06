@@ -2,16 +2,17 @@
 #define STRATEGY_H
 
 #include <vector>
+using namespace std;
 
 class Board;
 
 class Strategy {
 protected:
-    std::shared_ptr<Board> b;
+    vector<vector<shared_ptr<Piece>>> boardmap;
 public:
-    virtual std::vector<std::pair<char, int>> generateMove() = 0;
+    virtual vector<pair<char, int>> generateMove() = 0;
 
-    Strategy(std::shared_ptr<Board> b) : b(b) {};
+    Strategy(vector<vector<shared_ptr<Piece>>> &boardmap) : boardmap(boardmap) {};
 };
 
 
