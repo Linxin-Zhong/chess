@@ -64,9 +64,9 @@ pair<int, int> legalMove(int r, int c) {
     return temp;
 }
 
-vector<pair<int, int>> capture() {
+<pair<int, int> capture(int r, int c) {
 }
-vector<pair<int, int>> avoid() {
+<pair<int, int> avoid(int r, int c) {
 }
-vector<pair<int, int>> checks() {
+<pair<int, int> checks(int r, int c) {
 }
