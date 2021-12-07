@@ -50,17 +50,21 @@ bool Rook::check(int torow, int tocol, int kingrow, int kingcol) {
 pair<int, int> legalMove(int r, int c) {
     vector<pair<int, int>> dir = { {1, 0}, {0, 1}, {-1, 0}, {0, -1} };
     pair<int, int> temp = {-1, -1};
-    for (int i = 0; i < 4; ++i) {
-        int newrow = r + dir[i].first;
-        int newcol = c + dir[i].second;
-        if (newrow > 8 || newrow < 0 || newcol > 8 || newcol < 0) {
-            continue;
-        }
-        if (boardmap[newrow][newcol]->color == currentPlayer) {
-            continue;
-        } else {
-            temp = {newrow, newcol};
-            return temp;
+    for (int i = 0; i < 8; ++i) {
+        j = 1;
+        while (true) {
+            int newrow = r + j * dir[i].first;
+            int newcol = c + j * dir[i].second;
+            if (newrow > 8 || newrow < 0 || newcol > 8 || newcol < 0) {
+                break;
+            }
+            if (boardmap[newrow][newcol]->color == currentPlayer) {
+                break;
+            } else {
+                temp = {newrow, newcol};
+                return temp;
+            }
+            j++;
         }
     }
     return temp;
