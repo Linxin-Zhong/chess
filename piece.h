@@ -18,10 +18,10 @@ public:
     Piece(char color, int value, std::vector<std::vector<std::shared_ptr<Piece>>> &boardmap);
 
     virtual bool check(int torow, int tocol, int kingrow, int kingcol) = 0;
-    virtual vector<pair<char, int>> legalMove() = 0;
-    virtual vector<pair<char, int>> capture() = 0;
-    virtual vector<pair<char, int>> avoid() = 0;
-    virtual vector<pair<char, int>> checks() = 0;
+    virtual <pair<int, int> legalMove(int r, int c) = 0;
+    virtual <pair<int, int> capture(int r, int c) = 0;
+    virtual <pair<int, int> avoid(int r, int c) = 0;
+    virtual <pair<int, int> checks(int r, int c) = 0;
     
 //    virtual void move(char c, int i) = 0;
     virtual ~Piece() = default;
