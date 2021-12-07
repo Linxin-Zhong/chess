@@ -75,3 +75,31 @@ bool Queen::check(int torow, int tocol, int kingrow, int kingcol) {
         }
     }
 }
+
+pair<int, int> legalMove(int r, int c) {
+    vector<pair<int, int>> dir = { {1, 0}, {0, 1}, {-1, 0}, {0, -1}, {1, 1}, {-1, 1}, {-1, -1}, {1, -1} };
+    pair<int, int> temp = {-1, -1};
+    
+    for (int i = 0; i < 8; ++i) {
+        j = 1;
+        while (true) {
+            int newrow = r + j * dir[i].first;
+            int newcol = c + j * dir[i].second;
+            if (newrow > 8 || newrow < 0 || newcol > 8 || newcol < 0) {
+                break;
+            }
+            if (boardmap[newrow][newcol]->color == currentPlayer) {
+                break;
+            } else {
+                temp = {newrow, newcol};
+                return temp;
+            }
+            j++;
+        }
+    }
+    return temp;
+}
+
+pair<int, int> capture(int r, int c);
+pair<int, int> avoid(int r, int c);
+pair<int, int> checks(int r, int c);
