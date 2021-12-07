@@ -46,3 +46,27 @@ bool Rook::check(int torow, int tocol, int kingrow, int kingcol) {
         return false;
     }
 }
+
+pair<int, int> legalMove(int r, int c) {
+    vector<pair<int, int>> dir = { {1, 0}, {0, 1}, {-1, 0}, {0, -1} };
+    pair<int, int> temp = {-1, -1};
+    for (int i = 0; i < 4; ++i) {
+        if (r + dir[i].first > 8 || r + dir[i].first < 0 || c + dir[i].second > 8 || c + dir[i].second < 0) {
+            continue;
+        }
+        if (boardmap[r + dir[i].first][c + dir[i].second]->color == currentPlayer) {
+            continue;
+        } else {
+            temp = {r + dir[i].first, c + dir[i].second};
+            return temp;
+        }
+    }
+    return temp;
+}
+
+vector<pair<int, int>> capture() {
+}
+vector<pair<int, int>> avoid() {
+}
+vector<pair<int, int>> checks() {
+}
