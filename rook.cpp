@@ -51,13 +51,15 @@ pair<int, int> legalMove(int r, int c) {
     vector<pair<int, int>> dir = { {1, 0}, {0, 1}, {-1, 0}, {0, -1} };
     pair<int, int> temp = {-1, -1};
     for (int i = 0; i < 4; ++i) {
-        if (r + dir[i].first > 8 || r + dir[i].first < 0 || c + dir[i].second > 8 || c + dir[i].second < 0) {
+        int newrow = r + dir[i].first;
+        int newcol = c + dir[i].second;
+        if (newrow > 8 || newrow < 0 || newcol > 8 || newcol < 0) {
             continue;
         }
-        if (boardmap[r + dir[i].first][c + dir[i].second]->color == currentPlayer) {
+        if (boardmap[newrow][newcol]->color == currentPlayer) {
             continue;
         } else {
-            temp = {r + dir[i].first, c + dir[i].second};
+            temp = {newrow, newcol};
             return temp;
         }
     }
