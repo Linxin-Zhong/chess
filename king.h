@@ -6,7 +6,7 @@
 class King : public Piece {
 public:
 
-    King(char color, std::vector<std::vector<std::shared_ptr<Piece>>> &boardmap);
+    King(char color, shared_ptr<std::vector<std::vector<std::shared_ptr<Piece>>>> boardmap);
 
     bool check(int torow, int tocol, int kingrow, int kingcol);
 

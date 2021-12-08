@@ -14,7 +14,7 @@ int main() {
     bool isrunning = false;
     bool setup = false;
 
-    shared_ptr<Board> b = nullptr;
+    Board b = Board("empty");
     //for both default and setup board
     char Wplayer;
     char Bplayer;
@@ -55,21 +55,22 @@ int main() {
                 continue;
             }
             if (!setup) {
-                b = make_shared<Board>(Board(Wplayer, Bplayer));
-                b->default_init();
+                b.default_init();
+                b.PlayersInit(Wplayer, Bplayer);
             } else {
-                b->PlayersInit(Wplayer, Bplayer);
+                b.PlayersInit(Wplayer, Bplayer);
             }
             isrunning = true;
-            cout << "Game Starts!";
+            cout << "Game Starts!" << endl;
             break;
         } else if (command == "setup") {
+            b.clear();
             //set up based on empty boards
-            Board tempboard = Board("empty");
             int WKingcount = 0;
             int BKingcount = 0;
             string input2;
             cout << "Enters setup mode" << endl;
+
             while (getline(cin, input2)) {
                 stringstream ss2(input2);
                 string command2;
@@ -79,8 +80,8 @@ int main() {
                     ss2 >> p;
                     string coord;
                     ss2 >> coord;
-                    if (tempboard.addPiece(p, coord)) {
-                        tempboard.print();
+                    if (b.addPiece(p, coord)) {
+                        b.print();
                     } else {
                         cout << "Invalid command! But you are still in setup mode:) Use 'done' command to exit" << endl;
                         continue;
@@ -94,17 +95,17 @@ int main() {
                 } else if (command2 == "-") {
                     string coord;
                     ss2 >> coord;
-                    if (tempboard.remPiece(coord)) {
-                        tempboard.print();
+                    if (b.remPiece(coord)) {
+                        b.print();
                     } else {
                         cout << "Invalid command! But you are still in setup mode:) Use 'done' command to exit" << endl;
                     }
                 } else if (command2 == "=") {
                     ss2 >> command2;
                     if (command2 == "White") {
-                        tempboard.setNextPlayer('W');
+                        b.setNextPlayer('W');
                     } else if (command2 == "Black") {
-                        tempboard.setNextPlayer('B');
+                        b.setNextPlayer('B');
                     } else {
                         cout << "Invalid command! But you are still in setup mode:) Use 'done' command to exit" << endl;
                     }
@@ -115,17 +116,16 @@ int main() {
                         //                    int kingcol, int *checkrow, int *checkcol)
                         int checkcol;
                         int checkrow;
-                        pair<pair<int, int>, pair<int, int>> kingcoord = tempboard.getKingcoord();
+                        pair<pair<int, int>, pair<int, int>> kingcoord = b.getKingcoord();
                         int WKR = kingcoord.first.first;
                         int WKC = kingcoord.first.second;
                         int BKR = kingcoord.second.first;
                         int BKC = kingcoord.second.second;
-                        if (tempboard.isCheck(tempboard.boardmap, 'W', WKR, WKC, &checkrow, &checkcol)) {
+                        if (b.isCheck(*b.boardmap, 'W', WKR, WKC, &checkrow, &checkcol)) {
                             cout << "Cannot start when king is in check, please re-enter setup mode";
-                        } else if (tempboard.isCheck(tempboard.boardmap, 'B', BKR, BKC, &checkrow, &checkcol)) {
+                        } else if (b.isCheck(*b.boardmap, 'B', BKR, BKC, &checkrow, &checkcol)) {
                             cout << "Cannot start when king is in check, please re-enter setup mode";
                         } else {
-                            b = make_shared<Board>(tempboard);
                             cout << "Setup succeed" << endl;
                             setup = true;
                             break;
@@ -155,7 +155,7 @@ int main() {
         string command;
         ss >> command;
         if (command == "print") {
-            b->print();
+            b.print();
         } else if (command == "move") {
             char fromc;
             int fromr;
@@ -168,7 +168,7 @@ int main() {
             toc = command[0];
             tor = command[1] - '1' + 1;
 
-            b->move(fromc, fromr, toc, tor);
+            b.move(fromc, fromr, toc, tor);
 
         }
 

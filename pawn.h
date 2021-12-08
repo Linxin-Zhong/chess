@@ -5,7 +5,7 @@
 
 class Pawn : public Piece {
 public:
-    Pawn(char color, std::vector<std::vector<std::shared_ptr<Piece>>> &boardmap);
+    Pawn(char color, shared_ptr<std::vector<std::vector<std::shared_ptr<Piece>>>> boardmap);
 
     bool check(int torow, int tocol, int kingrow, int kingcol);
 

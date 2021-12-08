@@ -5,7 +5,7 @@
 
 class Queen : public Piece {
 public:
-    Queen(char color, std::vector<std::vector<std::shared_ptr<Piece>>> &boardmap);
+    Queen(char color, shared_ptr<std::vector<std::vector<std::shared_ptr<Piece>>>> boardmap);
 
     bool check(int torow, int tocol, int kingrow, int kingcol);
     pair<int, int> legalMove(int r, int c);

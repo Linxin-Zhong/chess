@@ -83,26 +83,32 @@ bool Board::checkmateRecursion(std::vector<std::vector<std::shared_ptr<Piece>>> 
     //check if there is other ways that the king could escape
     int escaperow[8];
     int escapecol[8];
+    escaperow[0] = kingrow - 1;
+    escapecol[0] = kingcol - 1;
     escaperow[1] = kingrow - 1;
-    escapecol[1] = kingcol - 1;
+    escapecol[1] = kingcol;
     escaperow[2] = kingrow - 1;
-    escapecol[2] = kingcol;
-    escaperow[3] = kingrow - 1;
-    escapecol[3] = kingcol + 1;
+    escapecol[2] = kingcol + 1;
+    escaperow[3] = kingrow;
+    escapecol[3] = kingcol - 1;
     escaperow[4] = kingrow;
-    escapecol[4] = kingcol - 1;
-    escaperow[5] = kingrow;
-    escapecol[5] = kingcol + 1;
+    escapecol[4] = kingcol + 1;
+    escaperow[5] = kingrow + 1;
+    escapecol[5] = kingcol - 1;
     escaperow[6] = kingrow + 1;
-    escapecol[6] = kingcol - 1;
+    escapecol[6] = kingcol;
     escaperow[7] = kingrow + 1;
-    escapecol[7] = kingcol;
-    escaperow[8] = kingrow + 1;
-    escapecol[8] = kingcol + 1;
+    escapecol[7] = kingcol + 1;
 
     bool escapeway[8];
     for (int i = 0; i < 8; i++) {
         escapeway[i] = true;
+    }
+
+    for (int i = 0; i < 8; i++) {
+        if (escaperow[i] < 0 || escaperow[i] >= 8 || escapecol[i] < 0 || escapecol[i] >= 8) {
+            escapeway[i] = false;
+        }
     }
 
     for (int i = 0; i < 8; i++) {
@@ -135,7 +141,7 @@ bool Board::checkmateRecursion(std::vector<std::vector<std::shared_ptr<Piece>>> 
 }
 
 bool Board::isCheckMate(char kingcolor, int checkrow, int checkcol) {
-    return checkmateRecursion(boardmap, kingcolor, checkrow, checkcol);
+    return checkmateRecursion(*boardmap, kingcolor, checkrow, checkcol);
 }
 
 /*bool Board::isStalemate() {
@@ -217,16 +223,17 @@ bool Board::addPiece(char p, string coord) {
             return false;
     }
 
-    char type = boardmap[row][col]->type();
+    char type = (*boardmap)[row][col]->type();
     if (type >= 'a' && type <= 'z') {
         Bpiececount--;
     }
     if (type >= 'A' && type <= 'Z') {
         Wpiececount--;
     }
-    boardmap[row][col] = newpiece;
+    (*boardmap)[row][col] = newpiece;
     return true;
 }
+
 
 bool Board::remPiece(string coord) {
     int col = coord[0] - 'a';
@@ -234,14 +241,14 @@ bool Board::remPiece(string coord) {
     if (col >= 8 || row >= 8) {
         return false;
     } else {
-        char type = boardmap[row][col]->type();
+        char type = (*boardmap)[row][col]->type();
         if (type >= 'a' && type <= 'z') {
             Bpiececount--;
         }
         if (type >= 'A' && type <= 'Z') {
             Wpiececount--;
         }
-        boardmap[row][col] = nullptr;
+        (*boardmap)[row][col] = nullptr;
         return true;
     }
 }
@@ -255,6 +262,8 @@ bool Board::setNextPlayer(char color) {
 }
 
 Board::Board(string i) {
+    vector<vector<shared_ptr<Piece>>> b;
+    boardmap = make_shared<vector<vector<shared_ptr<Piece>>>>(b);
     if (i == "empty") {
         currentPlayer = 'W';
         Wpiececount = 0;
@@ -268,12 +277,29 @@ Board::Board(string i) {
             for (int j = 0; j < 8; j++) {
                 newrow.emplace_back(nullptr);
             }
-            boardmap.emplace_back(newrow);
+            (*boardmap).emplace_back(newrow);
+        }
+    }
+}
+
+void Board::clear() {
+    currentPlayer = 'W';
+    Wpiececount = 0;
+    Bpiececount = 0;
+    Bkingcol = -1;
+    Bkingrow = -1;
+    Wkingcol = -1;
+    Wkingrow = -1;
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
+            (*boardmap)[i][j] = nullptr;
         }
     }
 }
 
 Board::Board(char w, char b) {
+    vector<vector<shared_ptr<Piece>>> tempb;
+    boardmap = make_shared<vector<vector<shared_ptr<Piece>>>>(tempb);
     this->PlayersInit(w, b);
 };
 
@@ -341,30 +367,30 @@ void Board::default_init() {
                 newrow.emplace_back(nullptr);
             }
         }
-        boardmap.emplace_back(newrow);
+        (*boardmap).emplace_back(newrow);
     }
 }
 
 void Board::PlayersInit(char w, char b) {
     switch (w) {
         case 'h':
-            this->WPlayer = make_shared<Human>(Human(boardmap));
+            this->WPlayer = make_shared<Human>(Human(*boardmap));
         case '1':
-            this->WPlayer = make_shared<Level1>(Level1(boardmap));
+            this->WPlayer = make_shared<Level1>(Level1(*boardmap));
         case '2':
-            this->WPlayer = make_shared<Level2>(Level2(boardmap));
+            this->WPlayer = make_shared<Level2>(Level2(*boardmap));
         case '3':
-            this->WPlayer = make_shared<Level3>(Level3(boardmap));
+            this->WPlayer = make_shared<Level3>(Level3(*boardmap));
     }
     switch (b) {
         case 'h':
-            this->BPlayer = make_shared<Human>(Human(boardmap));
+            this->BPlayer = make_shared<Human>(Human(*boardmap));
         case '1':
-            this->BPlayer = make_shared<Level1>(Level1(boardmap));
+            this->BPlayer = make_shared<Level1>(Level1(*boardmap));
         case '2':
-            this->BPlayer = make_shared<Level2>(Level2(boardmap));
+            this->BPlayer = make_shared<Level2>(Level2(*boardmap));
         case '3':
-            this->BPlayer = make_shared<Level3>(Level3(boardmap));
+            this->BPlayer = make_shared<Level3>(Level3(*boardmap));
     }
 }
 
@@ -374,20 +400,20 @@ void Board::move(char fromc, int fromr, char toc, int tor) {
     int fromrow = fromr - 1;
     int torow = tor - 1;
 
-    if (boardmap[fromrow][fromcol] != nullptr) {
-        if (boardmap[torow][tocol] != nullptr) {
-            if (boardmap[torow][tocol]->color == 'W') {
+    if ((*boardmap)[fromrow][fromcol] != nullptr) {
+        if ((*boardmap)[torow][tocol] != nullptr) {
+            if ((*boardmap)[torow][tocol]->color == 'W') {
                 Wpiececount--;
             } else {
                 Bpiececount--;
             }
-            boardmap[torow][tocol] = nullptr;
+            (*boardmap)[torow][tocol] = nullptr;
         }
-        boardmap[torow][tocol] = boardmap[fromrow][fromcol];
-        boardmap[fromrow][fromcol] = nullptr;
+        (*boardmap)[torow][tocol] = (*boardmap)[fromrow][fromcol];
+        (*boardmap)[fromrow][fromcol] = nullptr;
 
-        if (boardmap[torow][tocol]->type() == 'k' || boardmap[torow][tocol]->type() == 'K') {
-            if (boardmap[torow][tocol]->color == 'B') {
+        if ((*boardmap)[torow][tocol]->type() == 'k' || (*boardmap)[torow][tocol]->type() == 'K') {
+            if ((*boardmap)[torow][tocol]->color == 'B') {
                 Bkingcol = tocol;
                 Bkingrow = torow;
             } else {
@@ -405,10 +431,10 @@ void Board::move(char fromc, int fromr, char toc, int tor) {
         char kingcolor;
         if (currentPlayer == 'W') {
             kingcolor = 'B';
-            check = this->isCheck(boardmap, 'B', Bkingrow, Bkingcol, &checkrow, &checkcol);
+            check = this->isCheck(*boardmap, 'B', Bkingrow, Bkingcol, &checkrow, &checkcol);
         } else {
             kingcolor = 'W';
-            check = this->isCheck(boardmap, 'W', Wkingrow, Wkingcol, &checkrow, &checkcol);
+            check = this->isCheck(*boardmap, 'W', Wkingrow, Wkingcol, &checkrow, &checkcol);
         }
 
         if (check) {
@@ -436,7 +462,7 @@ void Board::print() {
     cout << "Bpiececount: " << Bpiececount << endl;
     for (int i = row8; i >= row1; i--) {
         for (int j = cola; j <= colh; j++) {
-            cout << this->boardmap[i][j]->type() << " ";
+            cout << (*boardmap)[i][j]->type() << " ";
         }
         cout << endl;
     }

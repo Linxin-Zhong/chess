@@ -51,6 +51,9 @@ class Board : public Subject {
                        int checkcol);
 
 public:
+
+    void clear();
+
     bool addPiece(char p, string coord);
 
     bool remPiece(string coord);
@@ -59,7 +62,7 @@ public:
 
     void PlayersInit(char w, char b);
 
-    std::vector<std::vector<std::shared_ptr<Piece>>> boardmap;
+    shared_ptr<std::vector<std::vector<std::shared_ptr<Piece>>>> boardmap;
 
     void default_init();
 

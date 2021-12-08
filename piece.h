@@ -10,12 +10,12 @@ class Board;
 
 class Piece {
 protected:
-    vector<vector<shared_ptr<Piece>>> &boardmap;
+    shared_ptr<vector<vector<shared_ptr<Piece>>>> boardmap;
     int value;  // determine the value of a piece
     char color;
 public:
 
-    Piece(char color, int value, std::vector<std::vector<std::shared_ptr<Piece>>> &boardmap);
+    Piece(char color, int value, shared_ptr<std::vector<std::vector<std::shared_ptr<Piece>>>> boardmap);
 
     virtual bool check(int torow, int tocol, int kingrow, int kingcol) = 0;
     virtual pair<int, int> legalMove(int r, int c) = 0;
