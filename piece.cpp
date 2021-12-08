@@ -61,3 +61,7 @@ char Piece::type() {
         }
     }
 }
+
+char Piece::getColor() {
+     return color;
+}
