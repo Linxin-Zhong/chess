@@ -41,9 +41,35 @@ bool Bishop::check(int torow, int tocol, int kingrow, int kingcol) {
     }
 }
 
-pair<int, int> Bishop::legalMove(int r, int c) {
-    pair<int, int> a = {0, 0};
-    return a;
+vector<pair<int, int>> Bishop::legalMoves(int r, int c) {
+    vector<pair<int, int>> listofLegalMoves;
+    vector<pair<int, int>> dir = {{1,  1},
+                                  {1,  -1},
+                                  {-1, 1},
+                                  {-1, -1}};
+    pair<int, int> temp;
+    for (int i = 0; i < 4; ++i) {
+        int j = 1;
+        while (true) {
+            int newrow = r + j * dir[i].first;
+            int newcol = c + j * dir[i].second;
+            if (newrow >= 8 || newrow < 0 || newcol >= 8 || newcol < 0) {
+                break;
+            }
+            if (!(*boardmap)[newrow][newcol]) {
+                temp = {newrow, newcol};
+                listofLegalMoves.emplace_back(temp);
+            } else if ((*boardmap)[newrow][newcol]->getColor() == this->color) {
+                break;
+            } else if ((*boardmap)[newrow][newcol]->getColor() != this->color) {
+                temp = {newrow, newcol};
+                listofLegalMoves.emplace_back(temp);
+                break;
+            }
+            j++;
+        }
+    }
+    return listofLegalMoves;
 }
 
 pair<int, int> Bishop::capture(int r, int c) {

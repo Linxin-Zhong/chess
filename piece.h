@@ -18,7 +18,8 @@ public:
     Piece(char color, int value, shared_ptr<std::vector<std::vector<std::shared_ptr<Piece>>>> boardmap);
 
     virtual bool check(int torow, int tocol, int kingrow, int kingcol) = 0;
-    virtual pair<int, int> legalMove(int r, int c) = 0;
+
+    virtual vector<pair<int, int>> legalMoves(int r, int c) = 0;
     virtual pair<int, int> capture(int r, int c) = 0;
     virtual pair<int, int> avoid(int r, int c) = 0;
     virtual pair<int, int> checks(int r, int c) = 0;

@@ -77,31 +77,40 @@ bool Queen::check(int torow, int tocol, int kingrow, int kingcol) {
     }
 }
 
-pair<int, int> Queen::legalMove(int r, int c) {
-    /*vector<pair<int, int>> dir = { {1, 0}, {0, 1}, {-1, 0}, {0, -1}, {1, 1}, {-1, 1}, {-1, -1}, {1, -1} };
-    pair<int, int> temp = {-1, -1};
-    
+vector<pair<int, int>> Queen::legalMoves(int r, int c) {
+
+    vector<pair<int, int>> listofLegalMoves;
+    vector<pair<int, int>> dir = {{1,  0},
+                                  {0,  1},
+                                  {-1, 0},
+                                  {0,  -1},
+                                  {1,  1},
+                                  {-1, 1},
+                                  {-1, -1},
+                                  {1,  -1}};
+    pair<int, int> temp;
     for (int i = 0; i < 8; ++i) {
-        j = 1;
+        int j = 1;
         while (true) {
             int newrow = r + j * dir[i].first;
             int newcol = c + j * dir[i].second;
-            if (newrow > 8 || newrow < 0 || newcol > 8 || newcol < 0) {
+            if (newrow >= 8 || newrow < 0 || newcol >= 8 || newcol < 0) {
                 break;
             }
-            if (boardmap[newrow][newcol]->color == currentPlayer) {
-                break;
-            } else {
+            if (!(*boardmap)[newrow][newcol]) {
                 temp = {newrow, newcol};
-                return temp;
+                listofLegalMoves.emplace_back(temp);
+            } else if ((*boardmap)[newrow][newcol]->getColor() == this->color) {
+                break;
+            } else if ((*boardmap)[newrow][newcol]->getColor() != this->color) {
+                temp = {newrow, newcol};
+                listofLegalMoves.emplace_back(temp);
+                break;
             }
             j++;
         }
     }
-    return temp;*/
-
-    pair<int, int> a = {0, 0};
-    return a;
+    return listofLegalMoves;
 }
 
 pair<int, int> Queen::capture(int r, int c) {

@@ -1,5 +1,7 @@
 #include <iostream>
 #include "board.h"
+#include <sstream>
+#include <string>
 
 using namespace std;
 
@@ -202,8 +204,6 @@ bool Board::addPiece(char p, string coord) {
             Bpiececount++;
             break;
         case 'b':
-            Bkingcol = col;
-            Bkingrow = row;
             newpiece = make_shared<Bishop>(Bishop('B', boardmap));
             Bpiececount++;
             break;
@@ -309,65 +309,92 @@ void Board::default_init() {
     Bkingrow = 7;
     Wkingcol = 4;
     Wkingrow = 0;
-    Wpiececount = 16;
-    Bpiececount = 16;
+    //Wpiececount = 16;
+    //Bpiececount = 16;
     for (int row = 1; row <= 8; row++) {
-        vector<shared_ptr<Piece>> newrow;
+        //vector<shared_ptr<Piece>> newrow;
         for (char col = 'a'; col <= 'h'; col++) {
+            stringstream stream;
+            stream << col;
+            string s = stream.str();
             if ((row == 1) && ((col == 'a') || (col == 'h'))) {
                 //place a white rook
-                shared_ptr<Piece> newpiece = make_shared<Rook>(Rook('W', boardmap));
-                newrow.emplace_back(newpiece);
+                /*shared_ptr<Piece> newpiece = make_shared<Rook>(Rook('W', boardmap));
+                newrow.emplace_back(newpiece);*/
+                s += "1";
+                addPiece('R', s);
             } else if ((row == 8) && ((col == 'a') || (col == 'h'))) {
                 //place a black rook
-                shared_ptr<Piece> newpiece = make_shared<Rook>(Rook('B', boardmap));
-                newrow.emplace_back(newpiece);
+                /*shared_ptr<Piece> newpiece = make_shared<Rook>(Rook('B', boardmap));
+                newrow.emplace_back(newpiece);*/
+                s += "8";
+                addPiece('r', s);
             } else if ((row == 1) && ((col == 'b') || (col == 'g'))) {
                 //place a white knight
-                shared_ptr<Piece> newpiece = make_shared<Knight>(Knight('W', boardmap));
-                newrow.emplace_back(newpiece);
+                /*shared_ptr<Piece> newpiece = make_shared<Knight>(Knight('W', boardmap));
+                newrow.emplace_back(newpiece);*/
+                s += "1";
+                addPiece('N', s);
             } else if ((row == 8) && ((col == 'b') || (col == 'g'))) {
                 //place a black knight
-                shared_ptr<Piece> newpiece = make_shared<Knight>(Knight('B', boardmap));
-                newrow.emplace_back(newpiece);
+                /*shared_ptr<Piece> newpiece = make_shared<Knight>(Knight('B', boardmap));
+                newrow.emplace_back(newpiece);*/
+                s += "8";
+                addPiece('n', s);
             } else if ((row == 1) && ((col == 'c') || (col == 'f'))) {
                 //place a white bishop
-                shared_ptr<Piece> newpiece = make_shared<Bishop>(Bishop('W', boardmap));
-                newrow.emplace_back(newpiece);
+                /*shared_ptr<Piece> newpiece = make_shared<Bishop>(Bishop('W', boardmap));
+                newrow.emplace_back(newpiece);*/
+                s += "1";
+                addPiece('B', s);
             } else if ((row == 8) && ((col == 'c') || (col == 'f'))) {
                 //place a black bishop
-                shared_ptr<Piece> newpiece = make_shared<Bishop>(Bishop('B', boardmap));
-                newrow.emplace_back(newpiece);
+                /*shared_ptr<Piece> newpiece = make_shared<Bishop>(Bishop('B', boardmap));
+                newrow.emplace_back(newpiece);*/
+                s += "8";
+                addPiece('b', s);
             } else if (row == 1 && col == 'd') {
                 //place a white queen
-                shared_ptr<Piece> newpiece = make_shared<Queen>(Queen('W', boardmap));
-                newrow.emplace_back(newpiece);
+                /*shared_ptr<Piece> newpiece = make_shared<Queen>(Queen('W', boardmap));
+                newrow.emplace_back(newpiece);*/
+                s += "1";
+                addPiece('Q', s);
             } else if (row == 8 && col == 'd') {
                 //place a black queen
-                shared_ptr<Piece> newpiece = make_shared<Queen>(Queen('B', boardmap));
-                newrow.emplace_back(newpiece);
+                /*shared_ptr<Piece> newpiece = make_shared<Queen>(Queen('B', boardmap));
+                newrow.emplace_back(newpiece);*/
+                s += "8";
+                addPiece('q', s);
             } else if (row == 1 && col == 'e') {
                 //place a white  king
-                shared_ptr<Piece> newpiece = make_shared<King>(King('W', boardmap));
-                newrow.emplace_back(newpiece);
+                /*shared_ptr<Piece> newpiece = make_shared<King>(King('W', boardmap));
+                newrow.emplace_back(newpiece);*/
+                s += "1";
+                addPiece('K', s);
             } else if (row == 8 && col == 'e') {
                 //place a black king
-                shared_ptr<Piece> newpiece = make_shared<King>(King('B', boardmap));
-                newrow.emplace_back(newpiece);
+                /*shared_ptr<Piece> newpiece = make_shared<King>(King('B', boardmap));
+                newrow.emplace_back(newpiece);*/
+                s += "8";
+                addPiece('k', s);
             } else if (row == 2) {
                 //place a white pawn
-                shared_ptr<Piece> newpiece = make_shared<Pawn>(Pawn('W', boardmap));
-                newrow.emplace_back(newpiece);
+                /*shared_ptr<Piece> newpiece = make_shared<Pawn>(Pawn('W', boardmap));
+                newrow.emplace_back(newpiece);*/
+                s += "2";
+                addPiece('P', s);
             } else if (row == 7) {
                 //place a black pawn
-                shared_ptr<Piece> newpiece = make_shared<Pawn>(Pawn('B', boardmap));
-                newrow.emplace_back(newpiece);
+                /*shared_ptr<Piece> newpiece = make_shared<Pawn>(Pawn('B', boardmap));
+                newrow.emplace_back(newpiece);*/
+                s += "7";
+                addPiece('p', s);
             } else {
                 //empty spot
-                newrow.emplace_back(nullptr);
+                //newrow.emplace_back(nullptr);
             }
         }
-        (*boardmap).emplace_back(newrow);
+        //(*boardmap).emplace_back(newrow);
     }
 }
 
@@ -395,10 +422,64 @@ void Board::PlayersInit(char w, char b) {
 }
 
 void Board::move(char fromc, int fromr, char toc, int tor) {
+
     int fromcol = fromc - 'a';
     int tocol = toc - 'a';
     int fromrow = fromr - 1;
     int torow = tor - 1;
+
+
+    if ((*boardmap)[fromrow][fromcol]->type() == 'P' && torow == fromrow + 1 && tocol == fromcol + 1) {
+        //move white upperright
+        if ((*boardmap)[fromrow][fromcol + 1]->type() == 'p') {
+            shared_ptr<Pawn> p = dynamic_pointer_cast<Pawn>((*boardmap)[fromrow][fromcol + 1]);
+            if (p->getEnpassant()) {
+                Bpiececount--;
+                (*boardmap)[fromrow][fromcol + 1] = nullptr;
+            }
+        }
+    } else if ((*boardmap)[fromrow][fromcol]->type() == 'P' && torow == fromrow + 1 && tocol == fromcol - 1) {
+        //move white upperleft
+        if ((*boardmap)[fromrow][fromcol - 1]->type() == 'p') {
+            shared_ptr<Pawn> p = dynamic_pointer_cast<Pawn>((*boardmap)[fromrow][fromcol - 1]);
+            if (p->getEnpassant()) {
+                Bpiececount--;
+                (*boardmap)[fromrow][fromcol - 1] = nullptr;
+            }
+        }
+    } else if ((*boardmap)[fromrow][fromcol]->type() == 'p' && torow == fromrow - 1 && tocol == fromcol + 1) {
+        //move black upperright
+        if ((*boardmap)[fromrow][fromcol + 1]->type() == 'P') {
+            shared_ptr<Pawn> p = dynamic_pointer_cast<Pawn>((*boardmap)[fromrow][fromcol + 1]);
+            if (p->getEnpassant()) {
+                Wpiececount--;
+                (*boardmap)[fromrow][fromcol + 1] = nullptr;
+            }
+        }
+
+    } else if ((*boardmap)[fromrow][fromcol]->type() == 'p' && torow == fromrow - 1 && tocol == fromcol - 1) {
+        //move black upperleft
+        if ((*boardmap)[fromrow][fromcol - 1]->type() == 'P') {
+            shared_ptr<Pawn> p = dynamic_pointer_cast<Pawn>((*boardmap)[fromrow][fromcol - 1]);
+            if (p->getEnpassant()) {
+                Wpiececount--;
+                (*boardmap)[fromrow][fromcol - 1] = nullptr;
+            }
+        }
+
+    }
+
+
+    if ((*boardmap)[fromrow][fromcol]->type() == 'p'
+        || (*boardmap)[fromrow][fromcol]->type() == 'P') {
+        shared_ptr<Pawn> p = dynamic_pointer_cast<Pawn>((*boardmap)[fromrow][fromcol]);
+        if (p->getHaventMoved()) {
+            p->setHaventMoved(false);
+            if (abs(tor - fromr) == 2) {
+                p->setEnpassant(true);
+            }
+        }
+    }
 
     if ((*boardmap)[fromrow][fromcol] != nullptr) {
         if ((*boardmap)[torow][tocol] != nullptr) {
@@ -412,6 +493,7 @@ void Board::move(char fromc, int fromr, char toc, int tor) {
         (*boardmap)[torow][tocol] = (*boardmap)[fromrow][fromcol];
         (*boardmap)[fromrow][fromcol] = nullptr;
 
+
         if ((*boardmap)[torow][tocol]->type() == 'k' || (*boardmap)[torow][tocol]->type() == 'K') {
             if ((*boardmap)[torow][tocol]->color == 'B') {
                 Bkingcol = tocol;
@@ -421,6 +503,8 @@ void Board::move(char fromc, int fromr, char toc, int tor) {
                 Wkingrow = torow;
             }
         }
+
+
 
         //check for situations that will end the game
         bool check;
@@ -455,23 +539,53 @@ void Board::move(char fromc, int fromr, char toc, int tor) {
         }
         this->print();
     }
+
+
+
+
+    //if move happens, en passant will be no longer valid
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
+            if ((*boardmap)[fromrow][fromcol]->type() == 'p'
+                || (*boardmap)[fromrow][fromcol]->type() == 'P') {
+                shared_ptr<Pawn> p = dynamic_pointer_cast<Pawn>((*boardmap)[fromrow][fromcol]);
+                if (p->getEnpassant()) {
+                    p->setEnpassant(false);
+                }
+            }
+        }
+    }
+
+
 }
 
 void Board::print() {
     cout << "Wpiececount: " << Wpiececount << endl;
     cout << "Bpiececount: " << Bpiececount << endl;
     for (int i = row8; i >= row1; i--) {
+        cout << i + 1 << " ";
         for (int j = cola; j <= colh; j++) {
             cout << (*boardmap)[i][j]->type() << " ";
         }
         cout << endl;
     }
+    cout << "  ";
+    for (char c = 'a'; c <= 'h'; c++) {
+        cout << c << " ";
+    }
+    cout << endl;
 }
+
 /*
 void Board::resign() {
 
 }
+*/
 
 void Board::render() {
+    notifyObservers();
+}
 
-}*/
+char Board::getCurrentPlayer() {
+    return currentPlayer;
+}

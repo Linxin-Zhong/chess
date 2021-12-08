@@ -15,9 +15,27 @@ bool Knight::check(int torow, int tocol, int kingrow, int kingcol) {
 }
 
 
-pair<int, int> Knight::legalMove(int r, int c) {
-    pair<int, int> a = {0, 0};
-    return a;
+vector<pair<int, int>> Knight::legalMoves(int r, int c) {
+    vector<pair<int, int>> listOfLegalMoves;
+    vector<pair<int, int>> dir = {{1,  2},
+                                  {1,  -2},
+                                  {-1, 2},
+                                  {-1, -2},
+                                  {2,  1},
+                                  {2,  -1},
+                                  {-2, 1},
+                                  {-2, -1}};
+    for (int i = 0; i < 8; i++) {
+        int newrow = r + dir[i].first;
+        int newcol = c + dir[i].second;
+        if (!(*boardmap)[newrow][newcol] || ((*boardmap)[newrow][newcol]->getColor() != this->color)) {
+            pair<int, int> temp = {newrow, newcol};
+            listOfLegalMoves.emplace_back(temp);
+        } else if ((*boardmap)[newrow][newcol]->getColor() == this->color) {
+            continue;
+        }
+    }
+    return listOfLegalMoves;
 }
 
 pair<int, int> Knight::capture(int r, int c) {

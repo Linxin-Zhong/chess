@@ -7,8 +7,8 @@ bool King::check(int torow, int tocol, int kingrow, int kingcol) {
     return false;
 }
 
-pair<int, int> King::legalMove(int r, int c) {
-    pair<int, int> a = {0, 0};
+vector<pair<int, int>> King::legalMoves(int r, int c) {
+    vector<pair<int, int>> a;
     return a;
 }
 

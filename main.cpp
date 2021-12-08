@@ -18,6 +18,9 @@ int main() {
     char Wplayer;
     char Bplayer;
 
+    // shared_ptr<TextObserver> to = make_shared<TextObserver>(&b);
+    //  shared_ptr<GraphObserver> go = make_shared<GraphObserver>(&b);
+
     while (true) {
         //before starting the first game
         string input;
@@ -61,7 +64,40 @@ int main() {
             }
             isrunning = true;
             cout << "Game Starts!" << endl;
-            break;
+            // if (isrunning) { // change 'if' to 'while
+            while (isrunning) {
+                //while game is running
+                string input3;
+                getline(cin, input3);
+                stringstream ss3(input3);
+                string command3;
+                ss3 >> command3;
+                if (command3 == "print") {
+                    b.print();
+                } else if (command3 == "move") {
+                    char fromc;
+                    int fromr;
+                    char toc;
+                    int tor;
+                    ss3 >> command3;
+                    fromc = command3[0];
+                    fromr = command3[1] - '1' + 1;
+                    ss3 >> command3;
+                    toc = command3[0];
+                    tor = command3[1] - '1' + 1;
+
+                    b.move(fromc, fromr, toc, tor);
+                    b.print();
+                } else if (command3 == "resign") { // resign ends the game
+                    if (b.getCurrentPlayer() == 'W') {
+                        BScore++;
+                    } else {
+                        WScore++;
+                    }
+                    isrunning = false;
+                    break;
+                }
+            }
         } else if (command == "setup") {
             b.clear();
             //set up based on empty boards
@@ -85,11 +121,11 @@ int main() {
                         cout << "Invalid command! But you are still in setup mode:) Use 'done' command to exit" << endl;
                         continue;
                     }
-                    if (p == 'K') {
+                    /*if (p == 'K') {
                         WKingcount++;
                     } else if (p == 'k') {
                         BKingcount++;
-                    }
+                    }*/
 
                 } else if (command2 == "-") {
                     string coord;
@@ -109,6 +145,13 @@ int main() {
                         cout << "Invalid command! But you are still in setup mode:) Use 'done' command to exit" << endl;
                     }
                 } else if (command2 == "done") {
+                    for (int i = 0; i < 8; i++) { // count the number of Kings in black and white
+                        for (int j = 0; j < 8; j++) {
+                            char c = (*b.boardmap)[i][j]->type();
+                            if (c == 'K') WKingcount++;
+                            if (c == 'k') BKingcount++;
+                        }
+                    }
                     if (BKingcount == 1 && WKingcount == 1) {
 
                         // isCheck(vector<vector<shared_ptr<Piece>>> &b, char kingcolor, int kingrow,
@@ -139,40 +182,13 @@ int main() {
                     cout << "Invalid command! But you are still in setup mode:) Use 'done' command to exit" << endl;
                 }
             }
-
-
+        } else if (cin.eof()) { // adds a command to indicate the program is end.
+            cout << "Final Score:" << endl;
+            cout << "White: " << WScore << endl;
+            cout << "Black: " << BScore << endl;
+            break;
         } else {
             cout << "Please use command 'game' to start a game or use 'setup' to enter the set up mode." << endl;
         }
     }
-
-    if (isrunning) {
-        //while game is running
-        string input;
-        getline(cin, input);
-        stringstream ss(input);
-        string command;
-        ss >> command;
-        if (command == "print") {
-            b.print();
-        } else if (command == "move") {
-            char fromc;
-            int fromr;
-            char toc;
-            int tor;
-            ss >> command;
-            fromc = command[0];
-            fromr = command[1] - '1' + 1;
-            ss >> command;
-            toc = command[0];
-            tor = command[1] - '1' + 1;
-
-            b.move(fromc, fromr, toc, tor);
-
-        }
-
-    }
-
-
-
 }

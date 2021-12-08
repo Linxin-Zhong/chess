@@ -48,27 +48,35 @@ bool Rook::check(int torow, int tocol, int kingrow, int kingcol) {
     }
 }
 
-pair<int, int> Rook::legalMove(int r, int c) {
-    /* vector<pair<int, int>> dir = { {1, 0}, {0, 1}, {-1, 0}, {0, -1} };
-     pair<int, int> temp = {-1, -1};
-     for (int i = 0; i < 8; ++i) {
+vector<pair<int, int>> Rook::legalMoves(int r, int c) {
+    vector<pair<int, int>> listofLegalMoves;
+    vector<pair<int, int>> dir = {{1,  0},
+                                  {0,  1},
+                                  {-1, 0},
+                                  {0,  -1}};
+    pair<int, int> temp;
+    for (int i = 0; i < 4; ++i) {
          int j = 1;
          while (true) {
              int newrow = r + j * dir[i].first;
              int newcol = c + j * dir[i].second;
-             if (newrow > 8 || newrow < 0 || newcol > 8 || newcol < 0) {
+             if (newrow >= 8 || newrow < 0 || newcol >= 8 || newcol < 0) {
                  break;
              }
-             if (boardmap[newrow][newcol]->color == currentPlayer) {
-                 break;
-             } else {
+             if (!(*boardmap)[newrow][newcol]) {
                  temp = {newrow, newcol};
-                 return temp;
+                 listofLegalMoves.emplace_back(temp);
+             } else if ((*boardmap)[newrow][newcol]->getColor() == this->color) {
+                 break;
+             } else if ((*boardmap)[newrow][newcol]->getColor() != this->color) {
+                 temp = {newrow, newcol};
+                 listofLegalMoves.emplace_back(temp);
+                 break;
              }
              j++;
          }
      }
-     return temp;*/
+    return listofLegalMoves;
 }
 
 pair<int, int> Rook::capture(int r, int c) {

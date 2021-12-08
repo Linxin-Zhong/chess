@@ -1,4 +1,4 @@
-#include <iostream>
+/*#include <iostream>
 #include "graphobserver.h"
 #include "window.h"
 #include <string>
@@ -46,3 +46,4 @@ void GraphObserver::notify() {
         }
     }
 }
+ */

@@ -87,9 +87,11 @@ public:
 
     bool isRun();
 
-    void resign();
+    void resign();*/
 
-    void render();*/
+    void render();
+
+    char getCurrentPlayer();
 
 };
 
