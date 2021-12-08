@@ -39,3 +39,23 @@ bool Bishop::check(int torow, int tocol, int kingrow, int kingcol) {
         return false;
     }
 }
+
+pair<int, int> Bishop::legalMove(int r, int c) {
+    pair<int, int> a = {0, 0};
+    return a;
+}
+
+pair<int, int> Bishop::capture(int r, int c) {
+    pair<int, int> a = {0, 0};
+    return a;
+}
+
+pair<int, int> Bishop::avoid(int r, int c) {
+    pair<int, int> a = {0, 0};
+    return a;
+}
+
+pair<int, int> Bishop::checks(int r, int c) {
+    pair<int, int> a = {0, 0};
+    return a;
+}

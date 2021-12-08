@@ -5,3 +5,5 @@ using namespace std;
 vector<pair<char, int>> Level2::generateMove() {
 
 }
+
+

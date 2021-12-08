@@ -35,10 +35,7 @@ const int row7 = 6;
 const int row8 = 7;
 
 class Board : public Subject {
-    /* bool isrunning;
-     int WScore;
-     int BScore;
-     */
+
     char currentPlayer;
     std::shared_ptr<Strategy> WPlayer;
     std::shared_ptr<Strategy> BPlayer;
@@ -54,11 +51,21 @@ class Board : public Subject {
                        int checkcol);
 
 public:
+    bool addPiece(char p, string coord);
+
+    bool remPiece(string coord);
+
+    bool setNextPlayer(char color);
+
+    void PlayersInit(char w, char b);
+
     std::vector<std::vector<std::shared_ptr<Piece>>> boardmap;
 
     void default_init();
 
     Board(char w, char b);
+
+    Board(string i); //for temporary board in setup purpose
 
     void move(char fromc, int fromr, char toc, int tor);
 
@@ -68,6 +75,8 @@ public:
                  int *checkrow, int *checkcol);
 
     bool isCheckMate(char kingcolor, int checkrow, int checkcol);
+
+    pair<pair<int, int>, pair<int, int>> getKingcoord();
 
     /*bool isStalemate();
 

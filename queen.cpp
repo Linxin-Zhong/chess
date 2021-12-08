@@ -76,8 +76,8 @@ bool Queen::check(int torow, int tocol, int kingrow, int kingcol) {
     }
 }
 
-pair<int, int> legalMove(int r, int c) {
-    vector<pair<int, int>> dir = { {1, 0}, {0, 1}, {-1, 0}, {0, -1}, {1, 1}, {-1, 1}, {-1, -1}, {1, -1} };
+pair<int, int> Queen::legalMove(int r, int c) {
+    /*vector<pair<int, int>> dir = { {1, 0}, {0, 1}, {-1, 0}, {0, -1}, {1, 1}, {-1, 1}, {-1, -1}, {1, -1} };
     pair<int, int> temp = {-1, -1};
     
     for (int i = 0; i < 8; ++i) {
@@ -97,9 +97,23 @@ pair<int, int> legalMove(int r, int c) {
             j++;
         }
     }
-    return temp;
+    return temp;*/
+
+    pair<int, int> a = {0, 0};
+    return a;
 }
 
-pair<int, int> capture(int r, int c);
-pair<int, int> avoid(int r, int c);
-pair<int, int> checks(int r, int c);
+pair<int, int> Queen::capture(int r, int c) {
+    pair<int, int> a = {0, 0};
+    return a;
+}
+
+pair<int, int> Queen::avoid(int r, int c) {
+    pair<int, int> a = {0, 0};
+    return a;
+}
+
+pair<int, int> Queen::checks(int r, int c) {
+    pair<int, int> a = {0, 0};
+    return a;
+}

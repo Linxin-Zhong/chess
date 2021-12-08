@@ -12,3 +12,24 @@ bool Knight::check(int torow, int tocol, int kingrow, int kingcol) {
         return false;
     }
 }
+
+
+pair<int, int> Knight::legalMove(int r, int c) {
+    pair<int, int> a = {0, 0};
+    return a;
+}
+
+pair<int, int> Knight::capture(int r, int c) {
+    pair<int, int> a = {0, 0};
+    return a;
+}
+
+pair<int, int> Knight::avoid(int r, int c) {
+    pair<int, int> a = {0, 0};
+    return a;
+}
+
+pair<int, int> Knight::checks(int r, int c) {
+    pair<int, int> a = {0, 0};
+    return a;
+}

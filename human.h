@@ -7,7 +7,7 @@ class Human : public Strategy {
 public:
     std::vector<std::pair<char, int>> generateMove() override;
 
-    Human(std::shared_ptr<Board> b) : Strategy(b) {};
+    Human(vector<vector<shared_ptr<Piece>>> &boardmap) : Strategy(boardmap) {};
 };
 
 #endif

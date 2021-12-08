@@ -20,3 +20,23 @@ bool Pawn::check(int torow, int tocol, int kingrow, int kingcol) {
     }
 
 }
+
+pair<int, int> Pawn::legalMove(int r, int c) {
+    pair<int, int> a = {0, 0};
+    return a;
+}
+
+pair<int, int> Pawn::capture(int r, int c) {
+    pair<int, int> a = {0, 0};
+    return a;
+}
+
+pair<int, int> Pawn::avoid(int r, int c) {
+    pair<int, int> a = {0, 0};
+    return a;
+}
+
+pair<int, int> Pawn::checks(int r, int c) {
+    pair<int, int> a = {0, 0};
+    return a;
+}

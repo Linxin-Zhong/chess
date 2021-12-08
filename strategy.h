@@ -2,6 +2,7 @@
 #define STRATEGY_H
 
 #include <vector>
+#include "piece.h"
 using namespace std;
 
 class Board;

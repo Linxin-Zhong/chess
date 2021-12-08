@@ -4,6 +4,16 @@
 using namespace std;
 
 
+pair<pair<int, int>, pair<int, int>> Board::getKingcoord() {
+    pair<pair<int, int>, pair<int, int>> kingcoord;
+    kingcoord.first.first = Wkingrow;
+    kingcoord.first.second = Wkingcol;
+    kingcoord.second.first = Bkingrow;
+    kingcoord.second.second = Bkingcol;
+    return kingcoord;
+}
+
+
 bool Board::isCheck(vector<vector<shared_ptr<Piece>>> &b, char kingcolor, int kingrow,
                     int kingcol, int *checkrow, int *checkcol) {
     *checkcol = -1;
@@ -140,27 +150,131 @@ bool Board::isRun() {
 
 }*/
 
+
+bool Board::addPiece(char p, string coord) {
+    shared_ptr<Piece> newpiece;
+    int col = coord[0] - 'a';
+    int row = coord[1] - '1';
+    if (col >= 8 || row >= 8) {
+        return false;
+    }
+    switch (p) {
+        case 'K':
+            Wkingcol = col;
+            Wkingrow = row;
+            newpiece = make_shared<King>(King('W', boardmap));
+            Wpiececount++;
+            break;
+        case 'Q':
+            newpiece = make_shared<Queen>(Queen('W', boardmap));
+            Wpiececount++;
+            break;
+        case 'B':
+            newpiece = make_shared<Bishop>(Bishop('W', boardmap));
+            Wpiececount++;
+            break;
+        case 'R':
+            newpiece = make_shared<Rook>(Rook('W', boardmap));
+            Wpiececount++;
+            break;
+        case 'N':
+            newpiece = make_shared<Knight>(Knight('W', boardmap));
+            Wpiececount++;
+            break;
+        case 'P':
+            newpiece = make_shared<Pawn>(Pawn('W', boardmap));
+            Wpiececount++;
+            break;
+        case 'k':
+            Bkingcol = col;
+            Bkingrow = row;
+            newpiece = make_shared<King>(King('B', boardmap));
+            Bpiececount++;
+            break;
+        case 'q':
+            newpiece = make_shared<Queen>(Queen('B', boardmap));
+            Bpiececount++;
+            break;
+        case 'b':
+            Bkingcol = col;
+            Bkingrow = row;
+            newpiece = make_shared<Bishop>(Bishop('B', boardmap));
+            Bpiececount++;
+            break;
+        case 'r':
+            newpiece = make_shared<Rook>(Rook('B', boardmap));
+            Bpiececount++;
+            break;
+        case 'n':
+            newpiece = make_shared<Knight>(Knight('B', boardmap));
+            Bpiececount++;
+            break;
+        case 'p':
+            newpiece = make_shared<Pawn>(Pawn('B', boardmap));
+            Bpiececount++;
+            break;
+        default:
+            return false;
+    }
+
+    char type = boardmap[row][col]->type();
+    if (type >= 'a' && type <= 'z') {
+        Bpiececount--;
+    }
+    if (type >= 'A' && type <= 'Z') {
+        Wpiececount--;
+    }
+    boardmap[row][col] = newpiece;
+    return true;
+}
+
+bool Board::remPiece(string coord) {
+    int col = coord[0] - 'a';
+    int row = coord[1] - '1';
+    if (col >= 8 || row >= 8) {
+        return false;
+    } else {
+        char type = boardmap[row][col]->type();
+        if (type >= 'a' && type <= 'z') {
+            Bpiececount--;
+        }
+        if (type >= 'A' && type <= 'Z') {
+            Wpiececount--;
+        }
+        boardmap[row][col] = nullptr;
+        return true;
+    }
+}
+
+bool Board::setNextPlayer(char color) {
+    if (color == 'W' || color == 'B') {
+        currentPlayer = color;
+    } else {
+        return false;
+    }
+}
+
+Board::Board(string i) {
+    if (i == "empty") {
+        currentPlayer = 'W';
+        Wpiececount = 0;
+        Bpiececount = 0;
+        Bkingcol = -1;
+        Bkingrow = -1;
+        Wkingcol = -1;
+        Wkingrow = -1;
+        for (int i = 0; i < 8; i++) {
+            vector<shared_ptr<Piece>> newrow;
+            for (int j = 0; j < 8; j++) {
+                newrow.emplace_back(nullptr);
+            }
+            boardmap.emplace_back(newrow);
+        }
+    }
+}
+
 Board::Board(char w, char b) {
-    switch (w) {
-        case 'h':
-            this->WPlayer = make_shared<Human>(Human(make_shared<Board>(*this)));
-        case '1':
-            this->WPlayer = make_shared<Level1>(Level1(make_shared<Board>(*this)));
-        case '2':
-            this->WPlayer = make_shared<Level2>(Level2(make_shared<Board>(*this)));
-        case '3':
-            this->WPlayer = make_shared<Level3>(Level3(make_shared<Board>(*this)));
-    }
-    switch (b) {
-        case 'h':
-            this->BPlayer = make_shared<Human>(Human(make_shared<Board>(*this)));
-        case '1':
-            this->BPlayer = make_shared<Level1>(Level1(make_shared<Board>(*this)));
-        case '2':
-            this->BPlayer = make_shared<Level2>(Level2(make_shared<Board>(*this)));
-        case '3':
-            this->BPlayer = make_shared<Level3>(Level3(make_shared<Board>(*this)));
-    }
+    this->PlayersInit(w, b);
 };
 
 void Board::default_init() {
@@ -231,6 +345,29 @@ void Board::default_init() {
     }
 }
 
+void Board::PlayersInit(char w, char b) {
+    switch (w) {
+        case 'h':
+            this->WPlayer = make_shared<Human>(Human(boardmap));
+        case '1':
+            this->WPlayer = make_shared<Level1>(Level1(boardmap));
+        case '2':
+            this->WPlayer = make_shared<Level2>(Level2(boardmap));
+        case '3':
+            this->WPlayer = make_shared<Level3>(Level3(boardmap));
+    }
+    switch (b) {
+        case 'h':
+            this->BPlayer = make_shared<Human>(Human(boardmap));
+        case '1':
+            this->BPlayer = make_shared<Level1>(Level1(boardmap));
+        case '2':
+            this->BPlayer = make_shared<Level2>(Level2(boardmap));
+        case '3':
+            this->BPlayer = make_shared<Level3>(Level3(boardmap));
+    }
+}
+
 void Board::move(char fromc, int fromr, char toc, int tor) {
     int fromcol = fromc - 'a';
     int tocol = toc - 'a';
@@ -290,6 +427,7 @@ void Board::move(char fromc, int fromr, char toc, int tor) {
         } else {
             currentPlayer = 'W';
         }
+        this->print();
     }
 }
 
