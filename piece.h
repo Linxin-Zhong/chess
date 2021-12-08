@@ -27,6 +27,7 @@ public:
     virtual ~Piece() = default;
 
     char type(); //return what type of piece is that, one of: k, q, b, r, n, p
+    char getColor(); // return the color of the piece
     friend class Board;
 };
 
