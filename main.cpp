@@ -1,8 +1,7 @@
 #include <iostream>
 #include <sstream>
 #include "board.h"
-#include "Piece.h"
-#include "Board.h"
+#include "piece.h"
 
 
 
