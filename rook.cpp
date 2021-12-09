@@ -161,17 +161,17 @@ void Rook::setHaventMoved(bool b) {
     haventMoved = b;
 }
 
-pair<int, int> Rook::capture(int r, int c) {
-    pair<int, int> a = {0, 0};
+vector<pair<int, int>> Rook::captureMoves(int r, int c) {
+    vector<pair<int, int>> a;
     return a;
 }
 
-pair<int, int> Rook::avoid(int r, int c) {
-    pair<int, int> a = {0, 0};
+vector<pair<int, int>> Rook::avoidMoves(int r, int c) {
+    vector<pair<int, int>> a;
     return a;
 }
 
-pair<int, int> Rook::checks(int r, int c) {
-    pair<int, int> a = {0, 0};
+vector<pair<int, int>> Rook::checkMoves(int r, int c) {
+    vector<pair<int, int>> a;
     return a;
 }
