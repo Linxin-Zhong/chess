@@ -19,11 +19,11 @@ public:
 
     vector<pair<int, int>> legalMoves(int r, int c);
 
-    vector<pair<int, int>> capture(int r, int c);
+    vector<pair<int, int>> captureMoves(int r, int c);
 
-    pair<int, int> avoid(int r, int c);
+    vector<pair<int, int>> avoidMoves(int r, int c);
 
-    pair<int, int> checks(int r, int c);
+    vector<pair<int, int>> checkMoves(int r, int c);
 };
 
 #endif
