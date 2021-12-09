@@ -140,18 +140,18 @@ vector<pair<int, int>> King::legalMoves(int r, int c) {
     return listOfLegalMoves;
 }
 
-pair<int, int> King::capture(int r, int c) {
-    pair<int, int> a = {0, 0};
+vector<pair<int, int>> King::captureMoves(int r, int c) {
+    vector<pair<int, int>> a;
     return a;
 }
 
-pair<int, int> King::avoid(int r, int c) {
-    pair<int, int> a = {0, 0};
+vector<pair<int, int>> King::avoidMoves(int r, int c) {
+    vector<pair<int, int>> a;
     return a;
 }
 
-pair<int, int> King::checks(int r, int c) {
-    pair<int, int> a = {0, 0};
+vector<pair<int, int>> King::checkMoves(int r, int c) {
+    vector<pair<int, int>> a;
     return a;
 }
 
