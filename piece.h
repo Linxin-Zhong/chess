@@ -15,6 +15,9 @@ protected:
     char color;
 public:
 
+    bool isCheck(vector<vector<shared_ptr<Piece>>> &b, char kingcolor, int kingrow,
+                 int kingcol, int *checkrow, int *checkcol);
+
     Piece(char color, int value, shared_ptr<std::vector<std::vector<std::shared_ptr<Piece>>>> boardmap);
 
     virtual bool check(int torow, int tocol, int kingrow, int kingcol) = 0;

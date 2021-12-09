@@ -65,3 +65,22 @@ char Piece::type() {
 char Piece::getColor() {
      return color;
 }
+
+
+bool Piece::isCheck(vector<vector<shared_ptr<Piece>>> &b, char kingcolor, int kingrow,
+                    int kingcol, int *checkrow, int *checkcol) {
+    *checkcol = -1;
+    *checkrow = -1;
+    for (int r = 0; r < 8; r++) {
+        for (int c = 0; c < 8; c++) {
+            if (b[r][c] && b[r][c]->check(r, c, kingrow, kingcol)) {
+                if (b[r][c]->getColor() != kingcolor) {
+                    *checkrow = r;
+                    *checkcol = c;
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
+}

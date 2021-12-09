@@ -9,31 +9,10 @@ bool King::check(int torow, int tocol, int kingrow, int kingcol) {
 }
 
 
-bool isCheck(vector<vector<shared_ptr<Piece>>> &b, char kingcolor, int kingrow,
-             int kingcol, int *checkrow, int *checkcol) {
-    *checkcol = -1;
-    *checkrow = -1;
-    for (int r = 0; r < 8; r++) {
-        for (int c = 0; c < 8; c++) {
-            if (b[r][c] && b[r][c]->check(r, c, kingrow, kingcol)) {
-                if (b[r][c]->getColor() != kingcolor) {
-                    *checkrow = r;
-                    *checkcol = c;
-                    return true;
-                }
-            }
-        }
-    }
-    return false;
-}
+
 
 vector<pair<int, int>> King::legalMoves(int r, int c) {
     vector<pair<int, int>> listOfLegalMoves;
-    //王车 里加haventmoved bool
-    //左右有车，中间不能有其他棋子，王在王车易位过程中不能被check
-    //只考虑同一row
-    //R _ _ _ K -----> _ _ K R _
-    //K _ _ R  ---> _ R K _
 
     //normal moves
     vector<pair<int, int>> directions = {{0,  1},
@@ -60,6 +39,11 @@ vector<pair<int, int>> King::legalMoves(int r, int c) {
     }
 
 
+    //王车 里加haventmoved bool
+    //左右有车，中间不能有其他棋子，王在王车易位过程中不能被check
+    //只考虑同一row
+    //R _ _ _ K -----> _ _ K R _
+    //K _ _ R  ---> _ R K _
 
     //castling moves
     if (this->color == 'W') {
@@ -71,8 +55,9 @@ vector<pair<int, int>> King::legalMoves(int r, int c) {
                 if (rook->getHaventMoved()) {
                     if ((!(*boardmap)[r][c - 3]) && (!(*boardmap)[r][c - 2]) && (!(*boardmap)[r][c - 1])) {
                         int checkrow, checkcol;
-                        if ((!isCheck((*boardmap), 'W', r, c - 3, &checkrow, &checkcol))
-                            && (!isCheck((*boardmap), 'W', r, c - 2, &checkrow, &checkcol))) {
+                        if ((!isCheck((*boardmap), 'W', r, c - 2, &checkrow, &checkcol))
+                            && (!isCheck((*boardmap), 'W', r, c - 1, &checkrow, &checkcol))
+                            && (!isCheck((*boardmap), 'W', r, c, &checkrow, &checkcol))) {
                             pair<int, int> temp = {r, c - 2};
                             listOfLegalMoves.emplace_back(temp);
                         }
@@ -86,7 +71,8 @@ vector<pair<int, int>> King::legalMoves(int r, int c) {
                 if (rook->getHaventMoved()) {
                     if ((!(*boardmap)[r][c + 1]) && (!(*boardmap)[r][c + 2])) {
                         int checkrow, checkcol;
-                        if ((!isCheck((*boardmap), 'W', r, c + 1, &checkrow, &checkcol))
+                        if (!isCheck((*boardmap), 'W', r, c, &checkrow, &checkcol)
+                            && (!isCheck((*boardmap), 'W', r, c + 1, &checkrow, &checkcol))
                             && (!isCheck((*boardmap), 'W', r, c + 2, &checkrow, &checkcol))) {
                             pair<int, int> temp = {r, c + 2};
                             listOfLegalMoves.emplace_back(temp);
@@ -104,8 +90,9 @@ vector<pair<int, int>> King::legalMoves(int r, int c) {
                 if (rook->getHaventMoved()) {
                     if ((!(*boardmap)[r][c - 3]) && (!(*boardmap)[r][c - 2]) && (!(*boardmap)[r][c - 1])) {
                         int checkrow, checkcol;
-                        if ((!isCheck((*boardmap), 'B', r, c - 3, &checkrow, &checkcol))
-                            && (!isCheck((*boardmap), 'B', r, c - 2, &checkrow, &checkcol))) {
+                        if ((!isCheck((*boardmap), 'B', r, c - 2, &checkrow, &checkcol))
+                            && (!isCheck((*boardmap), 'B', r, c - 1, &checkrow, &checkcol))
+                            && (!isCheck((*boardmap), 'B', r, c, &checkrow, &checkcol))) {
                             pair<int, int> temp = {r, c - 2};
                             listOfLegalMoves.emplace_back(temp);
                         }
@@ -120,7 +107,8 @@ vector<pair<int, int>> King::legalMoves(int r, int c) {
                     if ((!(*boardmap)[r][c + 1]) && (!(*boardmap)[r][c + 2])) {
                         int checkrow, checkcol;
                         if ((!isCheck((*boardmap), 'B', r, c + 1, &checkrow, &checkcol))
-                            && (!isCheck((*boardmap), 'B', r, c + 2, &checkrow, &checkcol))) {
+                            && (!isCheck((*boardmap), 'B', r, c + 2, &checkrow, &checkcol))
+                            && (!isCheck((*boardmap), 'B', r, c, &checkrow, &checkcol))) {
                             pair<int, int> temp = {r, c + 2};
                             listOfLegalMoves.emplace_back(temp);
                         }

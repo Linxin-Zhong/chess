@@ -30,6 +30,8 @@ void Board::makeMove(string input) {
         cout << "This is not the turn of this piece you want to move, plz try again:)" << endl;
     } else if (wantmove.first == torow && wantmove.second == tocol) {
         move(fromrow, fromcol, torow, tocol);
+    } else {
+        cout << "Invalid move! plz try again" << endl;
     }
 
 }
@@ -459,6 +461,30 @@ void Board::PlayersInit(char w, char b) {
 
 void Board::move(int fromrow, int fromcol, int torow, int tocol) {
 
+    //if doing castling, move the rook at the same time
+    if ((*boardmap)[fromrow][fromcol]->type() == 'k' && abs(fromcol - tocol) == 2
+        && tocol == 2) {
+        //black king long castling
+        (*boardmap)[7][3] = (*boardmap)[7][0];
+        (*boardmap)[7][0] = nullptr;
+
+    } else if ((*boardmap)[fromrow][fromcol]->type() == 'k' && abs(fromcol - tocol) == 2
+               && tocol == 6) {
+        //black king short castling
+        (*boardmap)[7][5] = (*boardmap)[7][7];
+        (*boardmap)[7][7] = nullptr;
+    } else if ((*boardmap)[fromrow][fromcol]->type() == 'K' && abs(fromcol - tocol) == 2
+               && tocol == 2) {
+        //white king long castling
+        (*boardmap)[0][3] = (*boardmap)[0][0];
+        (*boardmap)[0][0] = nullptr;
+
+    } else if ((*boardmap)[fromrow][fromcol]->type() == 'K' && abs(fromcol - tocol) == 2
+               && tocol == 6) {
+        //white king short castling
+        (*boardmap)[0][5] = (*boardmap)[0][7];
+        (*boardmap)[0][7] = nullptr;
+    }
 
 
     //eliminate the pawn in the situation of en passant
