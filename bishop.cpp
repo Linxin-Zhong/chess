@@ -64,6 +64,7 @@ vector<pair<int, int>> Bishop::legalMoves(int r, int c) {
             } else if ((*boardmap)[newrow][newcol]->getColor() != this->color) {
                 temp = {newrow, newcol};
                 listofLegalMoves.emplace_back(temp);
+                break;
             }
             j++;
         }
@@ -93,6 +94,7 @@ vector<pair<int, int>> Bishop::captureMoves(int r, int c) {
             } else if ((*boardmap)[newrow][newcol]->getColor() != this->color) {
                 temp = {newrow, newcol};
                 listofCaptureMoves.emplace_back(temp);
+                break;
             }
             j++;
         }
