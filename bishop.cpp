@@ -72,17 +72,17 @@ vector<pair<int, int>> Bishop::legalMoves(int r, int c) {
     return listofLegalMoves;
 }
 
-pair<int, int> Bishop::capture(int r, int c) {
-    pair<int, int> a = {0, 0};
+vector<pair<int, int>> Bishop::captureMoves(int r, int c) {
+    vector<pair<int, int>> a;
     return a;
 }
 
-pair<int, int> Bishop::avoid(int r, int c) {
-    pair<int, int> a = {0, 0};
+vector<pair<int, int>> Bishop::avoidMoves(int r, int c) {
+    vector<pair<int, int>> a;
     return a;
 }
 
-pair<int, int> Bishop::checks(int r, int c) {
-    pair<int, int> a = {0, 0};
+vector<pair<int, int>> Bishop::checks(int r, int c) {
+    vector<pair<int, int>> a;
     return a;
 }
