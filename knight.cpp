@@ -39,17 +39,17 @@ vector<pair<int, int>> Knight::legalMoves(int r, int c) {
     return listOfLegalMoves;
 }
 
-pair<int, int> Knight::capture(int r, int c) {
-    pair<int, int> a = {0, 0};
+vector<pair<int, int>> Knight::captureMoves(int r, int c) {
+    vector<pair<int, int>> a;
     return a;
 }
 
-pair<int, int> Knight::avoid(int r, int c) {
-    pair<int, int> a = {0, 0};
+vector<pair<int, int>> Knight::avoidMoves(int r, int c) {
+    vector<pair<int, int>> a;
     return a;
 }
 
-pair<int, int> Knight::checks(int r, int c) {
-    pair<int, int> a = {0, 0};
+vector<pair<int, int>> Knight::checkMoves(int r, int c) {
+    vector<pair<int, int>> a;
     return a;
 }
