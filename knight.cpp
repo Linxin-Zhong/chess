@@ -40,8 +40,27 @@ vector<pair<int, int>> Knight::legalMoves(int r, int c) {
 }
 
 vector<pair<int, int>> Knight::captureMoves(int r, int c) {
-    vector<pair<int, int>> a;
-    return a;
+    vector<pair<int, int>> listOfCaptureMoves;
+    vector<pair<int, int>> dir = {{1, 2},
+                                  {1, -2},
+                                  {-1, 2},
+                                  {-1, -2},
+                                  {2, 1},
+                                  {2, -1},
+                                  {-2, 1},
+                                  {-2, -1}};
+    for (int i = 0; i < 8; i++) {
+        int newrow = r + dir[i].first;
+        int newcol = c + dir[i].second;
+        if ((newrow >= 0 && newrow < 8 && newcol >= 0 && newcol < 8) &&
+            ((*boardmap)[newrow][newcol] && ((*boardmap)[newrow][newcol]->getColor() != this->color))) {
+            pair<int, int> temp = {newrow, newcol};
+            listOfCaptureMoves.emplace_back(temp);
+        } else {
+            continue;
+        }
+    }
+    return listOfCaptureMoves;
 }
 
 vector<pair<int, int>> Knight::avoidMoves(int r, int c) {
