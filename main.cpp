@@ -75,18 +75,17 @@ int main() {
                 if (command3 == "print") {
                     b.print();
                 } else if (command3 == "move") {
-                    char fromc;
-                    int fromr;
-                    char toc;
-                    int tor;
-                    ss3 >> command3;
-                    fromc = command3[0];
-                    fromr = command3[1] - '1' + 1;
-                    ss3 >> command3;
-                    toc = command3[0];
-                    tor = command3[1] - '1' + 1;
-
-                    b.move(fromc, fromr, toc, tor);
+                    /* char fromc;
+                     int fromr;
+                     char toc;
+                     int tor;
+                     ss3 >> command3;
+                     fromc = command3[0];
+                     fromr = command3[1] - '1' + 1;
+                     ss3 >> command3;
+                     toc = command3[0];
+                     tor = command3[1] - '1' + 1;*/
+                    b.makeMove(input3);
                     b.print();
                 } else if (command3 == "resign") { // resign ends the game
                     if (b.getCurrentPlayer() == 'W') {

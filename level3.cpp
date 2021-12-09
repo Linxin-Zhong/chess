@@ -1,8 +1,9 @@
 #include "level3.h"
+#include <string>
 
 
 using namespace std;
 
-vector<pair<char, int>> Level3::generateMove() {
+pair<int, int> Level3::generateMove(string input) {
 
 }

@@ -75,6 +75,7 @@ bool Queen::check(int torow, int tocol, int kingrow, int kingcol) {
             return check;
         }
     }
+    return false;
 }
 
 vector<pair<int, int>> Queen::legalMoves(int r, int c) {

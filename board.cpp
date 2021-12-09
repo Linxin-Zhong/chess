@@ -6,6 +6,34 @@
 using namespace std;
 
 
+void Board::makeMove(string input) {
+    //call generate move
+    //return tor, toc
+    pair<int, int> wantmove;
+    if (currentPlayer == 'W') {
+        wantmove = this->WPlayer->generateMove(input);
+    } else {
+        wantmove = this->BPlayer->generateMove(input);
+    }
+    stringstream ss(input);
+    string command;
+    string movefrom;
+    string moveto;
+    ss >> command;
+    ss >> movefrom;
+    ss >> moveto;
+    int fromcol = movefrom[0] - 'a';
+    int fromrow = movefrom[1] - '1';
+    int tocol = moveto[0] - 'a';
+    int torow = moveto[1] - '1';
+    if ((*boardmap)[fromrow][fromcol]->getColor() != currentPlayer) {
+        cout << "This is not the turn of this piece you want to move, plz try again:)" << endl;
+    } else if (wantmove.first == torow && wantmove.second == tocol) {
+        move(fromrow, fromcol, torow, tocol);
+    }
+
+}
+
 pair<pair<int, int>, pair<int, int>> Board::getKingcoord() {
     pair<pair<int, int>, pair<int, int>> kingcoord;
     kingcoord.first.first = Wkingrow;
@@ -401,34 +429,39 @@ void Board::default_init() {
 void Board::PlayersInit(char w, char b) {
     switch (w) {
         case 'h':
-            this->WPlayer = make_shared<Human>(Human(*boardmap));
+            this->WPlayer = make_shared<Human>(Human(&Wpiececount, &Bpiececount, boardmap));
+            break;
         case '1':
-            this->WPlayer = make_shared<Level1>(Level1(*boardmap));
+            this->WPlayer = make_shared<Level1>(Level1(&Wpiececount, &Bpiececount, boardmap));
+            break;
         case '2':
-            this->WPlayer = make_shared<Level2>(Level2(*boardmap));
+            this->WPlayer = make_shared<Level2>(Level2(&Wpiececount, &Bpiececount, boardmap));
+            break;
         case '3':
-            this->WPlayer = make_shared<Level3>(Level3(*boardmap));
+            this->WPlayer = make_shared<Level3>(Level3(&Wpiececount, &Bpiececount, boardmap));
+            break;
     }
     switch (b) {
         case 'h':
-            this->BPlayer = make_shared<Human>(Human(*boardmap));
+            this->BPlayer = make_shared<Human>(Human(&Wpiececount, &Bpiececount, boardmap));
+            break;
         case '1':
-            this->BPlayer = make_shared<Level1>(Level1(*boardmap));
+            this->BPlayer = make_shared<Level1>(Level1(&Wpiececount, &Bpiececount, boardmap));
+            break;
         case '2':
-            this->BPlayer = make_shared<Level2>(Level2(*boardmap));
+            this->BPlayer = make_shared<Level2>(Level2(&Wpiececount, &Bpiececount, boardmap));
+            break;
         case '3':
-            this->BPlayer = make_shared<Level3>(Level3(*boardmap));
+            this->BPlayer = make_shared<Level3>(Level3(&Wpiececount, &Bpiececount, boardmap));
+            break;
     }
 }
 
-void Board::move(char fromc, int fromr, char toc, int tor) {
-
-    int fromcol = fromc - 'a';
-    int tocol = toc - 'a';
-    int fromrow = fromr - 1;
-    int torow = tor - 1;
+void Board::move(int fromrow, int fromcol, int torow, int tocol) {
 
 
+
+    //eliminate the pawn in the situation of en passant
     if ((*boardmap)[fromrow][fromcol]->type() == 'P' && torow == fromrow + 1 && tocol == fromcol + 1) {
         //move white upperright
         if ((*boardmap)[fromrow][fromcol + 1]->type() == 'p') {
@@ -469,18 +502,19 @@ void Board::move(char fromc, int fromr, char toc, int tor) {
 
     }
 
-
+    //make the pawn available to be eaten in the situation of enpassant after first move of two grids
     if ((*boardmap)[fromrow][fromcol]->type() == 'p'
         || (*boardmap)[fromrow][fromcol]->type() == 'P') {
         shared_ptr<Pawn> p = dynamic_pointer_cast<Pawn>((*boardmap)[fromrow][fromcol]);
         if (p->getHaventMoved()) {
             p->setHaventMoved(false);
-            if (abs(tor - fromr) == 2) {
+            if (abs(torow - fromrow) == 2) {
                 p->setEnpassant(true);
             }
         }
     }
 
+    //make the actual move
     if ((*boardmap)[fromrow][fromcol] != nullptr) {
         if ((*boardmap)[torow][tocol] != nullptr) {
             if ((*boardmap)[torow][tocol]->color == 'W') {
@@ -490,6 +524,8 @@ void Board::move(char fromc, int fromr, char toc, int tor) {
             }
             (*boardmap)[torow][tocol] = nullptr;
         }
+
+        //move the
         (*boardmap)[torow][tocol] = (*boardmap)[fromrow][fromcol];
         (*boardmap)[fromrow][fromcol] = nullptr;
 
@@ -546,9 +582,9 @@ void Board::move(char fromc, int fromr, char toc, int tor) {
     //if move happens, en passant will be no longer valid
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
-            if ((*boardmap)[fromrow][fromcol]->type() == 'p'
-                || (*boardmap)[fromrow][fromcol]->type() == 'P') {
-                shared_ptr<Pawn> p = dynamic_pointer_cast<Pawn>((*boardmap)[fromrow][fromcol]);
+            if ((*boardmap)[i][j]->type() == 'p'
+                || (*boardmap)[i][j]->type() == 'P') {
+                shared_ptr<Pawn> p = dynamic_pointer_cast<Pawn>((*boardmap)[i][j]);
                 if (p->getEnpassant()) {
                     p->setEnpassant(false);
                 }
@@ -557,11 +593,29 @@ void Board::move(char fromc, int fromr, char toc, int tor) {
     }
 
 
+    //if move two the king or rook happened, it's no longer available for castling
+    if ((*boardmap)[torow][tocol]->type() == 'k'
+        || (*boardmap)[torow][tocol]->type() == 'K') {
+        shared_ptr<King> k = dynamic_pointer_cast<King>((*boardmap)[torow][tocol]);
+        if (k->getHaventMoved()) {
+            k->setHaventMoved(false);
+        }
+    }
+
+    if ((*boardmap)[torow][tocol]->type() == 'r'
+        || (*boardmap)[torow][tocol]->type() == 'R') {
+        shared_ptr<Rook> r = dynamic_pointer_cast<Rook>((*boardmap)[torow][tocol]);
+        if (r->getHaventMoved()) {
+            r->setHaventMoved(false);
+        }
+    }
+
 }
 
 void Board::print() {
     cout << "Wpiececount: " << Wpiececount << endl;
     cout << "Bpiececount: " << Bpiececount << endl;
+    cout << "NextMove: " << currentPlayer << endl;
     for (int i = row8; i >= row1; i--) {
         cout << i + 1 << " ";
         for (int j = cola; j <= colh; j++) {

@@ -79,6 +79,14 @@ vector<pair<int, int>> Rook::legalMoves(int r, int c) {
     return listofLegalMoves;
 }
 
+bool Rook::getHaventMoved() {
+    return haventMoved;
+}
+
+void Rook::setHaventMoved(bool b) {
+    haventMoved = b;
+}
+
 pair<int, int> Rook::capture(int r, int c) {
     pair<int, int> a = {0, 0};
     return a;

@@ -9,11 +9,14 @@ class Board;
 
 class Strategy {
 protected:
-    vector<vector<shared_ptr<Piece>>> boardmap;
+    int *Wpiececount;
+    int *Bpiececount;
+    shared_ptr<vector<vector<shared_ptr<Piece>>>> boardmap;
 public:
-    virtual vector<pair<char, int>> generateMove() = 0;
+    virtual pair<int, int> generateMove(string input) = 0;
 
-    Strategy(vector<vector<shared_ptr<Piece>>> &boardmap) : boardmap(boardmap) {};
+    Strategy(int *Wpiececount, int *BPiececount, shared_ptr<vector<vector<shared_ptr<Piece>>>> boardmap) : Wpiececount{
+            Wpiececount}, Bpiececount{Bpiececount}, boardmap(boardmap) {};
 };
 
 

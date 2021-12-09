@@ -4,7 +4,14 @@
 #include "piece.h"
 
 class Rook : public Piece {
+
+    bool haventMoved = true;
+
 public:
+
+    bool getHaventMoved();
+
+    void setHaventMoved(bool b);
 
     Rook(char color, shared_ptr<std::vector<std::vector<std::shared_ptr<Piece>>>> boardmap);
 

@@ -52,6 +52,8 @@ class Board : public Subject {
 
 public:
 
+    void makeMove(string input);
+
     void clear();
 
     bool addPiece(char p, string coord);
@@ -70,7 +72,7 @@ public:
 
     Board(string i); //for temporary board in setup purpose
 
-    void move(char fromc, int fromr, char toc, int tor);
+    void move(int fromrow, int fromcol, int torow, int tocol);
 
     void print();
 

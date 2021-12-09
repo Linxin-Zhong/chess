@@ -4,7 +4,14 @@
 #include "piece.h"
 
 class King : public Piece {
+
+    bool haventMoved = true;
+
 public:
+
+    bool getHaventMoved();
+
+    void setHaventMoved(bool b);
 
     King(char color, shared_ptr<std::vector<std::vector<std::shared_ptr<Piece>>>> boardmap);
 

@@ -28,10 +28,11 @@ vector<pair<int, int>> Knight::legalMoves(int r, int c) {
     for (int i = 0; i < 8; i++) {
         int newrow = r + dir[i].first;
         int newcol = c + dir[i].second;
-        if (!(*boardmap)[newrow][newcol] || ((*boardmap)[newrow][newcol]->getColor() != this->color)) {
+        if ((newrow >= 0 && newrow < 8 && newcol >= 0 && newcol < 8) &&
+            (!(*boardmap)[newrow][newcol] || ((*boardmap)[newrow][newcol]->getColor() != this->color))) {
             pair<int, int> temp = {newrow, newcol};
             listOfLegalMoves.emplace_back(temp);
-        } else if ((*boardmap)[newrow][newcol]->getColor() == this->color) {
+        } else {
             continue;
         }
     }
