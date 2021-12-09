@@ -114,17 +114,17 @@ vector<pair<int, int>> Queen::legalMoves(int r, int c) {
     return listofLegalMoves;
 }
 
-pair<int, int> Queen::capture(int r, int c) {
-    pair<int, int> a = {0, 0};
+vector<pair<int, int>> Queen::captureMoves(int r, int c) {
+    vector<pair<int, int>> a;
     return a;
 }
 
-pair<int, int> Queen::avoid(int r, int c) {
-    pair<int, int> a = {0, 0};
+vector<pair<int, int>> Queen::avoidMoves(int r, int c) {
+    vector<pair<int, int>> a;
     return a;
 }
 
-pair<int, int> Queen::checks(int r, int c) {
-    pair<int, int> a = {0, 0};
+vector<pair<int, int>> Queen::checkMoves(int r, int c) {
+    vector<pair<int, int>> a;
     return a;
 }
