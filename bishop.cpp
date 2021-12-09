@@ -82,7 +82,7 @@ vector<pair<int, int>> Bishop::avoidMoves(int r, int c) {
     return a;
 }
 
-vector<pair<int, int>> Bishop::checks(int r, int c) {
+vector<pair<int, int>> Bishop::checkMoves(int r, int c) {
     vector<pair<int, int>> a;
     return a;
 }
