@@ -188,6 +188,7 @@ vector<pair<int, int>> Rook::captureMoves(int r, int c) {
              j++;
          }
      }
+   return listofCaptureMoves;
 }
 
 vector<pair<int, int>> Rook::avoidMoves(int r, int c) {
