@@ -14,7 +14,7 @@ GraphObserver::GraphObserver(Board *bd)
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
             if ((i + j) % 2 != 0) {
-                tmp->fillRectangle(j * 50, i * 50, 50, 50, Xwindow::Yellow);
+                tmp->fillRectangle(j * 50, (7 - i) * 50, 50, 50, Xwindow::White);
             }
         }
     }
@@ -32,9 +32,9 @@ void GraphObserver::notify() {
             std::shared_ptr<Piece> p = (*subject->boardmap)[i][j];
             if (p == nullptr) {
                 if ((i + j) % 2 == 0) {
-                    w->fillRectangle(j * 50, i * 50, 50, 50, Xwindow::Green);
+                    w->fillRectangle(j * 50, (7 - i) * 50, 50, 50, Xwindow::Green);
                 } else {
-                    w->fillRectangle(j * 50, i * 50, 50, 50, Xwindow::Yellow);
+                    w->fillRectangle(j * 50, (7 - i) * 50, 50, 50, Xwindow::White);
                 }
                 break;
             }
