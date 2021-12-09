@@ -9,7 +9,7 @@ class Xwindow;
 
 class GraphObserver : public Observer {
     Board *subject;
-    Xwindow *w; // a Xwindow element to store the window needed (do not create new windows)
+    shared_ptr<Xwindow> w; // a Xwindow element to store the window needed (do not create new windows)
 
 public:
     GraphObserver(Board *bd);
