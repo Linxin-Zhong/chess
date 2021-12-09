@@ -23,7 +23,7 @@ public:
     virtual bool check(vector<vector<shared_ptr<Piece>>> &b, int torow, int tocol, int kingrow, int kingcol) = 0;
 
     virtual vector<pair<int, int>> legalMoves(int r, int c) = 0;
-    virtual pair<int, int> capture(int r, int c) = 0;
+    virtual vector<pair<int, int>> capture(int r, int c) = 0;
     virtual pair<int, int> avoid(int r, int c) = 0;
     virtual pair<int, int> checks(int r, int c) = 0;
     
