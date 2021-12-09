@@ -162,8 +162,32 @@ void Rook::setHaventMoved(bool b) {
 }
 
 vector<pair<int, int>> Rook::captureMoves(int r, int c) {
-    vector<pair<int, int>> a;
-    return a;
+    vector<pair<int, int>> listofCaptureMoves;
+    vector<pair<int, int>> dir = {{1,  0},
+                                  {0,  1},
+                                  {-1, 0},
+                                  {0,  -1}};
+    pair<int, int> temp;
+    for (int i = 0; i < 4; ++i) {
+         int j = 1;
+         while (true) {
+             int newrow = r + j * dir[i].first;
+             int newcol = c + j * dir[i].second;
+             if (newrow >= 8 || newrow < 0 || newcol >= 8 || newcol < 0) {
+                 break;
+             }
+             if (!(*boardmap)[newrow][newcol]) {
+                continue;
+             } else if ((*boardmap)[newrow][newcol]->getColor() == this->color) {
+                 break;
+             } else if ((*boardmap)[newrow][newcol]->getColor() != this->color) {
+                 temp = {newrow, newcol};
+                 listofCaptureMoves.emplace_back(temp);
+                 break;
+             }
+             j++;
+         }
+     }
 }
 
 vector<pair<int, int>> Rook::avoidMoves(int r, int c) {
