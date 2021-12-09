@@ -149,11 +149,11 @@ vector<pair<int, int>> King::captureMoves(int r, int c) {
                                   {1, 1},
                                   {-1, 1},
                                   {1, -1},
-                                  {-1, -1}}
+                                  {-1, -1}};
     pair<int, int> temp;
     for (int i = 0; i < 8; ++i) {
-        int newrow = r + j * dir[i].first;
-        int newcol = c + j * dir[i].second;
+        int newrow = r + dir[i].first;
+        int newcol = c + dir[i].second;
         if (newrow >= 8 || newrow < 0 || newcol >= 8 || newcol < 0) {
             if ((*boardmap)[newrow][newcol] && (*boardmap)[newrow][newcol]->getColor() != this->color) {
                 temp = {newrow, newcol};
