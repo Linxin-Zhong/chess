@@ -73,7 +73,7 @@ bool Piece::isCheck(vector<vector<shared_ptr<Piece>>> &b, char kingcolor, int ki
     *checkrow = -1;
     for (int r = 0; r < 8; r++) {
         for (int c = 0; c < 8; c++) {
-            if (b[r][c] && b[r][c]->check(r, c, kingrow, kingcol)) {
+            if (b[r][c] && b[r][c]->check(b, r, c, kingrow, kingcol)) {
                 if (b[r][c]->getColor() != kingcolor) {
                     *checkrow = r;
                     *checkcol = c;

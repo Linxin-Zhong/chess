@@ -46,9 +46,6 @@ class Board : public Subject {
     int Wkingcol;
     int Wkingrow;
 
-    bool
-    checkmateRecursion(std::vector<std::vector<std::shared_ptr<Piece>>> &currentboard, char kingcolor, int checkrow,
-                       int checkcol);
 
 public:
 

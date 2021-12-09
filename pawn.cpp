@@ -3,7 +3,7 @@
 Pawn::Pawn(char color, shared_ptr<std::vector<std::vector<std::shared_ptr<Piece>>>> boardmap) : Piece(color, 1,
                                                                                                       boardmap) {}
 
-bool Pawn::check(int torow, int tocol, int kingrow, int kingcol) {
+bool Pawn::check(vector<vector<shared_ptr<Piece>>> &b, int torow, int tocol, int kingrow, int kingcol) {
     if (color == 'W') {
         if ((torow + 1 == kingrow) &&
             (tocol + 1 == kingcol || tocol - 1 == kingcol)) {

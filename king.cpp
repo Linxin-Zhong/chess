@@ -4,8 +4,23 @@
 King::King(char color, shared_ptr<std::vector<std::vector<std::shared_ptr<Piece>>>> boardmap) : Piece(color, 10,
                                                                                                       boardmap) {}
 
-bool King::check(int torow, int tocol, int kingrow, int kingcol) {
+bool King::check(vector<vector<shared_ptr<Piece>>> &b, int torow, int tocol, int kingrow, int kingcol) {
+    if ((abs(torow - kingrow) == 1 || abs(torow - kingrow) == 0) &&
+        (abs(tocol - kingcol) == 1 || abs(tocol - kingcol) == 0)) {
+        return true;
+    }
     return false;
+}
+
+//copy content of a to b, b should be empty
+void boardcopy2(vector<vector<shared_ptr<Piece>>> &a, vector<vector<shared_ptr<Piece>>> &b) {
+    for (int i = 0; i < 8; i++) {
+        vector<shared_ptr<Piece>> newrow;
+        for (int j = 0; j < 8; j++) {
+            newrow.emplace_back(a[i][j]);
+        }
+        b.emplace_back(newrow);
+    }
 }
 
 
@@ -30,7 +45,11 @@ vector<pair<int, int>> King::legalMoves(int r, int c) {
         if (newrow < 8 && newrow >= 0 && newcol < 8 && newcol >= 0) {
             if ((!(*boardmap)[newrow][newcol]) || (*boardmap)[newrow][newcol]->getColor() != this->color) {
                 int checkrow, checkcol;
-                if (!isCheck((*boardmap), this->color, newrow, newcol, &checkrow, &checkcol)) {
+                vector<vector<shared_ptr<Piece>>> newboard;
+                boardcopy2((*boardmap), newboard);
+                newboard[newrow][newcol] = newboard[r][c];
+                newboard[r][c] = nullptr;
+                if (!isCheck(newboard, this->color, newrow, newcol, &checkrow, &checkcol)) {
                     pair<int, int> temp = {newrow, newcol};
                     listOfLegalMoves.emplace_back(temp);
                 }

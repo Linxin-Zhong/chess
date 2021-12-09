@@ -52,7 +52,7 @@ bool Board::isCheck(vector<vector<shared_ptr<Piece>>> &b, char kingcolor, int ki
     *checkrow = -1;
     for (int r = 0; r < 8; r++) {
         for (int c = 0; c < 8; c++) {
-            if (b[r][c] && b[r][c]->check(r, c, kingrow, kingcol)) {
+            if (b[r][c] && b[r][c]->check(b, r, c, kingrow, kingcol)) {
                 if (b[r][c]->color != kingcolor) {
                     *checkrow = r;
                     *checkcol = c;
@@ -75,105 +75,45 @@ void boardcopy(vector<vector<shared_ptr<Piece>>> &a, vector<vector<shared_ptr<Pi
     }
 }
 
-bool Board::checkmateRecursion(std::vector<std::vector<std::shared_ptr<Piece>>> &currentboard,
-                               char kingcolor, int checkrow, int checkcol) {
-    int kingcol;
-    int kingrow;
+
+bool Board::isCheckMate(char kingcolor, int checkrow, int checkcol) {
+    int kingcol, kingrow;
     if (kingcolor == 'W') {
-        kingcol = Wkingcol;
         kingrow = Wkingrow;
+        kingcol = Wkingcol;
     } else {
-        kingcol = Bkingcol;
         kingrow = Bkingrow;
+        kingcol = Bkingcol;
+    }
+    //1. king can escape directlly (one legal move)
+    vector<pair<int, int>> escapeMoves = (*boardmap)[kingrow][kingcol]->legalMoves(kingrow, kingcol);
+    if (escapeMoves.size() > 0) {
+        return false;
     }
 
-    //check if the piece that is currently checking on the king can be eaten by the king
-    int a, b; //dummy variables
-    if ((abs(kingcol - checkcol) <= 1 && abs(kingrow - checkrow) <= 1) &&
-        (!this->isCheck(currentboard, kingcolor, checkrow, checkcol, &a, &b))) {
-        return false; // not checkmate
-    }
-    //check if the pieces that is currently checking on the king can be eaten by other pieces on the king's side
-    for (int r = 0; r < 8; r++) {
-        for (int c = 0; c < 8; c++) {
-            if (currentboard[r][c] && currentboard[r][c]->color == kingcolor &&
-                currentboard[r][c]->check(r, c, checkrow, checkcol)) {
-                vector<vector<shared_ptr<Piece>>> newboard;
-                boardcopy(currentboard, newboard);
-                newboard[checkrow][checkcol] = newboard[r][c];
-                newboard[r][c] = nullptr;
-                int newcheckcol;
-                int newcheckrow;
-                if (!isCheck(newboard, kingcolor, kingrow, kingcol, &newcheckrow, &newcheckcol)) {
-                    return false;
-                } else {
-                    return (!checkmateRecursion(newboard, kingcolor, newcheckrow, newcheckcol));
-                }
-            }
-        }
-    }
-    //check if there is other ways that the king could escape
-    int escaperow[8];
-    int escapecol[8];
-    escaperow[0] = kingrow - 1;
-    escapecol[0] = kingcol - 1;
-    escaperow[1] = kingrow - 1;
-    escapecol[1] = kingcol;
-    escaperow[2] = kingrow - 1;
-    escapecol[2] = kingcol + 1;
-    escaperow[3] = kingrow;
-    escapecol[3] = kingcol - 1;
-    escaperow[4] = kingrow;
-    escapecol[4] = kingcol + 1;
-    escaperow[5] = kingrow + 1;
-    escapecol[5] = kingcol - 1;
-    escaperow[6] = kingrow + 1;
-    escapecol[6] = kingcol;
-    escaperow[7] = kingrow + 1;
-    escapecol[7] = kingcol + 1;
-
-    bool escapeway[8];
-    for (int i = 0; i < 8; i++) {
-        escapeway[i] = true;
-    }
-
-    for (int i = 0; i < 8; i++) {
-        if (escaperow[i] < 0 || escaperow[i] >= 8 || escapecol[i] < 0 || escapecol[i] >= 8) {
-            escapeway[i] = false;
-        }
-    }
-
+    //2. move of other pieces can eliminate the check
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
-            if (currentboard[i][j] == nullptr) {
-                continue;
-            }
-            for (int k = 0; k < 8; k++) {
-                if (currentboard[i][j]->color != currentPlayer) {
-                    //pieces with same color as the king, check if they block king's way
-                    if (i == escaperow[k] && j == escapecol[k]) {
-                        escapeway[k] = false;
-                    }
-                } else if (currentboard[i][j]->color == currentPlayer) {
-                    if (currentboard[i][j]->check(i, j, escaperow[k], escapecol[k])) {
-                        escapeway[k] = false;
+            if ((*boardmap)[i][j] && (*boardmap)[i][j]->getColor() == kingcolor) {
+                vector<pair<int, int>> legalmoves = (*boardmap)[i][j]->legalMoves(i, j);
+                if (legalmoves.size() > 0) {
+                    for (int k = 0; k < legalmoves.size(); k++) {
+                        vector<vector<shared_ptr<Piece>>> newboard;
+                        boardcopy((*boardmap), newboard);
+                        newboard[legalmoves[k].first][legalmoves[k].second] = newboard[i][j];
+                        newboard[i][j] = nullptr;
+                        int checkrow2, checkcol2;
+                        if (!isCheck(newboard, kingcolor, kingrow, kingcol, &checkrow2, &checkcol2)) {
+                            return false;
+                        }
                     }
                 }
             }
-        }
-    }
-
-    for (int i = 0; i < 8; i++) {
-        if (escapeway[i] == true) {
-            return false;
         }
     }
     return true;
 
-}
 
-bool Board::isCheckMate(char kingcolor, int checkrow, int checkcol) {
-    return checkmateRecursion(*boardmap, kingcolor, checkrow, checkcol);
 }
 
 /*bool Board::isStalemate() {

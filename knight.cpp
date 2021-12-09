@@ -4,7 +4,7 @@ Knight::Knight(char color, shared_ptr<std::vector<std::vector<std::shared_ptr<Pi
                                                                                                           boardmap) {}
 
 
-bool Knight::check(int torow, int tocol, int kingrow, int kingcol) {
+bool Knight::check(vector<vector<shared_ptr<Piece>>> &b, int torow, int tocol, int kingrow, int kingcol) {
     int w = abs(kingcol - tocol);
     int h = abs(kingrow - torow);
     if ((w == 2 && h == 1) || (w == 1 && h == 2)) {
