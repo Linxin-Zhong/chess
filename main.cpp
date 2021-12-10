@@ -86,7 +86,6 @@ int main() {
                      toc = command3[0];
                      tor = command3[1] - '1' + 1;*/
                     b.makeMove(input3);
-                    b.print();
                 } else if (command3 == "resign") { // resign ends the game
                     if (b.getCurrentPlayer() == 'W') {
                         BScore++;

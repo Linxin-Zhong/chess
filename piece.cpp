@@ -7,11 +7,22 @@
 #include "bishop.h"
 #include "board.h"
 
-Piece::Piece(char color, int value, shared_ptr<std::vector<std::vector<std::shared_ptr<Piece>>>> boardmap) : color(
-        color),
-                                                                                                             value(value),
-                                                                                                             boardmap(boardmap) {}
+Piece::Piece(int *Wkingrow, int *Wkingcol, int *Bkingrow, int *Bkingcol,
+             char color, int value, shared_ptr<std::vector<std::vector<std::shared_ptr<Piece>>>> boardmap) :
+        Wkingrow(Wkingrow), Wkingcol(Wkingcol), Bkingrow(Bkingrow), Bkingcol(Bkingcol), color(color),
+        value(value), boardmap(boardmap) {}
 
+
+//copy content of a to b, b should be empty
+void Piece::boardcopy2(vector<vector<shared_ptr<Piece>>> &a, vector<vector<shared_ptr<Piece>>> &b) {
+    for (int i = 0; i < 8; i++) {
+        vector<shared_ptr<Piece>> newrow;
+        for (int j = 0; j < 8; j++) {
+            newrow.emplace_back(a[i][j]);
+        }
+        b.emplace_back(newrow);
+    }
+}
 
 char Piece::type() {
     if (this == nullptr) {

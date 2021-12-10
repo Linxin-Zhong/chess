@@ -1,8 +1,9 @@
 #include "king.h"
 #include "rook.h"
 
-King::King(char color, shared_ptr<std::vector<std::vector<std::shared_ptr<Piece>>>> boardmap) : Piece(color, 10,
-                                                                                                      boardmap) {}
+King::King(int *Wkingrow, int *Wkingcol, int *Bkingrow, int *Bkingcol,
+           char color, shared_ptr<std::vector<std::vector<std::shared_ptr<Piece>>>> boardmap) :
+        Piece(Wkingrow, Wkingcol, Bkingrow, Bkingcol, color, 9, boardmap) {}
 
 bool King::check(vector<vector<shared_ptr<Piece>>> &b, int torow, int tocol, int kingrow, int kingcol) {
     if ((abs(torow - kingrow) == 1 || abs(torow - kingrow) == 0) &&
@@ -12,16 +13,6 @@ bool King::check(vector<vector<shared_ptr<Piece>>> &b, int torow, int tocol, int
     return false;
 }
 
-//copy content of a to b, b should be empty
-void boardcopy2(vector<vector<shared_ptr<Piece>>> &a, vector<vector<shared_ptr<Piece>>> &b) {
-    for (int i = 0; i < 8; i++) {
-        vector<shared_ptr<Piece>> newrow;
-        for (int j = 0; j < 8; j++) {
-            newrow.emplace_back(a[i][j]);
-        }
-        b.emplace_back(newrow);
-    }
-}
 
 
 
@@ -137,6 +128,7 @@ vector<pair<int, int>> King::legalMoves(int r, int c) {
         }
     }
 
+
     return listOfLegalMoves;
 }
 
@@ -172,6 +164,7 @@ vector<pair<int, int>> King::avoidMoves(int r, int c) {
 }
 
 vector<pair<int, int>> King::checkMoves(int r, int c) {
+    //no checkmoves
     vector<pair<int, int>> a;
     return a;
 }

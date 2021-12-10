@@ -1,7 +1,8 @@
 #include "pawn.h"
 
-Pawn::Pawn(char color, shared_ptr<std::vector<std::vector<std::shared_ptr<Piece>>>> boardmap) : Piece(color, 1,
-                                                                                                      boardmap) {}
+Pawn::Pawn(int *Wkingrow, int *Wkingcol, int *Bkingrow, int *Bkingcol,
+           char color, shared_ptr<std::vector<std::vector<std::shared_ptr<Piece>>>> boardmap) :
+        Piece(Wkingrow, Wkingcol, Bkingrow, Bkingcol, color, 9, boardmap) {}
 
 bool Pawn::check(vector<vector<shared_ptr<Piece>>> &b, int torow, int tocol, int kingrow, int kingcol) {
     if (color == 'W') {
@@ -30,11 +31,11 @@ vector<pair<int, int>> Pawn::legalMoves(int r, int c) {
     if (haventmoved) {
         //first move
         if ((r - 2) >= 0 && (r - 2) < 8 && color == 'B' &&
-            (!(*boardmap)[r - 2][c] || (*boardmap)[r - 2][c]->getColor() != color)) {
+            !(*boardmap)[r - 2][c]) {
             temp = {r - 2, c};
             listofLegalMoves.emplace_back(temp);
         } else if ((r + 2) >= 0 && (r + 2) < 8 && color == 'W' &&
-                   (!(*boardmap)[r + 2][c] || (*boardmap)[r + 2][c]->getColor() != color)) {
+                   !(*boardmap)[r + 2][c]) {
             temp = {r + 2, c};
             listofLegalMoves.emplace_back(temp);
         }
@@ -42,11 +43,11 @@ vector<pair<int, int>> Pawn::legalMoves(int r, int c) {
 
     //normal move
     if ((r - 1) >= 0 && (r - 1) < 8 && color == 'B' &&
-        (!(*boardmap)[r - 1][c] || (*boardmap)[r - 1][c]->getColor() != color)) {
+        (!(*boardmap)[r - 1][c])) {
         temp = {r - 1, c};
         listofLegalMoves.emplace_back(temp);
     } else if ((r + 1) >= 0 && (r + 1) < 8 && color == 'W' &&
-               (!(*boardmap)[r + 1][c] || (*boardmap)[r + 1][c]->getColor() != color)) {
+               (!(*boardmap)[r + 1][c])) {
         temp = {r + 1, c};
         listofLegalMoves.emplace_back(temp);
     }
@@ -96,6 +97,43 @@ vector<pair<int, int>> Pawn::legalMoves(int r, int c) {
             temp = {r - 1, c - 1};
             listofLegalMoves.emplace_back(temp);
         }
+    }
+
+    int kingrow, kingcol;
+    if (color == 'W') {
+        kingrow = *Wkingrow;
+        kingcol = *Wkingcol;
+    } else {
+        kingrow = *Bkingrow;
+        kingcol = *Bkingcol;
+    }
+
+    int checkcol, checkrow;
+
+    bool kinginCheck = false;
+
+    if (isCheck((*boardmap), color, kingrow, kingcol, &checkrow, &checkcol)) {
+        kinginCheck = true;
+    }
+
+    if (kinginCheck) {
+        vector<pair<int, int>> movesSavingKing;
+        for (int i = 0; i < listofLegalMoves.size(); i++) {
+            //check if making that move would eliminate the check on king
+            vector<vector<shared_ptr<Piece>>> newboard;
+            boardcopy2((*boardmap), newboard);
+            int fromrow, fromcol, torow, tocol;
+            fromrow = r;
+            fromcol = c;
+            torow = listofLegalMoves[i].first;
+            tocol = listofLegalMoves[i].second;
+            newboard[torow][tocol] = newboard[fromrow][fromcol];
+            newboard[fromrow][fromcol] = nullptr;
+            if (!isCheck(newboard, color, kingrow, kingcol, &checkrow, &checkcol)) {
+                movesSavingKing.emplace_back(listofLegalMoves[i]);
+            }
+        }
+        return movesSavingKing;
     }
 
     return listofLegalMoves;

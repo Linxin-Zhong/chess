@@ -5,7 +5,8 @@
 
 class Queen : public Piece {
 public:
-    Queen(char color, shared_ptr<std::vector<std::vector<std::shared_ptr<Piece>>>> boardmap);
+    Queen(int *Wkingrow, int *Wkingcol, int *Bkingrow, int *Bkingcol,
+          char color, shared_ptr<std::vector<std::vector<std::shared_ptr<Piece>>>> boardmap);
 
     bool check(vector<vector<shared_ptr<Piece>>> &b, int torow, int tocol, int kingrow, int kingcol);
 

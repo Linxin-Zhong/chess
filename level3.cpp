@@ -4,6 +4,6 @@
 
 using namespace std;
 
-pair<int, int> Level3::generateMove(string input) {
+pair<pair<int, int>, pair<int, int>> Level3::generateMove(string input) {
 
 }

@@ -13,12 +13,20 @@ protected:
     shared_ptr<vector<vector<shared_ptr<Piece>>>> boardmap;
     int value;  // determine the value of a piece
     char color;
+    int *Wkingrow;
+    int *Wkingcol;
+    int *Bkingrow;
+    int *Bkingcol;
 public:
+
+    //copy content of a to b, b should be empty
+    void boardcopy2(vector<vector<shared_ptr<Piece>>> &a, vector<vector<shared_ptr<Piece>>> &b);
 
     bool isCheck(vector<vector<shared_ptr<Piece>>> &b, char kingcolor, int kingrow,
                  int kingcol, int *checkrow, int *checkcol);
 
-    Piece(char color, int value, shared_ptr<std::vector<std::vector<std::shared_ptr<Piece>>>> boardmap);
+    Piece(int *Wkingrow, int *Wkingcol, int *Bkingrow, int *Bkingcol, char color, int value,
+          shared_ptr<std::vector<std::vector<std::shared_ptr<Piece>>>> boardmap);
 
     virtual bool check(vector<vector<shared_ptr<Piece>>> &b, int torow, int tocol, int kingrow, int kingcol) = 0;
 

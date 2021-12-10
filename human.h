@@ -5,10 +5,11 @@
 
 class Human : public Strategy {
 public:
-    std::pair<int, int> generateMove(string input) override;
+    pair<pair<int, int>, pair<int, int>> generateMove(string input) override;
 
-    Human(int *Wpiececount, int *Bpiececount, shared_ptr<vector<vector<shared_ptr<Piece>>>> boardmap) : Strategy(
-            Wpiececount, Bpiececount, boardmap) {};
+    Human(char *currentPlayer, int *Wpiececount, int *Bpiececount,
+          shared_ptr<vector<vector<shared_ptr<Piece>>>> boardmap) : Strategy(
+            currentPlayer, Wpiececount, Bpiececount, boardmap) {};
 };
 
 #endif

@@ -9,27 +9,16 @@ using namespace std;
 void Board::makeMove(string input) {
     //call generate move
     //return tor, toc
-    pair<int, int> wantmove;
+    pair<pair<int, int>, pair<int, int>> wantmove;
     if (currentPlayer == 'W') {
         wantmove = this->WPlayer->generateMove(input);
     } else {
         wantmove = this->BPlayer->generateMove(input);
     }
-    stringstream ss(input);
-    string command;
-    string movefrom;
-    string moveto;
-    ss >> command;
-    ss >> movefrom;
-    ss >> moveto;
-    int fromcol = movefrom[0] - 'a';
-    int fromrow = movefrom[1] - '1';
-    int tocol = moveto[0] - 'a';
-    int torow = moveto[1] - '1';
-    if ((*boardmap)[fromrow][fromcol]->getColor() != currentPlayer) {
-        cout << "This is not the turn of this piece you want to move, plz try again:)" << endl;
-    } else if (wantmove.first == torow && wantmove.second == tocol) {
-        move(fromrow, fromcol, torow, tocol);
+
+
+    if (wantmove.second.first != -1 && wantmove.second.second != -1) {
+        move(wantmove.first.first, wantmove.first.second, wantmove.second.first, wantmove.second.second);
     } else {
         cout << "Invalid move! plz try again" << endl;
     }
@@ -137,56 +126,59 @@ bool Board::addPiece(char p, string coord) {
         return false;
     }
     switch (p) {
+
+        //Queen(int *Wkingrow, int *Wkingcol, int *Bkingrow, int *Bkingcol,
+        // char color, int value, shared_ptr<std::vector<std::vector<std::shared_ptr<Piece>>>> boardmap);
         case 'K':
             Wkingcol = col;
             Wkingrow = row;
-            newpiece = make_shared<King>(King('W', boardmap));
+            newpiece = make_shared<King>(King(&Wkingrow, &Wkingcol, &Bkingrow, &Bkingcol, 'W', boardmap));
             Wpiececount++;
             break;
         case 'Q':
-            newpiece = make_shared<Queen>(Queen('W', boardmap));
+            newpiece = make_shared<Queen>(Queen(&Wkingrow, &Wkingcol, &Bkingrow, &Bkingcol, 'W', boardmap));
             Wpiececount++;
             break;
         case 'B':
-            newpiece = make_shared<Bishop>(Bishop('W', boardmap));
+            newpiece = make_shared<Bishop>(Bishop(&Wkingrow, &Wkingcol, &Bkingrow, &Bkingcol, 'W', boardmap));
             Wpiececount++;
             break;
         case 'R':
-            newpiece = make_shared<Rook>(Rook('W', boardmap));
+            newpiece = make_shared<Rook>(Rook(&Wkingrow, &Wkingcol, &Bkingrow, &Bkingcol, 'W', boardmap));
             Wpiececount++;
             break;
         case 'N':
-            newpiece = make_shared<Knight>(Knight('W', boardmap));
+            newpiece = make_shared<Knight>(Knight(&Wkingrow, &Wkingcol, &Bkingrow, &Bkingcol, 'W', boardmap));
             Wpiececount++;
             break;
         case 'P':
-            newpiece = make_shared<Pawn>(Pawn('W', boardmap));
+            newpiece = make_shared<Pawn>(Pawn(&Wkingrow, &Wkingcol, &Bkingrow, &Bkingcol, 'W', boardmap));
             Wpiececount++;
             break;
         case 'k':
             Bkingcol = col;
             Bkingrow = row;
-            newpiece = make_shared<King>(King('B', boardmap));
+            newpiece = make_shared<King>(King(&Wkingrow, &Wkingcol, &Bkingrow, &Bkingcol, 'B', boardmap));
             Bpiececount++;
             break;
         case 'q':
-            newpiece = make_shared<Queen>(Queen('B', boardmap));
+            newpiece = make_shared<Queen>(Queen(&Wkingrow, &Wkingcol, &Bkingrow, &Bkingcol, 'B', boardmap));
             Bpiececount++;
             break;
         case 'b':
-            newpiece = make_shared<Bishop>(Bishop('B', boardmap));
+            newpiece = make_shared<Bishop>(Bishop(&Wkingrow, &Wkingcol, &Bkingrow, &Bkingcol, 'B', boardmap));
             Bpiececount++;
             break;
         case 'r':
-            newpiece = make_shared<Rook>(Rook('B', boardmap));
+            newpiece = make_shared<Rook>(Rook(&Wkingrow, &Wkingcol, &Bkingrow, &Bkingcol, 'B', boardmap));
             Bpiececount++;
             break;
         case 'n':
-            newpiece = make_shared<Knight>(Knight('B', boardmap));
+            newpiece = make_shared<Knight>(Knight(&Wkingrow, &Wkingcol, &Bkingrow, &Bkingcol, 'B', boardmap));
             Bpiececount++;
             break;
         case 'p':
-            newpiece = make_shared<Pawn>(Pawn('B', boardmap));
+            newpiece = make_shared<Pawn>(Pawn(&Wkingrow, &Wkingcol, &Bkingrow, &Bkingcol, 'B', boardmap));
             Bpiececount++;
             break;
         default:
@@ -371,30 +363,30 @@ void Board::default_init() {
 void Board::PlayersInit(char w, char b) {
     switch (w) {
         case 'h':
-            this->WPlayer = make_shared<Human>(Human(&Wpiececount, &Bpiececount, boardmap));
+            this->WPlayer = make_shared<Human>(Human(&currentPlayer, &Wpiececount, &Bpiececount, boardmap));
             break;
         case '1':
-            this->WPlayer = make_shared<Level1>(Level1(&Wpiececount, &Bpiececount, boardmap));
+            this->WPlayer = make_shared<Level1>(Level1(&currentPlayer, &Wpiececount, &Bpiececount, boardmap));
             break;
         case '2':
-            this->WPlayer = make_shared<Level2>(Level2(&Wpiececount, &Bpiececount, boardmap));
+            this->WPlayer = make_shared<Level2>(Level2(&currentPlayer, &Wpiececount, &Bpiececount, boardmap));
             break;
         case '3':
-            this->WPlayer = make_shared<Level3>(Level3(&Wpiececount, &Bpiececount, boardmap));
+            this->WPlayer = make_shared<Level3>(Level3(&currentPlayer, &Wpiececount, &Bpiececount, boardmap));
             break;
     }
     switch (b) {
         case 'h':
-            this->BPlayer = make_shared<Human>(Human(&Wpiececount, &Bpiececount, boardmap));
+            this->BPlayer = make_shared<Human>(Human(&currentPlayer, &Wpiececount, &Bpiececount, boardmap));
             break;
         case '1':
-            this->BPlayer = make_shared<Level1>(Level1(&Wpiececount, &Bpiececount, boardmap));
+            this->BPlayer = make_shared<Level1>(Level1(&currentPlayer, &Wpiececount, &Bpiececount, boardmap));
             break;
         case '2':
-            this->BPlayer = make_shared<Level2>(Level2(&Wpiececount, &Bpiececount, boardmap));
+            this->BPlayer = make_shared<Level2>(Level2(&currentPlayer, &Wpiececount, &Bpiececount, boardmap));
             break;
         case '3':
-            this->BPlayer = make_shared<Level3>(Level3(&Wpiececount, &Bpiececount, boardmap));
+            this->BPlayer = make_shared<Level3>(Level3(&currentPlayer, &Wpiececount, &Bpiececount, boardmap));
             break;
     }
 }

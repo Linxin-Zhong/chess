@@ -1,7 +1,8 @@
 #include "bishop.h"
 
-Bishop::Bishop(char color, shared_ptr<std::vector<std::vector<std::shared_ptr<Piece>>>> boardmap) : Piece(color, 3,
-                                                                                                          boardmap) {}
+Bishop::Bishop(int *Wkingrow, int *Wkingcol, int *Bkingrow, int *Bkingcol,
+               char color, shared_ptr<std::vector<std::vector<std::shared_ptr<Piece>>>> boardmap) :
+        Piece(Wkingrow, Wkingcol, Bkingrow, Bkingcol, color, 9, boardmap) {}
 
 bool Bishop::check(vector<vector<shared_ptr<Piece>>> &b, int torow, int tocol, int kingrow, int kingcol) {
     if (abs(torow - kingrow) == abs(tocol - kingcol)) {
@@ -69,6 +70,44 @@ vector<pair<int, int>> Bishop::legalMoves(int r, int c) {
             j++;
         }
     }
+
+    int kingrow, kingcol;
+    if (color == 'W') {
+        kingrow = *Wkingrow;
+        kingcol = *Wkingcol;
+    } else {
+        kingrow = *Bkingrow;
+        kingcol = *Bkingcol;
+    }
+
+    int checkcol, checkrow;
+
+    bool kinginCheck = false;
+
+    if (isCheck((*boardmap), color, kingrow, kingcol, &checkrow, &checkcol)) {
+        kinginCheck = true;
+    }
+
+    if (kinginCheck) {
+        vector<pair<int, int>> movesSavingKing;
+        for (int i = 0; i < listofLegalMoves.size(); i++) {
+            //check if making that move would eliminate the check on king
+            vector<vector<shared_ptr<Piece>>> newboard;
+            boardcopy2((*boardmap), newboard);
+            int fromrow, fromcol, torow, tocol;
+            fromrow = r;
+            fromcol = c;
+            torow = listofLegalMoves[i].first;
+            tocol = listofLegalMoves[i].second;
+            newboard[torow][tocol] = newboard[fromrow][fromcol];
+            newboard[fromrow][fromcol] = nullptr;
+            if (!isCheck(newboard, color, kingrow, kingcol, &checkrow, &checkcol)) {
+                movesSavingKing.emplace_back(listofLegalMoves[i]);
+            }
+        }
+        return movesSavingKing;
+    }
+
     return listofLegalMoves;
 }
 
