@@ -36,7 +36,7 @@ void GraphObserver::notify() {
                 } else {
                     w->fillRectangle(j * 50, (7 - i) * 50, 50, 50, Xwindow::White);
                 }
-                break;
+                continue;
             }
             string str;
             stringstream stream;
