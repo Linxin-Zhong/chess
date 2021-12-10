@@ -155,33 +155,10 @@ vector<pair<int, int>> Queen::legalMoves(int r, int c) {
 
 vector<pair<int, int>> Queen::captureMoves(int r, int c) {
     vector<pair<int, int>> listofCaptureMoves;
-    vector<pair<int, int>> dir = {{1,  0},
-                                  {0,  1},
-                                  {-1, 0},
-                                  {0,  -1},
-                                  {1,  1},
-                                  {-1, 1},
-                                  {-1, -1},
-                                  {1,  -1}};
-    pair<int, int> temp;
-    for (int i = 0; i < 8; ++i) {
-        int j = 1;
-        while (true) {
-            int newrow = r + j * dir[i].first;
-            int newcol = c + j * dir[i].second;
-            if (newrow >= 8 || newrow < 0 || newcol >= 8 || newcol < 0) {
-                break;
-            }
-            if (!(*boardmap)[newrow][newcol]) {
-                continue;
-            } else if ((*boardmap)[newrow][newcol]->getColor() == this->color) {
-                break;
-            } else if ((*boardmap)[newrow][newcol]->getColor() != this->color) {
-                temp = {newrow, newcol};
-                listofCaptureMoves.emplace_back(temp);
-                break;
-            }
-            j++;
+    vector<pair<int, int>> legalMoves = this->legalMoves(r, c);
+    for (int i = 0; i < legalMoves.size(); i++) {
+        if ((*boardmap)[legalMoves[i].first][legalMoves[i].second]) {
+            listofCaptureMoves.emplace_back(legalMoves[i]);
         }
     }
     return listofCaptureMoves;

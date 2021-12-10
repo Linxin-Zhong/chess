@@ -141,53 +141,18 @@ vector<pair<int, int>> Pawn::legalMoves(int r, int c) {
 
 vector<pair<int, int>> Pawn::captureMoves(int r, int c) {
     vector<pair<int, int>> listofCaptureMoves;
-    pair<int, int> temp;
 
-    if ((r - 1) >= 0 && (r - 1) < 8 && (c - 1) >= 0 && (c - 1) < 8 &&
-        (color == 'B' && (*boardmap)[r - 1][c - 1] && (*boardmap)[r - 1][c - 1]->getColor() != color)) {
-        temp = {r - 1, c - 1};
-        listofCaptureMoves.emplace_back(temp);
-    }
-    if ((r - 1) >= 0 && (r - 1) < 8 && (c + 1) >= 0 && (c + 1) < 8 &&
-        (color == 'B' && (*boardmap)[r - 1][c + 1] && (*boardmap)[r - 1][c + 1]->getColor() != color)) {
-        temp = {r - 1, c + 1};
-        listofCaptureMoves.emplace_back(temp);
-    }
-    if ((r + 1) >= 0 && (r + 1) < 8 && (c - 1) >= 0 && (c - 1) < 8 &&
-        color == 'W' && (*boardmap)[r + 1][c - 1] && (*boardmap)[r + 1][c - 1]->getColor() != color) {
-        temp = {r + 1, c - 1};
-        listofCaptureMoves.emplace_back(temp);
-    }
-    if ((r + 1) >= 0 && (r + 1) < 8 && (c + 1) >= 0 && (c + 1) < 8 &&
-        color == 'W' && (*boardmap)[r + 1][c + 1] && (*boardmap)[r + 1][c + 1]->getColor() != color) {
-        temp = {r + 1, c + 1};
-        listofCaptureMoves.emplace_back(temp);
-    }
-
-    //en passant
-    if ((c + 1) >= 0 && (c + 1) < 8 && (*boardmap)[r][c + 1] && (*boardmap)[r][c + 1]->getColor() != this->color
-        && ((*boardmap)[r][c + 1]->type() == 'p' || (*boardmap)[r][c + 1]->type() == 'P')) {
-        shared_ptr<Pawn> p = dynamic_pointer_cast<Pawn>((*boardmap)[r][c + 1]);
-        if (this->color == 'W' && p->getEnpassant() && !(*boardmap)[r + 1][c + 1]) {
-            temp = {r + 1, c + 1};
-            listofCaptureMoves.emplace_back(temp);
-        } else if (this->color == 'B' && p->getEnpassant() && !(*boardmap)[r - 1][c + 1]) {
-            temp = {r - 1, c + 1};
-            listofCaptureMoves.emplace_back(temp);
+    vector<pair<int, int>> legalMoves = this->legalMoves(r, c);
+    for (int i = 0; i < legalMoves.size(); i++) {
+        if ((*boardmap)[legalMoves[i].first][legalMoves[i].second]) {
+            listofCaptureMoves.emplace_back(legalMoves[i]);
+        }
+        //en passant
+        if (abs(legalMoves[i].first - r) == 1 && abs(legalMoves[i].second - c) == 1) {
+            listofCaptureMoves.emplace_back(legalMoves[i]);
         }
     }
 
-    if ((c - 1) >= 0 && (c - 1) < 8 && (*boardmap)[r][c - 1] && (*boardmap)[r][c - 1]->getColor() != this->color
-        && ((*boardmap)[r][c - 1]->type() == 'p' || (*boardmap)[r][c - 1]->type() == 'P')) {
-        shared_ptr<Pawn> p = dynamic_pointer_cast<Pawn>((*boardmap)[r][c - 1]);
-        if (this->color == 'W' && p->getEnpassant() && !(*boardmap)[r + 1][c - 1]) {
-            temp = {r + 1, c - 1};
-            listofCaptureMoves.emplace_back(temp);
-        } else if (this->color == 'B' && p->getEnpassant() && !(*boardmap)[r - 1][c - 1]) {
-            temp = {r - 1, c - 1};
-            listofCaptureMoves.emplace_back(temp);
-        }
-    }
 
     return listofCaptureMoves;
 }
