@@ -21,17 +21,16 @@ bool Bishop::check(vector<vector<shared_ptr<Piece>>> &b, int torow, int tocol, i
                 }
             }
             return check;
-
         } else if (torow > kingrow && tocol < kingcol) {
             for (int i = 1; i < abs(torow - kingrow); i++) {
-                if (b[kingrow + i][tocol + i] != nullptr) {
+                if (b[kingrow + i][kingcol - i] != nullptr) {
                     return false;
                 }
             }
             return check;
         } else {
             for (int i = 1; i < abs(torow - kingrow); i++) {
-                if (b[torow + i][kingcol + i] != nullptr) {
+                if (b[torow + i][tocol - i] != nullptr) {
                     return false;
                 }
             }
