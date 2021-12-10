@@ -5,7 +5,6 @@
 using namespace std;
 
 pair<pair<int, int>, pair<int, int>> Level1::generateMove(string input) {
-
     vector<pair<int, int>> allmoveto;
 
     vector<pair<int, int>> allmovefrom;
@@ -27,5 +26,4 @@ pair<pair<int, int>, pair<int, int>> Level1::generateMove(string input) {
     int index = rand() % length;
     return {{allmovefrom[index].first, allmovefrom[index].second},
             {allmoveto[index].first,   allmoveto[index].second}};
-
 }

@@ -16,7 +16,6 @@ void Board::makeMove(string input) {
         wantmove = this->BPlayer->generateMove(input);
     }
 
-
     if (wantmove.second.first != -1 && wantmove.second.second != -1) {
         move(wantmove.first.first, wantmove.first.second, wantmove.second.first, wantmove.second.second);
     } else {

@@ -123,11 +123,42 @@ vector<pair<int, int>> Bishop::captureMoves(int r, int c) {
 }
 
 vector<pair<int, int>> Bishop::avoidMoves(int r, int c) {
-    vector<pair<int, int>> a;
-    return a;
+    vector<pair<int, int>> listOfAvoidMoves;
+    // check if the current piece is under attack
+    int checkrow, checkcol;
+    if (!(*boardmap)[r][c]->isCheck((*boardmap), this->color, r, c, &checkrow, &checkcol)) {
+        return listOfAvoidMoves;
+    }
+
+    vector<pair<int, int>> legalmoves = (*boardmap)[r][c]->legalMoves(r, c);
+    for (int i = 0; i < legalmoves.size(); i++) {
+        int newrow = legalmoves[i].first;
+        int newcol = legalmoves[i].second;
+        vector<vector<shared_ptr<Piece>>> boardAfterMove;
+        boardcopy2(*boardmap, boardAfterMove);
+        boardAfterMove[newrow][newcol] = boardAfterMove[r][c];
+        boardAfterMove[r][c] = nullptr;
+        int checkrow, checkcol;
+        if (!isCheck(boardAfterMove, color, newrow, newcol, &checkrow, &checkcol)) {
+            pair<int, int> temp = {newrow, newcol};
+            listOfAvoidMoves.emplace_back(temp);
+        }
+    }
+    return listOfAvoidMoves;
 }
 
 vector<pair<int, int>> Bishop::checkMoves(int r, int c) {
-    vector<pair<int, int>> a;
-    return a;
+    vector<pair<int, int>> listofchecks;
+    vector<pair<int, int>> legalmoves = (*boardmap)[r][c]->legalMoves(r, c);
+
+    for (int i = 0; i < legalmoves.size(); i++) {
+        int newrow = legalmoves[i].first;
+        int newcol = legalmoves[i].second;
+        if ((*boardmap)[newrow][newcol] && (*boardmap)[newrow][newcol]->getColor() != color &&
+            ((*boardmap)[newrow][newcol]->type() == 'k' || (*boardmap)[newrow][newcol]->type() == 'K')) {
+            pair<int, int> temp = {newrow, newcol};
+            listofchecks.emplace_back(temp);
+        }
+    }
+    return listofchecks;
 }

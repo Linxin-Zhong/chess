@@ -15,7 +15,7 @@ protected:
     shared_ptr<vector<vector<shared_ptr<Piece>>>> boardmap;
 public:
     virtual pair<pair<int, int>, pair<int, int>> generateMove(string input) = 0;
-
+    vector<pair<int, int>> findIntersection(vector<pair<int, int>> v1, vector<pair<int, int>> v2);
     Strategy(char *currentPlayer, int *Wpiececount, int *BPiececount,
              shared_ptr<vector<vector<shared_ptr<Piece>>>> boardmap) : currentPlayer{currentPlayer},
                                                                        Wpiececount{Wpiececount},

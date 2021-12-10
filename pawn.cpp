@@ -30,12 +30,10 @@ vector<pair<int, int>> Pawn::legalMoves(int r, int c) {
 
     if (haventmoved) {
         //first move
-        if ((r - 2) >= 0 && (r - 2) < 8 && color == 'B' &&
-            !(*boardmap)[r - 2][c]) {
+        if ((r - 2) >= 0 && (r - 2) < 8 && color == 'B' && !(*boardmap)[r - 2][c] && !(*boardmap)[r - 1][c]) {
             temp = {r - 2, c};
             listofLegalMoves.emplace_back(temp);
-        } else if ((r + 2) >= 0 && (r + 2) < 8 && color == 'W' &&
-                   !(*boardmap)[r + 2][c]) {
+        } else if ((r + 2) >= 0 && (r + 2) < 8 && color == 'W' && !(*boardmap)[r + 2][c] && !(*boardmap)[r + 1][c]) {
             temp = {r + 2, c};
             listofLegalMoves.emplace_back(temp);
         }
@@ -141,30 +139,54 @@ vector<pair<int, int>> Pawn::legalMoves(int r, int c) {
 
 vector<pair<int, int>> Pawn::captureMoves(int r, int c) {
     vector<pair<int, int>> listofCaptureMoves;
-
     vector<pair<int, int>> legalMoves = this->legalMoves(r, c);
     for (int i = 0; i < legalMoves.size(); i++) {
         if ((*boardmap)[legalMoves[i].first][legalMoves[i].second]) {
             listofCaptureMoves.emplace_back(legalMoves[i]);
         }
-        //en passant
-        if (abs(legalMoves[i].first - r) == 1 && abs(legalMoves[i].second - c) == 1) {
-            listofCaptureMoves.emplace_back(legalMoves[i]);
-        }
     }
-
-
     return listofCaptureMoves;
 }
 
 vector<pair<int, int>> Pawn::avoidMoves(int r, int c) {
-    vector<pair<int, int>> a;
-    return a;
+    vector<pair<int, int>> listOfAvoidMoves;
+    // check if the current piece is under attack
+    int checkrow, checkcol;
+    if (!(*boardmap)[r][c]->isCheck((*boardmap), this->color, r, c, &checkrow, &checkcol)) {
+        return listOfAvoidMoves;
+    }
+
+    vector<pair<int, int>> legalmoves = (*boardmap)[r][c]->legalMoves(r, c);
+    for (int i = 0; i < legalmoves.size(); i++) {
+        int newrow = legalmoves[i].first;
+        int newcol = legalmoves[i].second;
+        vector<vector<shared_ptr<Piece>>> boardAfterMove;
+        boardcopy2(*boardmap, boardAfterMove);
+        boardAfterMove[newrow][newcol] = boardAfterMove[r][c];
+        boardAfterMove[r][c] = nullptr;
+        int checkrow, checkcol;
+        if (!isCheck(boardAfterMove, color, newrow, newcol, &checkrow, &checkcol)) {
+            pair<int, int> temp = {newrow, newcol};
+            listOfAvoidMoves.emplace_back(temp);
+        }
+    }
+    return listOfAvoidMoves;
 }
 
 vector<pair<int, int>> Pawn::checkMoves(int r, int c) {
-    vector<pair<int, int>> a;
-    return a;
+    vector<pair<int, int>> listofchecks;
+    vector<pair<int, int>> legalmoves = (*boardmap)[r][c]->legalMoves(r, c);
+
+    for (int i = 0; i < legalmoves.size(); i++) {
+        int newrow = legalmoves[i].first;
+        int newcol = legalmoves[i].second;
+        if ((*boardmap)[newrow][newcol] && (*boardmap)[newrow][newcol]->getColor() != color &&
+            ((*boardmap)[newrow][newcol]->type() == 'k' || (*boardmap)[newrow][newcol]->type() == 'K')) {
+            pair<int, int> temp = {newrow, newcol};
+            listofchecks.emplace_back(temp);
+        }
+    }
+    return listofchecks;
 }
 
 void Pawn::setHaventMoved(bool b) {
