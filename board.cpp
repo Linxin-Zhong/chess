@@ -181,6 +181,10 @@ bool Board::isCheckMate(char kingcolor, int checkrow, int checkcol) {
 bool Board::isStalemate(char kingcolor) {
     //1.双方均无法checkmate 单马/象单王对单王
     //2.无子可动
+    if (Wpiececount == 1 && Bpiececount == 1) {
+        return true;
+    }
+
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
             if ((*boardmap)[i][j] && (*boardmap)[i][j]->getColor() == kingcolor) {
@@ -620,6 +624,12 @@ char Board::getCurrentPlayer() {
 }
 
 void Board::clearCheck() {
+    check = false;
+    resign = false;
+}
+
+
+void Board::clearCheckStaleMate() {
     check = false;
     checkmate = false;
     stalemate = false;

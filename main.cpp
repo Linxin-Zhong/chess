@@ -9,9 +9,8 @@ using namespace std;
 
 int main() {
 
-    int WScore = 0;
-    int BScore = 0;
-    bool isrunning = false;
+    float WScore = 0;
+    float BScore = 0;
     bool setup = false;
 
     Board b = Board("empty");
@@ -26,6 +25,8 @@ int main() {
     cout << "Please use command 'game' to start a game or use 'setup' to enter the set up mode.." << endl;
 
     while (true) {
+
+
         //before starting the first game
         string input;
         getline(cin, input);
@@ -61,17 +62,37 @@ int main() {
                 continue;
             }
             if (!setup) {
+                b.clear();
                 b.setInit(true);
                 b.default_init();
                 b.PlayersInit(Wplayer, Bplayer);
             } else {
                 b.PlayersInit(Wplayer, Bplayer);
             }
-            isrunning = true;
             cout << "Game Starts!" << endl;
             b.print();
-            while (isrunning) {
+            while (true) {
                 //while game is running
+                if (b.ischeckmate()) {
+                    if (b.getCurrentPlayer() == 'W') {
+                        BScore++;
+                    } else {
+                        WScore++;
+                    }
+                    b.clearCheckStaleMate();
+                    cout << "Please use command game or setup to start a new game" << endl;
+                    setup = false;
+                    break;
+                }
+
+                if (b.isstalemate()) {
+                    BScore += 0.5;
+                    WScore += 0.5;
+                    b.clearCheckStaleMate();
+                    cout << "Please use command game or setup to start a new game" << endl;
+                    setup = false;
+                    break;
+                }
                 string input3;
                 getline(cin, input3);
                 stringstream ss3(input3);
@@ -88,9 +109,12 @@ int main() {
                     } else {
                         WScore++;
                     }
-                    b.clearCheck();
-                    isrunning = false;
+                    b.clearCheckStaleMate();
+                    setup = false;
+                    cout << "Please use command game or setup to start a new game" << endl;
                     break;
+                } else {
+                    cout << "invalid command" << endl;
                 }
             }
         } else if (command == "setup") {
@@ -99,7 +123,7 @@ int main() {
             int WKingcount = 0;
             int BKingcount = 0;
             string input2;
-            cout << "Enters setup mode" << endl;
+            cout << "Board cleared, enters setup mode" << endl;
 
             while (getline(cin, input2)) {
                 stringstream ss2(input2);
@@ -154,8 +178,10 @@ int main() {
                         int BKC = kingcoord.second.second;
                         if (b.isCheck(*b.boardmap, 'W', WKR, WKC, &checkrow, &checkcol)) {
                             cout << "Cannot start when king is in check, please re-enter setup mode";
+                            break;
                         } else if (b.isCheck(*b.boardmap, 'B', BKR, BKC, &checkrow, &checkcol)) {
                             cout << "Cannot start when king is in check, please re-enter setup mode";
+                            break;
                         } else {
                             cout << "Setup succeed" << endl;
                             setup = true;

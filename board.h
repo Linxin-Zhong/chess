@@ -60,6 +60,8 @@ public:
 
     void clearCheck();
 
+    void clearCheckStaleMate();
+
     void makeMove(string input);
 
     void clear();
