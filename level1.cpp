@@ -1,6 +1,7 @@
 #include "level1.h"
 #include <string>
 #include <time.h>
+#include <algorithm>
 
 using namespace std;
 
