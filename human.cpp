@@ -1,11 +1,8 @@
-//
-// Created by Lola Zhong on 2021-11-28.
-//
-
 #include "human.h"
 #include <string>
 #include <iostream>
 #include <sstream>
+#include <algorithm>
 
 using namespace std;
 
