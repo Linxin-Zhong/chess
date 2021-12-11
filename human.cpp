@@ -21,10 +21,14 @@ pair<pair<int, int>, pair<int, int>> Human::generateMove(string input) {
     
     if ((fromcol < 0 || fromcol >= 8) || (fromrow < 0 || fromrow >= 8) || (torow < 0 || torow >= 8) ||  (tocol < 0 || tocol >= 8)) { // input out off range
         cerr << "Invalid input, please try again." << endl;
+        return {{-1, -1},
+                {-1, -1}};
     }
     
     if ((*boardmap)[fromrow][fromcol] == nullptr) { // input fromrow fromcol is empty
         cout << "Invalid input, please try again." << endl;
+        return {{-1, -1},
+                {-1, -1}};
     }
         
 
@@ -41,6 +45,7 @@ pair<pair<int, int>, pair<int, int>> Human::generateMove(string input) {
     if (find(legalmoves.begin(), legalmoves.end(), wantmoveto) != legalmoves.end()) {
         return wantmove;
     } else {
+        cout << "Invalid input, please try again." << endl;
         return {{-1, -1},
                 {-1, -1}};
     }
