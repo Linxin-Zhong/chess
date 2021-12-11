@@ -1,4 +1,4 @@
-/*#ifndef GRAPH_H
+#ifndef GRAPH_H
 #define GRAPH_H
 
 #include "observer.h"
@@ -16,8 +16,9 @@ public:
 
     void notify() override;
 
+    void grade(int w, int b);
+
     ~GraphObserver();
 };
 
 #endif
-*/
