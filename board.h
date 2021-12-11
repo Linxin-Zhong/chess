@@ -48,6 +48,12 @@ class Board : public Subject {
     bool check = false;
     bool checkmate = false;
     bool stalemate = false;
+    bool resign = false;
+    int fromrow = -1;
+    int fromcol = -1;
+    int torow = -1;
+    int tocol = -1;
+    bool init = false;
 
 
 public:
@@ -85,9 +91,25 @@ public:
 
     bool isStalemate(char kingcolor);
 
-    void render();
-
     char getCurrentPlayer();
+
+    void setResign();
+
+    bool isResign();
+
+    bool ischeck();
+
+    bool ischeckmate();
+
+    bool isstalemate();
+
+    vector<pair<int, int>> getInput();
+
+    void setInput();
+
+    void setInit(bool b);
+
+    bool getInit();
 
 };
 
