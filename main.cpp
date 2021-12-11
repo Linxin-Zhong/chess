@@ -19,10 +19,11 @@ int main() {
     char Wplayer;
     char Bplayer;
 
-    cout << "chessboard creating..." << endl;
+    cout << "checkerboard loading..." << endl;
     shared_ptr<TextObserver> to = make_shared<TextObserver>(&b);
     shared_ptr<GraphObserver> go = make_shared<GraphObserver>(&b);
-    cout << "Please input game or setup to start the game" << endl;
+    cout << "checkerboard loading completed." << endl;
+    cout << "Please use command 'game' to start a game or use 'setup' to enter the set up mode.." << endl;
 
     while (true) {
         //before starting the first game
