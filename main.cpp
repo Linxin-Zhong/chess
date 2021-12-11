@@ -2,10 +2,11 @@
 #include <sstream>
 #include "board.h"
 #include "piece.h"
-
-
-
+#include "textobserver.h"
+#include "graphobserver.h"
 using namespace std;
+
+
 int main() {
 
     int WScore = 0;
@@ -14,12 +15,14 @@ int main() {
     bool setup = false;
 
     Board b = Board("empty");
-    //for both default and setup board
+    // for both default and setup board
     char Wplayer;
     char Bplayer;
 
-    // shared_ptr<TextObserver> to = make_shared<TextObserver>(&b);
-    //  shared_ptr<GraphObserver> go = make_shared<GraphObserver>(&b);
+    cout << "chessboard creating..." << endl;
+    shared_ptr<TextObserver> to = make_shared<TextObserver>(&b);
+    shared_ptr<GraphObserver> go = make_shared<GraphObserver>(&b);
+    cout << "Please input game or setup to start the game" << endl;
 
     while (true) {
         //before starting the first game
@@ -57,6 +60,7 @@ int main() {
                 continue;
             }
             if (!setup) {
+                b.setInit(true);
                 b.default_init();
                 b.PlayersInit(Wplayer, Bplayer);
             } else {
@@ -64,7 +68,7 @@ int main() {
             }
             isrunning = true;
             cout << "Game Starts!" << endl;
-            // if (isrunning) { // change 'if' to 'while
+            b.print();
             while (isrunning) {
                 //while game is running
                 string input3;
@@ -72,28 +76,18 @@ int main() {
                 stringstream ss3(input3);
                 string command3;
                 ss3 >> command3;
-                if (command3 == "print") {
-                    b.print();
-                } else if (command3 == "move") {
+                if (command3 == "move") {
                     b.clearCheck();
-                    /* char fromc;
-                     int fromr;
-                     char toc;
-                     int tor;
-                     ss3 >> command3;
-                     fromc = command3[0];
-                     fromr = command3[1] - '1' + 1;
-                     ss3 >> command3;
-                     toc = command3[0];
-                     tor = command3[1] - '1' + 1;*/
                     b.makeMove(input3);
                 } else if (command3 == "resign") { // resign ends the game
-                    b.clearCheck();
+                    b.setResign();
+                    b.print();
                     if (b.getCurrentPlayer() == 'W') {
                         BScore++;
                     } else {
                         WScore++;
                     }
+                    b.clearCheck();
                     isrunning = false;
                     break;
                 }
@@ -121,12 +115,6 @@ int main() {
                         cout << "Invalid command! But you are still in setup mode:) Use 'done' command to exit" << endl;
                         continue;
                     }
-                    /*if (p == 'K') {
-                        WKingcount++;
-                    } else if (p == 'k') {
-                        BKingcount++;
-                    }*/
-
                 } else if (command2 == "-") {
                     string coord;
                     ss2 >> coord;
@@ -156,8 +144,6 @@ int main() {
                     }
                     if (BKingcount == 1 && WKingcount == 1) {
 
-                        // isCheck(vector<vector<shared_ptr<Piece>>> &b, char kingcolor, int kingrow,
-                        //                    int kingcol, int *checkrow, int *checkcol)
                         int checkcol;
                         int checkrow;
                         pair<pair<int, int>, pair<int, int>> kingcoord = b.getKingcoord();
@@ -172,6 +158,7 @@ int main() {
                         } else {
                             cout << "Setup succeed" << endl;
                             setup = true;
+                            b.setInput();
                             break;
                         }
                     } else {
@@ -189,6 +176,7 @@ int main() {
             cout << "White: " << WScore << endl;
             cout << "Black: " << BScore << endl;
             cout << "Thank you for playing :) Game ended." << endl;
+            go->grade(WScore, BScore);
             break;
         } else {
             cout << "Please use command 'game' to start a game or use 'setup' to enter the set up mode." << endl;
