@@ -90,7 +90,7 @@ void Board::makeMove(string input) {
     if (wantmove.second.first != -1 && wantmove.second.second != -1 && !invalidpromotion) {
         move(wantmove.first.first, wantmove.first.second, wantmove.second.first, wantmove.second.second);
     } else if (!invalidpromotion) {
-        cout << "Invalid move! plz try again" << endl;
+        cout << "Invalid move! please try again" << endl;
     }
 
 }
@@ -268,6 +268,10 @@ bool Board::addPiece(char p, string coord) {
         Wpiececount--;
     }
     (*boardmap)[row][col] = newpiece;
+    this->torow = row;
+    this->tocol = col;
+    this->fromrow = -1;
+    this->fromcol = -1;
     return true;
 }
 
@@ -286,6 +290,10 @@ bool Board::remPiece(string coord) {
             Wpiececount--;
         }
         (*boardmap)[row][col] = nullptr;
+        this->fromrow = row;
+        this->fromcol = col;
+        this->torow = -1;
+        this->tocol = -1;
         return true;
     }
 }
@@ -542,20 +550,11 @@ void Board::move(int fromrow, int fromcol, int torow, int tocol) {
 
         if (check) {
             if (isCheckMate(kingcolor, checkrow, checkcol)) {
-                cout << "Checkmate" << endl;
-                print();
                 checkmate = true;
-            } else {
-                cout << "Check" << endl;
-                print();
             }
         } else if (isStalemate(kingcolor)) {
-            cout << "Stalemate" << endl;
-            print();
             stalemate = true;
         }
-        //stalemate = this->isStalemate();
-
 
         //change player, at the very end of the move
         if (currentPlayer == 'W') {
@@ -563,6 +562,10 @@ void Board::move(int fromrow, int fromcol, int torow, int tocol) {
         } else {
             currentPlayer = 'W';
         }
+        this->fromcol = fromcol;
+        this->fromrow = fromrow;
+        this->torow = torow;
+        this->tocol = tocol;
         this->print();
     }
 
@@ -606,21 +609,6 @@ void Board::print() {
     cout << "Wpiececount: " << Wpiececount << endl;
     cout << "Bpiececount: " << Bpiececount << endl;
     cout << "NextMove: " << currentPlayer << endl;
-    for (int i = row8; i >= row1; i--) {
-        cout << i + 1 << " ";
-        for (int j = cola; j <= colh; j++) {
-            cout << (*boardmap)[i][j]->type() << " ";
-        }
-        cout << endl;
-    }
-    cout << "  ";
-    for (char c = 'a'; c <= 'h'; c++) {
-        cout << c << " ";
-    }
-    cout << endl;
-}
-
-void Board::render() {
     notifyObservers();
 }
 
@@ -632,4 +620,47 @@ void Board::clearCheck() {
     check = false;
     checkmate = false;
     stalemate = false;
+    resign = false;
+}
+
+void Board::setResign () {
+    this->resign = true;
+}
+
+bool Board::isResign() {
+    return resign;
+}
+
+bool Board::ischeck() {
+    return check;
+}
+
+bool Board::ischeckmate() {
+    return checkmate;
+}
+
+bool Board::isstalemate() {
+    return stalemate;
+}
+
+vector<pair<int, int>> Board::getInput() {
+    pair<int, int> from = {fromrow, fromcol};
+    pair<int, int> to = {torow, tocol};
+    vector<pair<int, int>> a = {from, to};
+    return a;
+}
+
+void Board::setInput() {
+    fromrow = -1;
+    fromcol = -1;
+    torow = -1;
+    tocol = -1;
+}
+
+void Board::setInit(bool b) {
+    this->init = b;
+}
+
+bool Board::getInit() {
+    return this->init;
 }
