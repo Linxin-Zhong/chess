@@ -80,19 +80,112 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/lolazhong/CLionProjects/chess/bishop.cpp">
+			<Option target="chess"/>
+		</Unit>
+		<Unit filename="/Users/lolazhong/CLionProjects/chess/bishop.h">
+			<Option target="chess"/>
+		</Unit>
+		<Unit filename="/Users/lolazhong/CLionProjects/chess/board.cpp">
+			<Option target="chess"/>
+		</Unit>
+		<Unit filename="/Users/lolazhong/CLionProjects/chess/board.h">
+			<Option target="chess"/>
+		</Unit>
+		<Unit filename="/Users/lolazhong/CLionProjects/chess/graphobserver.cpp">
+			<Option target="chess"/>
+		</Unit>
+		<Unit filename="/Users/lolazhong/CLionProjects/chess/graphobserver.h">
+			<Option target="chess"/>
+		</Unit>
+		<Unit filename="/Users/lolazhong/CLionProjects/chess/human.cpp">
+			<Option target="chess"/>
+		</Unit>
+		<Unit filename="/Users/lolazhong/CLionProjects/chess/human.h">
+			<Option target="chess"/>
+		</Unit>
+		<Unit filename="/Users/lolazhong/CLionProjects/chess/king.cpp">
+			<Option target="chess"/>
+		</Unit>
+		<Unit filename="/Users/lolazhong/CLionProjects/chess/king.h">
+			<Option target="chess"/>
+		</Unit>
+		<Unit filename="/Users/lolazhong/CLionProjects/chess/knight.cpp">
+			<Option target="chess"/>
+		</Unit>
+		<Unit filename="/Users/lolazhong/CLionProjects/chess/knight.h">
+			<Option target="chess"/>
+		</Unit>
+		<Unit filename="/Users/lolazhong/CLionProjects/chess/level1.cpp">
+			<Option target="chess"/>
+		</Unit>
+		<Unit filename="/Users/lolazhong/CLionProjects/chess/level1.h">
+			<Option target="chess"/>
+		</Unit>
+		<Unit filename="/Users/lolazhong/CLionProjects/chess/level2.cpp">
+			<Option target="chess"/>
+		</Unit>
+		<Unit filename="/Users/lolazhong/CLionProjects/chess/level2.h">
+			<Option target="chess"/>
+		</Unit>
+		<Unit filename="/Users/lolazhong/CLionProjects/chess/level3.cpp">
+			<Option target="chess"/>
+		</Unit>
+		<Unit filename="/Users/lolazhong/CLionProjects/chess/level3.h">
+			<Option target="chess"/>
+		</Unit>
 		<Unit filename="/Users/lolazhong/CLionProjects/chess/main.cpp">
 			<Option target="chess"/>
 		</Unit>
-		<Unit filename="/Users/lolazhong/CLionProjects/chess/observer.cpp">
+		<Unit filename="/Users/lolazhong/CLionProjects/chess/observer.h">
 			<Option target="chess"/>
 		</Unit>
-		<Unit filename="/Users/lolazhong/CLionProjects/chess/observer.h">
+		<Unit filename="/Users/lolazhong/CLionProjects/chess/pawn.cpp">
+			<Option target="chess"/>
+		</Unit>
+		<Unit filename="/Users/lolazhong/CLionProjects/chess/pawn.h">
+			<Option target="chess"/>
+		</Unit>
+		<Unit filename="/Users/lolazhong/CLionProjects/chess/piece.cpp">
+			<Option target="chess"/>
+		</Unit>
+		<Unit filename="/Users/lolazhong/CLionProjects/chess/piece.h">
+			<Option target="chess"/>
+		</Unit>
+		<Unit filename="/Users/lolazhong/CLionProjects/chess/queen.cpp">
+			<Option target="chess"/>
+		</Unit>
+		<Unit filename="/Users/lolazhong/CLionProjects/chess/queen.h">
+			<Option target="chess"/>
+		</Unit>
+		<Unit filename="/Users/lolazhong/CLionProjects/chess/rook.cpp">
+			<Option target="chess"/>
+		</Unit>
+		<Unit filename="/Users/lolazhong/CLionProjects/chess/rook.h">
+			<Option target="chess"/>
+		</Unit>
+		<Unit filename="/Users/lolazhong/CLionProjects/chess/strategy.cpp">
+			<Option target="chess"/>
+		</Unit>
+		<Unit filename="/Users/lolazhong/CLionProjects/chess/strategy.h">
 			<Option target="chess"/>
 		</Unit>
 		<Unit filename="/Users/lolazhong/CLionProjects/chess/subject.cpp">
 			<Option target="chess"/>
 		</Unit>
 		<Unit filename="/Users/lolazhong/CLionProjects/chess/subject.h">
+			<Option target="chess"/>
+		</Unit>
+		<Unit filename="/Users/lolazhong/CLionProjects/chess/textobserver.cpp">
+			<Option target="chess"/>
+		</Unit>
+		<Unit filename="/Users/lolazhong/CLionProjects/chess/textobserver.h">
+			<Option target="chess"/>
+		</Unit>
+		<Unit filename="/Users/lolazhong/CLionProjects/chess/window.cpp">
+			<Option target="chess"/>
+		</Unit>
+		<Unit filename="/Users/lolazhong/CLionProjects/chess/window.h">
 			<Option target="chess"/>
 		</Unit>
 		<Unit filename="/Users/lolazhong/CLionProjects/chess/CMakeLists.txt">

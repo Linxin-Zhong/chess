@@ -35,7 +35,6 @@ pair<pair<int, int>, pair<int, int>> Human::generateMove(string input) {
     if (find(legalmoves.begin(), legalmoves.end(), wantmoveto) != legalmoves.end()) {
         return wantmove;
     } else {
-        cout << "invalid move! Please try again" << endl;
         return {{-1, -1},
                 {-1, -1}};
     }

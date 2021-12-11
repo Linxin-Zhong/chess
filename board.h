@@ -45,9 +45,14 @@ class Board : public Subject {
     int Bkingrow;
     int Wkingcol;
     int Wkingrow;
+    bool check = false;
+    bool checkmate = false;
+    bool stalemate = false;
 
 
 public:
+
+    void clearCheck();
 
     void makeMove(string input);
 
@@ -65,8 +70,6 @@ public:
 
     void default_init();
 
-    Board(char w, char b);
-
     Board(string i); //for temporary board in setup purpose
 
     void move(int fromrow, int fromcol, int torow, int tocol);
@@ -80,13 +83,7 @@ public:
 
     pair<pair<int, int>, pair<int, int>> getKingcoord();
 
-    /*bool isStalemate();
-
-    void update(char c, int i);
-
-    bool isRun();
-
-    void resign();*/
+    bool isStalemate(char kingcolor);
 
     void render();
 

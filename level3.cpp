@@ -6,107 +6,94 @@
 using namespace std;
 
 pair<pair<int, int>, pair<int, int>> Level3::generateMove(string input) {
-    vector<pair<int, int>> legalmoveto, legalmovefrom;
+    vector<pair<pair<int, int>, pair<int, int>>> legalmoves;
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
             if ((*boardmap)[i][j] && (*boardmap)[i][j]->getColor() == *currentPlayer) {
-                vector<pair<int, int>> legalmoves = (*boardmap)[i][j]->legalMoves(i, j);
-                for (int k = 0; k < legalmoves.size(); k++) {
-                    pair<int, int> temp = {i, j};
-                    legalmovefrom.emplace_back(temp);
+                vector<pair<int, int>> legalmove = (*boardmap)[i][j]->legalMoves(i, j);
+                for (int k = 0; k < legalmove.size(); k++) {
+                    pair<pair<int, int>, pair<int, int>> temp = {{i,                  j},
+                                                                 {legalmove[k].first, legalmove[k].second}};
+                    legalmoves.emplace_back(temp);
                 }
-                legalmoveto.insert(legalmoveto.end(), legalmoves.begin(), legalmoves.end());
             }
         }
     }
 
-    vector<pair<int, int>> capmoveto, capmovefrom;
+    vector<pair<pair<int, int>, pair<int, int>>> capmoves;
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
             if ((*boardmap)[i][j] && (*boardmap)[i][j]->getColor() == *currentPlayer) {
-                vector<pair<int, int>> captures = (*boardmap)[i][j]->captureMoves(i, j);
-                for (int k = 0; k < captures.size(); k++) {
-                    pair<int, int> temp = {i, j};
-                    capmovefrom.emplace_back(temp);
+                vector<pair<int, int>> capmove = (*boardmap)[i][j]->captureMoves(i, j);
+                for (int k = 0; k < capmove.size(); k++) {
+                    pair<pair<int, int>, pair<int, int>> temp = {{i,                j},
+                                                                 {capmove[k].first, capmove[k].second}};
+                    capmoves.emplace_back(temp);
                 }
-                capmoveto.insert(capmoveto.end(), captures.begin(), captures.end());
             }
         }
     }
 
-    vector<pair<int, int>> checkmoveto, checkmovefrom;
+    vector<pair<pair<int, int>, pair<int, int>>> checkmoves;
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
             if ((*boardmap)[i][j] && (*boardmap)[i][j]->getColor() == *currentPlayer) {
-                vector<pair<int, int>> checks = (*boardmap)[i][j]->checkMoves(i, j);
-                for (int k = 0; k < checks.size(); k++) {
-                    pair<int, int> temp = {i, j};
-                    checkmovefrom.emplace_back(temp);
+                vector<pair<int, int>> checkmove = (*boardmap)[i][j]->checkMoves(i, j);
+                for (int k = 0; k < checkmove.size(); k++) {
+                    pair<pair<int, int>, pair<int, int>> temp = {{i,                  j},
+                                                                 {checkmove[k].first, checkmove[k].second}};
+                    checkmoves.emplace_back(temp);
                 }
-                checkmoveto.insert(checkmoveto.end(), checks.begin(), checks.end());
             }
         }
     }
 
-    vector<pair<int, int>> avoidmoveto, avoidmovefrom;
+    vector<pair<pair<int, int>, pair<int, int>>> avoidmoves;
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
             if ((*boardmap)[i][j] && (*boardmap)[i][j]->getColor() == *currentPlayer) {
-                vector<pair<int, int>> avoidmoves = (*boardmap)[i][j]->avoidMoves(i, j);
-                for (int k = 0; k < avoidmoves.size(); k++) {
-                    pair<int, int> temp = {i, j};
-                    avoidmovefrom.emplace_back(temp);
+                vector<pair<int, int>> avoidmove = (*boardmap)[i][j]->avoidMoves(i, j);
+                for (int k = 0; k < avoidmove.size(); k++) {
+                    pair<pair<int, int>, pair<int, int>> temp = {{i,                  j},
+                                                                 {avoidmove[k].first, avoidmove[k].second}};
+                    avoidmoves.emplace_back(temp);
                 }
-                avoidmoveto.insert(avoidmoveto.end(), avoidmoves.begin(), avoidmoves.end());
             }
         }
     }
 
-    vector<pair<int, int>> checkandcapmoveto = findIntersection(checkmoveto, capmoveto);
-    vector<pair<int, int>> checkandcapmovefrom = findIntersection(checkmovefrom, capmovefrom);
-    vector<pair<int, int>> checkandavoidmoveto = findIntersection(checkmoveto, avoidmoveto);
-    vector<pair<int, int>> checkandavoidmovefrom = findIntersection(checkmovefrom, avoidmovefrom);
-    vector<pair<int, int>> capandavoidmoveto = findIntersection(capmoveto, avoidmoveto);
-    vector<pair<int, int>> capandavoidmovefrom = findIntersection(capmovefrom, avoidmovefrom);
-    vector<pair<int, int>> threemoveto = findIntersection(checkandcapmoveto, checkandavoidmoveto);
-    vector<pair<int, int>> threemovefrom = findIntersection(checkandcapmovefrom, checkandavoidmovefrom);
+    vector<pair<pair<int, int>, pair<int, int>>> checkandcapmove = findIntersection(checkmoves, capmoves);
+    vector<pair<pair<int, int>, pair<int, int>>> checkandavoidmove = findIntersection(checkmoves, avoidmoves);
+    vector<pair<pair<int, int>, pair<int, int>>> capandavoidmove = findIntersection(avoidmoves, capmoves);
+    vector<pair<pair<int, int>, pair<int, int>>> threemove = findIntersection(checkandcapmove, checkandavoidmove);
 
-    vector<pair<int, int>> allmovefrom, allmoveto;
-    if (threemovefrom.size() == 0) {
-        if (checkandcapmoveto.size() == 0 && checkandavoidmoveto.size() == 0) {
-            if (capandavoidmoveto.size() == 0) {
-                if (checkmoveto.size() == 0) {
-                    if (avoidmoveto.size() == 0 && capmoveto.size() == 0) {
-                        allmovefrom = legalmovefrom;
-                        allmoveto = legalmoveto;
+    vector<pair<pair<int, int>, pair<int, int>>> allmove;
+    if (threemove.size() == 0) {
+        if (checkandcapmove.size() == 0 && checkandavoidmove.size() == 0) {
+            if (capandavoidmove.size() == 0) {
+                if (checkmoves.size() == 0) {
+                    if (avoidmoves.size() == 0 && capmoves.size() == 0) {
+                        allmove = legalmoves;
                     } else {
-                        allmovefrom.insert(allmovefrom.end(), avoidmovefrom.begin(), avoidmovefrom.end());
-                        allmovefrom.insert(allmovefrom.end(), capmovefrom.begin(), capmovefrom.end());
-                        allmoveto.insert(allmoveto.end(), avoidmoveto.begin(), avoidmoveto.end());
-                        allmoveto.insert(allmoveto.end(), capmoveto.begin(), capmoveto.end());
+                        allmove.insert(allmove.end(), avoidmoves.begin(), avoidmoves.end());
+                        allmove.insert(allmove.end(), capmoves.begin(), capmoves.end());
                     }
                 } else {
-                    allmovefrom = checkmovefrom;
-                    allmoveto = checkmoveto;
+                    allmove = checkmoves;
                 }
             } else {
-                allmovefrom = capandavoidmovefrom;
-                allmoveto = capandavoidmoveto;
+                allmove = capandavoidmove;
             }
         } else {
-            allmovefrom.insert(allmovefrom.end(), checkandcapmovefrom.begin(), checkandcapmovefrom.end());
-            allmovefrom.insert(allmovefrom.end(), checkandavoidmovefrom.begin(), checkandavoidmovefrom.end());
-            allmoveto.insert(allmoveto.end(), checkandcapmoveto.begin(), checkandcapmoveto.end());
-            allmoveto.insert(allmoveto.end(), checkandavoidmoveto.begin(), checkandavoidmoveto.end());
+            allmove.insert(allmove.end(), checkandcapmove.begin(), checkandcapmove.end());
+            allmove.insert(allmove.end(), checkandavoidmove.begin(), checkandavoidmove.end());
         }
     } else {
-        allmovefrom = threemovefrom;
-        allmoveto = threemoveto;
+        allmove = threemove;
     }
-    
-    int length = allmoveto.size();
+
+    int length = allmove.size();
     srand(time(NULL));
     int index = rand() % length;
-    return {{allmovefrom[index].first, allmovefrom[index].second},
-            {allmoveto[index].first,   allmoveto[index].second}};
+    return allmove[index];
 }

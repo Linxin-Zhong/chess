@@ -75,6 +75,7 @@ int main() {
                 if (command3 == "print") {
                     b.print();
                 } else if (command3 == "move") {
+                    b.clearCheck();
                     /* char fromc;
                      int fromr;
                      char toc;
@@ -87,6 +88,7 @@ int main() {
                      tor = command3[1] - '1' + 1;*/
                     b.makeMove(input3);
                 } else if (command3 == "resign") { // resign ends the game
+                    b.clearCheck();
                     if (b.getCurrentPlayer() == 'W') {
                         BScore++;
                     } else {
@@ -137,8 +139,10 @@ int main() {
                     ss2 >> command2;
                     if (command2 == "White") {
                         b.setNextPlayer('W');
+                        cout << "Next Player set to White" << endl;
                     } else if (command2 == "Black") {
                         b.setNextPlayer('B');
+                        cout << "Next Player set to Black" << endl;
                     } else {
                         cout << "Invalid command! But you are still in setup mode:) Use 'done' command to exit" << endl;
                     }
@@ -180,10 +184,11 @@ int main() {
                     cout << "Invalid command! But you are still in setup mode:) Use 'done' command to exit" << endl;
                 }
             }
-        } else if (cin.eof()) { // adds a command to indicate the program is end.
+        } else if (cin.eof() || command == "quit") { // adds a command to indicate the program is end.
             cout << "Final Score:" << endl;
             cout << "White: " << WScore << endl;
             cout << "Black: " << BScore << endl;
+            cout << "Thank you for playing :) Game ended." << endl;
             break;
         } else {
             cout << "Please use command 'game' to start a game or use 'setup' to enter the set up mode." << endl;

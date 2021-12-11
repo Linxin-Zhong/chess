@@ -123,6 +123,249 @@ chess/fast:
 	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/build
 .PHONY : chess/fast
 
+bishop.o: bishop.cpp.o
+
+.PHONY : bishop.o
+
+# target to build an object file
+bishop.cpp.o:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/bishop.cpp.o
+.PHONY : bishop.cpp.o
+
+bishop.i: bishop.cpp.i
+
+.PHONY : bishop.i
+
+# target to preprocess a source file
+bishop.cpp.i:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/bishop.cpp.i
+.PHONY : bishop.cpp.i
+
+bishop.s: bishop.cpp.s
+
+.PHONY : bishop.s
+
+# target to generate assembly for a file
+bishop.cpp.s:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/bishop.cpp.s
+.PHONY : bishop.cpp.s
+
+board.o: board.cpp.o
+
+.PHONY : board.o
+
+# target to build an object file
+board.cpp.o:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/board.cpp.o
+.PHONY : board.cpp.o
+
+board.i: board.cpp.i
+
+.PHONY : board.i
+
+# target to preprocess a source file
+board.cpp.i:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/board.cpp.i
+.PHONY : board.cpp.i
+
+board.s: board.cpp.s
+
+.PHONY : board.s
+
+# target to generate assembly for a file
+board.cpp.s:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/board.cpp.s
+.PHONY : board.cpp.s
+
+graphobserver.o: graphobserver.cpp.o
+
+.PHONY : graphobserver.o
+
+# target to build an object file
+graphobserver.cpp.o:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/graphobserver.cpp.o
+.PHONY : graphobserver.cpp.o
+
+graphobserver.i: graphobserver.cpp.i
+
+.PHONY : graphobserver.i
+
+# target to preprocess a source file
+graphobserver.cpp.i:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/graphobserver.cpp.i
+.PHONY : graphobserver.cpp.i
+
+graphobserver.s: graphobserver.cpp.s
+
+.PHONY : graphobserver.s
+
+# target to generate assembly for a file
+graphobserver.cpp.s:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/graphobserver.cpp.s
+.PHONY : graphobserver.cpp.s
+
+human.o: human.cpp.o
+
+.PHONY : human.o
+
+# target to build an object file
+human.cpp.o:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/human.cpp.o
+.PHONY : human.cpp.o
+
+human.i: human.cpp.i
+
+.PHONY : human.i
+
+# target to preprocess a source file
+human.cpp.i:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/human.cpp.i
+.PHONY : human.cpp.i
+
+human.s: human.cpp.s
+
+.PHONY : human.s
+
+# target to generate assembly for a file
+human.cpp.s:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/human.cpp.s
+.PHONY : human.cpp.s
+
+king.o: king.cpp.o
+
+.PHONY : king.o
+
+# target to build an object file
+king.cpp.o:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/king.cpp.o
+.PHONY : king.cpp.o
+
+king.i: king.cpp.i
+
+.PHONY : king.i
+
+# target to preprocess a source file
+king.cpp.i:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/king.cpp.i
+.PHONY : king.cpp.i
+
+king.s: king.cpp.s
+
+.PHONY : king.s
+
+# target to generate assembly for a file
+king.cpp.s:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/king.cpp.s
+.PHONY : king.cpp.s
+
+knight.o: knight.cpp.o
+
+.PHONY : knight.o
+
+# target to build an object file
+knight.cpp.o:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/knight.cpp.o
+.PHONY : knight.cpp.o
+
+knight.i: knight.cpp.i
+
+.PHONY : knight.i
+
+# target to preprocess a source file
+knight.cpp.i:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/knight.cpp.i
+.PHONY : knight.cpp.i
+
+knight.s: knight.cpp.s
+
+.PHONY : knight.s
+
+# target to generate assembly for a file
+knight.cpp.s:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/knight.cpp.s
+.PHONY : knight.cpp.s
+
+level1.o: level1.cpp.o
+
+.PHONY : level1.o
+
+# target to build an object file
+level1.cpp.o:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/level1.cpp.o
+.PHONY : level1.cpp.o
+
+level1.i: level1.cpp.i
+
+.PHONY : level1.i
+
+# target to preprocess a source file
+level1.cpp.i:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/level1.cpp.i
+.PHONY : level1.cpp.i
+
+level1.s: level1.cpp.s
+
+.PHONY : level1.s
+
+# target to generate assembly for a file
+level1.cpp.s:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/level1.cpp.s
+.PHONY : level1.cpp.s
+
+level2.o: level2.cpp.o
+
+.PHONY : level2.o
+
+# target to build an object file
+level2.cpp.o:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/level2.cpp.o
+.PHONY : level2.cpp.o
+
+level2.i: level2.cpp.i
+
+.PHONY : level2.i
+
+# target to preprocess a source file
+level2.cpp.i:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/level2.cpp.i
+.PHONY : level2.cpp.i
+
+level2.s: level2.cpp.s
+
+.PHONY : level2.s
+
+# target to generate assembly for a file
+level2.cpp.s:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/level2.cpp.s
+.PHONY : level2.cpp.s
+
+level3.o: level3.cpp.o
+
+.PHONY : level3.o
+
+# target to build an object file
+level3.cpp.o:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/level3.cpp.o
+.PHONY : level3.cpp.o
+
+level3.i: level3.cpp.i
+
+.PHONY : level3.i
+
+# target to preprocess a source file
+level3.cpp.i:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/level3.cpp.i
+.PHONY : level3.cpp.i
+
+level3.s: level3.cpp.s
+
+.PHONY : level3.s
+
+# target to generate assembly for a file
+level3.cpp.s:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/level3.cpp.s
+.PHONY : level3.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -150,32 +393,140 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-observer.o: observer.cpp.o
+pawn.o: pawn.cpp.o
 
-.PHONY : observer.o
+.PHONY : pawn.o
 
 # target to build an object file
-observer.cpp.o:
-	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/observer.cpp.o
-.PHONY : observer.cpp.o
+pawn.cpp.o:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/pawn.cpp.o
+.PHONY : pawn.cpp.o
 
-observer.i: observer.cpp.i
+pawn.i: pawn.cpp.i
 
-.PHONY : observer.i
+.PHONY : pawn.i
 
 # target to preprocess a source file
-observer.cpp.i:
-	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/observer.cpp.i
-.PHONY : observer.cpp.i
+pawn.cpp.i:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/pawn.cpp.i
+.PHONY : pawn.cpp.i
 
-observer.s: observer.cpp.s
+pawn.s: pawn.cpp.s
 
-.PHONY : observer.s
+.PHONY : pawn.s
 
 # target to generate assembly for a file
-observer.cpp.s:
-	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/observer.cpp.s
-.PHONY : observer.cpp.s
+pawn.cpp.s:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/pawn.cpp.s
+.PHONY : pawn.cpp.s
+
+piece.o: piece.cpp.o
+
+.PHONY : piece.o
+
+# target to build an object file
+piece.cpp.o:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/piece.cpp.o
+.PHONY : piece.cpp.o
+
+piece.i: piece.cpp.i
+
+.PHONY : piece.i
+
+# target to preprocess a source file
+piece.cpp.i:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/piece.cpp.i
+.PHONY : piece.cpp.i
+
+piece.s: piece.cpp.s
+
+.PHONY : piece.s
+
+# target to generate assembly for a file
+piece.cpp.s:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/piece.cpp.s
+.PHONY : piece.cpp.s
+
+queen.o: queen.cpp.o
+
+.PHONY : queen.o
+
+# target to build an object file
+queen.cpp.o:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/queen.cpp.o
+.PHONY : queen.cpp.o
+
+queen.i: queen.cpp.i
+
+.PHONY : queen.i
+
+# target to preprocess a source file
+queen.cpp.i:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/queen.cpp.i
+.PHONY : queen.cpp.i
+
+queen.s: queen.cpp.s
+
+.PHONY : queen.s
+
+# target to generate assembly for a file
+queen.cpp.s:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/queen.cpp.s
+.PHONY : queen.cpp.s
+
+rook.o: rook.cpp.o
+
+.PHONY : rook.o
+
+# target to build an object file
+rook.cpp.o:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/rook.cpp.o
+.PHONY : rook.cpp.o
+
+rook.i: rook.cpp.i
+
+.PHONY : rook.i
+
+# target to preprocess a source file
+rook.cpp.i:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/rook.cpp.i
+.PHONY : rook.cpp.i
+
+rook.s: rook.cpp.s
+
+.PHONY : rook.s
+
+# target to generate assembly for a file
+rook.cpp.s:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/rook.cpp.s
+.PHONY : rook.cpp.s
+
+strategy.o: strategy.cpp.o
+
+.PHONY : strategy.o
+
+# target to build an object file
+strategy.cpp.o:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/strategy.cpp.o
+.PHONY : strategy.cpp.o
+
+strategy.i: strategy.cpp.i
+
+.PHONY : strategy.i
+
+# target to preprocess a source file
+strategy.cpp.i:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/strategy.cpp.i
+.PHONY : strategy.cpp.i
+
+strategy.s: strategy.cpp.s
+
+.PHONY : strategy.s
+
+# target to generate assembly for a file
+strategy.cpp.s:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/strategy.cpp.s
+.PHONY : strategy.cpp.s
 
 subject.o: subject.cpp.o
 
@@ -204,6 +555,60 @@ subject.cpp.s:
 	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/subject.cpp.s
 .PHONY : subject.cpp.s
 
+textobserver.o: textobserver.cpp.o
+
+.PHONY : textobserver.o
+
+# target to build an object file
+textobserver.cpp.o:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/textobserver.cpp.o
+.PHONY : textobserver.cpp.o
+
+textobserver.i: textobserver.cpp.i
+
+.PHONY : textobserver.i
+
+# target to preprocess a source file
+textobserver.cpp.i:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/textobserver.cpp.i
+.PHONY : textobserver.cpp.i
+
+textobserver.s: textobserver.cpp.s
+
+.PHONY : textobserver.s
+
+# target to generate assembly for a file
+textobserver.cpp.s:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/textobserver.cpp.s
+.PHONY : textobserver.cpp.s
+
+window.o: window.cpp.o
+
+.PHONY : window.o
+
+# target to build an object file
+window.cpp.o:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/window.cpp.o
+.PHONY : window.cpp.o
+
+window.i: window.cpp.i
+
+.PHONY : window.i
+
+# target to preprocess a source file
+window.cpp.i:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/window.cpp.i
+.PHONY : window.cpp.i
+
+window.s: window.cpp.s
+
+.PHONY : window.s
+
+# target to generate assembly for a file
+window.cpp.s:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/window.cpp.s
+.PHONY : window.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -213,15 +618,60 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... chess"
+	@echo "... bishop.o"
+	@echo "... bishop.i"
+	@echo "... bishop.s"
+	@echo "... board.o"
+	@echo "... board.i"
+	@echo "... board.s"
+	@echo "... graphobserver.o"
+	@echo "... graphobserver.i"
+	@echo "... graphobserver.s"
+	@echo "... human.o"
+	@echo "... human.i"
+	@echo "... human.s"
+	@echo "... king.o"
+	@echo "... king.i"
+	@echo "... king.s"
+	@echo "... knight.o"
+	@echo "... knight.i"
+	@echo "... knight.s"
+	@echo "... level1.o"
+	@echo "... level1.i"
+	@echo "... level1.s"
+	@echo "... level2.o"
+	@echo "... level2.i"
+	@echo "... level2.s"
+	@echo "... level3.o"
+	@echo "... level3.i"
+	@echo "... level3.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... observer.o"
-	@echo "... observer.i"
-	@echo "... observer.s"
+	@echo "... pawn.o"
+	@echo "... pawn.i"
+	@echo "... pawn.s"
+	@echo "... piece.o"
+	@echo "... piece.i"
+	@echo "... piece.s"
+	@echo "... queen.o"
+	@echo "... queen.i"
+	@echo "... queen.s"
+	@echo "... rook.o"
+	@echo "... rook.i"
+	@echo "... rook.s"
+	@echo "... strategy.o"
+	@echo "... strategy.i"
+	@echo "... strategy.s"
 	@echo "... subject.o"
 	@echo "... subject.i"
 	@echo "... subject.s"
+	@echo "... textobserver.o"
+	@echo "... textobserver.i"
+	@echo "... textobserver.s"
+	@echo "... window.o"
+	@echo "... window.i"
+	@echo "... window.s"
 .PHONY : help
 
 

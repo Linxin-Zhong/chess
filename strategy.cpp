@@ -1,11 +1,16 @@
 #include "strategy.h"
 
-vector<pair<int, int>> Strategy::findIntersection(vector<pair<int, int>> v1, vector<pair<int, int>> v2) {
-    vector<pair<int, int>> intersection;
-    for (int i = 0; i < v1.size(); ++i) {
-        pair<int, int> temp = {v1[i].first, v1[i].second};
-        if (find(v2.begin(), v2.end(), temp) != v2.end()) {
-            intersection.emplace_back(temp);
+
+vector<pair<pair<int, int>, pair<int, int>>> Strategy::findIntersection(vector<pair<pair<int, int>, pair<int, int>>> v1,
+                                                                        vector<pair<pair<int, int>, pair<int, int>>> v2) {
+    vector<pair<pair<int, int>, pair<int, int>>> intersection;
+    for (int i = 0; i < v1.size(); i++) {
+        for (int j = 0; j < v2.size(); j++) {
+            pair<pair<int, int>, pair<int, int>> move = v1[i];
+            pair<pair<int, int>, pair<int, int>> move2 = v2[j];
+            if (move == move2) {
+                intersection.emplace_back(move);
+            }
         }
     }
     return intersection;

@@ -52,33 +52,23 @@ vector<pair<int, int>> Knight::legalMoves(int r, int c) {
 
     int checkcol, checkrow;
 
-    bool kinginCheck = false;
-
-    if (isCheck((*boardmap), color, kingrow, kingcol, &checkrow, &checkcol)) {
-        kinginCheck = true;
-    }
-
-    if (kinginCheck) {
-        vector<pair<int, int>> movesSavingKing;
-        for (int i = 0; i < listOfLegalMoves.size(); i++) {
-            //check if making that move would eliminate the check on king
-            vector<vector<shared_ptr<Piece>>> newboard;
-            boardcopy2((*boardmap), newboard);
-            int fromrow, fromcol, torow, tocol;
-            fromrow = r;
-            fromcol = c;
-            torow = listOfLegalMoves[i].first;
-            tocol = listOfLegalMoves[i].second;
-            newboard[torow][tocol] = newboard[fromrow][fromcol];
-            newboard[fromrow][fromcol] = nullptr;
-            if (!isCheck(newboard, color, kingrow, kingcol, &checkrow, &checkcol)) {
-                movesSavingKing.emplace_back(listOfLegalMoves[i]);
-            }
+    vector<pair<int, int>> movesSavingKing;
+    for (int i = 0; i < listOfLegalMoves.size(); i++) {
+        //check if making that move would eliminate the check on king
+        vector<vector<shared_ptr<Piece>>> newboard;
+        boardcopy2((*boardmap), newboard);
+        int fromrow, fromcol, torow, tocol;
+        fromrow = r;
+        fromcol = c;
+        torow = listOfLegalMoves[i].first;
+        tocol = listOfLegalMoves[i].second;
+        newboard[torow][tocol] = newboard[fromrow][fromcol];
+        newboard[fromrow][fromcol] = nullptr;
+        if (!isCheck(newboard, color, kingrow, kingcol, &checkrow, &checkcol)) {
+            movesSavingKing.emplace_back(listOfLegalMoves[i]);
         }
-        return movesSavingKing;
     }
-
-    return listOfLegalMoves;
+    return movesSavingKing;
 }
 
 vector<pair<int, int>> Knight::captureMoves(int r, int c) {

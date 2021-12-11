@@ -81,33 +81,23 @@ vector<pair<int, int>> Bishop::legalMoves(int r, int c) {
 
     int checkcol, checkrow;
 
-    bool kinginCheck = false;
-
-    if (isCheck((*boardmap), color, kingrow, kingcol, &checkrow, &checkcol)) {
-        kinginCheck = true;
-    }
-
-    if (kinginCheck) {
-        vector<pair<int, int>> movesSavingKing;
-        for (int i = 0; i < listofLegalMoves.size(); i++) {
-            //check if making that move would eliminate the check on king
-            vector<vector<shared_ptr<Piece>>> newboard;
-            boardcopy2((*boardmap), newboard);
-            int fromrow, fromcol, torow, tocol;
-            fromrow = r;
-            fromcol = c;
-            torow = listofLegalMoves[i].first;
-            tocol = listofLegalMoves[i].second;
-            newboard[torow][tocol] = newboard[fromrow][fromcol];
-            newboard[fromrow][fromcol] = nullptr;
-            if (!isCheck(newboard, color, kingrow, kingcol, &checkrow, &checkcol)) {
-                movesSavingKing.emplace_back(listofLegalMoves[i]);
-            }
+    vector<pair<int, int>> movesSavingKing;
+    for (int i = 0; i < listofLegalMoves.size(); i++) {
+        //check if making that move would eliminate the check on king
+        vector<vector<shared_ptr<Piece>>> newboard;
+        boardcopy2((*boardmap), newboard);
+        int fromrow, fromcol, torow, tocol;
+        fromrow = r;
+        fromcol = c;
+        torow = listofLegalMoves[i].first;
+        tocol = listofLegalMoves[i].second;
+        newboard[torow][tocol] = newboard[fromrow][fromcol];
+        newboard[fromrow][fromcol] = nullptr;
+        if (!isCheck(newboard, color, kingrow, kingcol, &checkrow, &checkcol)) {
+            movesSavingKing.emplace_back(listofLegalMoves[i]);
         }
-        return movesSavingKing;
     }
-
-    return listofLegalMoves;
+    return movesSavingKing;
 }
 
 vector<pair<int, int>> Bishop::captureMoves(int r, int c) {
