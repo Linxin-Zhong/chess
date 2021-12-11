@@ -16,7 +16,10 @@ void Board::makeMove(string input) {
     } else {
         wantmove = this->BPlayer->generateMove(input);
     }
-
+    
+    if (wantmove.first.first == -1) { // if wantmove is invalid
+        return;
+    }
 
     bool invalidpromotion = false;
     if ((*boardmap)[wantmove.first.first][wantmove.first.second]->type() == 'P') {
