@@ -1,22 +1,39 @@
-/*#include <iostream>
+#include <iostream>
 #include "graphobserver.h"
 #include "window.h"
 #include <string>
 #include <sstream>
 #include <memory>
+#include <vector>
 
 using namespace std;
 
 GraphObserver::GraphObserver(Board *bd)
         : subject{bd} {
-    shared_ptr<Xwindow> tmp = make_shared<Xwindow>(400, 400);
-    tmp->fillRectangle(0, 0, 400, 400, Xwindow::Green);
+    shared_ptr<Xwindow> tmp = make_shared<Xwindow>(450, 500);
+    tmp->fillRectangle(50, 0, 400, 400, Xwindow::White);
+    tmp->fillRectangle(45, 400, 405, 5, Xwindow::Black);
+    tmp->fillRectangle(45, 0, 5, 400, Xwindow::Black);
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
+            if (i == 0) {
+                char c = 'a' + j;
+                string str;
+                stringstream stream;
+                stream << c;
+                str = stream.str();
+                tmp->drawString((j + 1) * 50 + 25, 425, str);
+            }
             if ((i + j) % 2 != 0) {
-                tmp->fillRectangle(j * 50, (7 - i) * 50, 50, 50, Xwindow::White);
+                tmp->fillRectangle((j + 1) * 50, (7 - i) * 50, 50, 50, Xwindow::Green);
             }
         }
+        char c = '1' + i;
+        string str;
+        stringstream stream;
+        stream << c;
+        str = stream.str();
+        tmp->drawString(25, (7 - i) * 50 + 25, str);
     }
     w = tmp;
     subject->attach(this);
@@ -27,23 +44,118 @@ GraphObserver::~GraphObserver() {
 }
 
 void GraphObserver::notify() {
-    for (int i = 0; i < 8; i++) {
-        for (int j = 0; j < 8; j++) {
-            std::shared_ptr<Piece> p = (*subject->boardmap)[i][j];
-            if (p == nullptr) {
-                if ((i + j) % 2 == 0) {
-                    w->fillRectangle(j * 50, (7 - i) * 50, 50, 50, Xwindow::Green);
-                } else {
-                    w->fillRectangle(j * 50, (7 - i) * 50, 50, 50, Xwindow::White);
-                }
-                continue;
-            }
-            string str;
-            stringstream stream;
-            stream << p->type();
-            str = stream.str();
-            w->drawString(j * 50 + 25, (7 - i) * 50 + 25, str);
+    w->fillRectangle(0, 425, 450, 50, Xwindow::White); 
+    char color = subject->getCurrentPlayer();
+    if (subject->isResign()) {
+        string info; 
+        if (color == 'W') {
+            info = "White wins!";
+        } else {
+            info = "White wins!";
         }
+        w->drawString(200, 450, info);
+        return;
+    }
+    vector<pair<int, int>> a = subject->getInput();
+    int fromrow = a[0].first;
+    int fromcol = a[0].second;
+    int torow = a[1].first;
+    int tocol = a[1].second;
+    if (subject->getInit()) {
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                std::shared_ptr<Piece> p = (*subject->boardmap)[i][j];
+                if (p == nullptr) {
+                    continue;
+                }
+                string str;
+                stringstream stream;
+                stream << p->type();
+                str = stream.str();
+                w->drawString((j + 1) * 50 + 25, (7 - i) * 50 + 25, str);
+            }
+        }
+        subject->setInit(false);
+        return;
+    }
+    if (fromrow == -1 && fromcol == -1 && torow == -1 && tocol == -1) {
+        return; 
+    }
+    if (fromrow == -1 && fromcol == -1) {
+        if ((torow + tocol) % 2 == 0) {
+            w->fillRectangle((tocol + 1) * 50, (7 - torow) * 50, 50, 50, Xwindow::White);
+        } else {
+            w->fillRectangle((tocol + 1) * 50, (7 - torow) * 50, 50, 50, Xwindow::Green); 
+        }
+        std::shared_ptr<Piece> p = (*subject->boardmap)[torow][tocol];
+        string str;
+        stringstream stream;
+        stream << p->type();
+        str = stream.str();
+        w->drawString((tocol + 1) * 50 + 25, (7 - torow) * 50 + 25, str);
+    } else if (torow == -1 && tocol == -1) {
+        if ((fromrow + fromcol) % 2 == 0) {
+            w->fillRectangle((fromcol + 1) * 50, (7 - fromrow) * 50, 50, 50, Xwindow::White);
+        } else {
+            w->fillRectangle((fromcol + 1) * 50, (7 - fromrow) * 50, 50, 50, Xwindow::Green); 
+        }
+    } else {
+        std::shared_ptr<Piece> to= (*subject->boardmap)[torow][tocol];
+        string str;
+        stringstream stream;
+        stream << to->type();
+        str = stream.str();
+        if ((fromrow + fromcol) % 2 == 0) {
+            w->fillRectangle((fromcol + 1) * 50, (7 - fromrow) * 50, 50, 50, Xwindow::White);
+        } else {
+            w->fillRectangle((fromcol + 1) * 50, (7 - fromrow) * 50, 50, 50, Xwindow::Green); 
+        }
+        if ((torow + tocol) % 2 == 0) {
+            w->fillRectangle((tocol + 1) * 50, (7 - torow) * 50, 50, 50, Xwindow::White);
+        } else {
+            w->fillRectangle((tocol + 1) * 50, (7 - torow) * 50, 50, 50, Xwindow::Green); 
+        }
+        w->drawString((tocol + 1) * 50 + 25, (7 - torow) * 50 + 25, str);
+    }
+    if (subject->isstalemate()) {
+        w->drawString(200, 450, "Stalemate!");
+        return;
+    }
+    if (subject->ischeckmate()) {
+        string info; 
+        if (color == 'W') {
+            info = "Checkmate! White wins.";
+        } else {
+            info = "Checkmate! Black wins.";
+        }
+        w->drawString(200, 450, info);
+        return;
+    } 
+    if (subject->ischeck()) {
+        string info;
+        if (color == 'W') {
+        info = "White is in check.";
+        } else {
+        info = "Black is in check.";
+        }
+        w->drawString(200, 450, info);
+        return;
     }
 }
- */
+
+void GraphObserver::grade(int W, int B) {
+    w->fillRectangle(0, 0, 450, 500, Xwindow::White);
+    w->drawString(150, 200, "Final Score:");
+    char c = '0' + W;
+    string str;
+    stringstream stream;
+    stream << c;
+    str = stream.str();
+    w->drawString(150, 250, "White: " + str);
+    c = '0' + B;
+    stringstream stream2;
+    stream2 << c;
+    str = stream2.str();
+    w->drawString(150, 300, "Black: " + str);
+    w->drawString(150, 350, "Thank your for playing :) Game ended!");
+}
