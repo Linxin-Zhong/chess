@@ -20,7 +20,7 @@ pair<pair<int, int>, pair<int, int>> Human::generateMove(string input) {
     int torow = moveto[1] - '1';
     
     if ((fromcol < 0 || fromcol >= 8) || (fromrow < 0 || fromrow >= 8) || (torow < 0 || torow >= 8) ||  (tocol < 0 || tocol >= 8)) { // input out off range
-        cout << "Invalid input, please try again." << endl;
+        cerr << "Invalid input, please try again." << endl;
     }
     
     if ((*boardmap)[fromrow][fromcol] == nullptr) { // input fromrow fromcol is empty
