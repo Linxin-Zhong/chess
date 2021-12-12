@@ -53,7 +53,7 @@ vector<pair<int, int>> Knight::legalMoves(int r, int c) {
     int checkcol, checkrow;
 
     vector<pair<int, int>> movesSavingKing;
-    for (int i = 0; i < listOfLegalMoves.size(); i++) {
+    for (size_t i = 0; i < listOfLegalMoves.size(); i++) {
         //check if making that move would eliminate the check on king
         vector<vector<shared_ptr<Piece>>> newboard;
         boardcopy2((*boardmap), newboard);
@@ -74,7 +74,7 @@ vector<pair<int, int>> Knight::legalMoves(int r, int c) {
 vector<pair<int, int>> Knight::captureMoves(int r, int c) {
     vector<pair<int, int>> listofCaptureMoves;
     vector<pair<int, int>> legalMoves = this->legalMoves(r, c);
-    for (int i = 0; i < legalMoves.size(); i++) {
+    for (size_t i = 0; i < legalMoves.size(); i++) {
         if ((*boardmap)[legalMoves[i].first][legalMoves[i].second]) {
             listofCaptureMoves.emplace_back(legalMoves[i]);
         }
@@ -90,7 +90,7 @@ vector<pair<int, int>> Knight::avoidMoves(int r, int c) {
     }
 
     vector<pair<int, int>> legalmoves = (*boardmap)[r][c]->legalMoves(r, c);
-    for (int i = 0; i < legalmoves.size(); i++) {
+    for (size_t i = 0; i < legalmoves.size(); i++) {
         int newrow = legalmoves[i].first;
         int newcol = legalmoves[i].second;
         vector<vector<shared_ptr<Piece>>> boardAfterMove;
@@ -110,7 +110,7 @@ vector<pair<int, int>> Knight::checkMoves(int r, int c) {
     vector<pair<int, int>> listofchecks;
     vector<pair<int, int>> legalmoves = (*boardmap)[r][c]->legalMoves(r, c);
 
-    for (int i = 0; i < legalmoves.size(); i++) {
+    for (size_t i = 0; i < legalmoves.size(); i++) {
         int newrow = legalmoves[i].first;
         int newcol = legalmoves[i].second;
         if ((*boardmap)[newrow][newcol] && (*boardmap)[newrow][newcol]->getColor() != color &&

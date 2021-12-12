@@ -25,9 +25,9 @@ void Piece::boardcopy2(vector<vector<shared_ptr<Piece>>> &a, vector<vector<share
 }
 
 char Piece::type() {
-    if (this == nullptr) {
+    /*if (this == nullptr) {
         return '-';
-    }
+    }*/
     if (dynamic_cast<Rook *>(this) != nullptr) {
         Rook *r = dynamic_cast<Rook *>(this);
         if (r->color == 'B') {
@@ -71,6 +71,7 @@ char Piece::type() {
             return 'B';
         }
     }
+    return '-';
 }
 
 char Piece::getColor() {

@@ -31,9 +31,9 @@ void TextObserver::notify() {
     char color = subject->getCurrentPlayer();
     if (subject->isResign()) {
         if (color == 'W') {
-            cout << "Black wins." << endl;
+            cout << "Black wins!" << endl;
         } else {
-            cout << "White wins." << endl;
+            cout << "White wins!" << endl;
         }
         return;
     }

@@ -9,21 +9,18 @@ using namespace std;
 
 int main() {
 
-    float WScore = 0;
+    float WScore = 0; // to store the final scores of white pieces and black pieces
     float BScore = 0;
-    bool setup = false;
+    bool setup = false; // whether enters the setup mode
 
     Board b = Board("empty");
     // for both default and setup board
     char Wplayer;
     char Bplayer;
 
-    cout << "checkerboard loading..." << endl;
-    shared_ptr<TextObserver> to = make_shared<TextObserver>(&b);
-    shared_ptr<GraphObserver> go = make_shared<GraphObserver>(&b);
-    cout << "checkerboard loading completed." << endl;
-    cout << "Please use command 'game' to start a game or use 'setup' to enter the set up mode.." << endl;
-
+    shared_ptr<TextObserver> to = make_shared<TextObserver>(&b); // text display
+    shared_ptr<GraphObserver> go = make_shared<GraphObserver>(&b); // graphics display
+    cout << "Please use command 'game' to start a game or use 'setup' to enter the set up mode." << endl;
     while (true) {
 
 
@@ -35,7 +32,7 @@ int main() {
         ss >> command;
         if (command == "game") {
             ss >> command;
-            if (command == "human") {
+            if (command == "human") { // white piece player
                 Wplayer = 'h';
             } else if (command == "computer1") {
                 Wplayer = '1';
@@ -49,7 +46,7 @@ int main() {
             }
 
             ss >> command;
-            if (command == "human") {
+            if (command == "human") { // black piece player
                 Bplayer = 'h';
             } else if (command == "computer1") {
                 Bplayer = '1';
@@ -63,9 +60,12 @@ int main() {
             }
             if (!setup) {
                 b.clear();
+                cout << "checkerboard loading..." << endl;
+                go->clearGraph();
                 b.setInit(true);
                 b.default_init();
                 b.PlayersInit(Wplayer, Bplayer);
+                cout << "checkerboard loading completed." << endl;
             } else {
                 b.PlayersInit(Wplayer, Bplayer);
             }
@@ -116,9 +116,15 @@ int main() {
                 } else {
                     cout << "invalid command" << endl;
                 }
+                if (cin.eof()) {
+                    break;
+                }
             }
         } else if (command == "setup") {
             b.clear();
+            cout << "checkerboard loading..." << endl;
+            go->clearGraph();
+            cout << "checkerboard loading completed." << endl;
             //set up based on empty boards
             int WKingcount = 0;
             int BKingcount = 0;

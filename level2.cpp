@@ -13,7 +13,7 @@ pair<pair<int, int>, pair<int, int>> Level2::generateMove(string input) {
         for (int j = 0; j < 8; j++) {
             if ((*boardmap)[i][j] && (*boardmap)[i][j]->getColor() == *currentPlayer) {
                 vector<pair<int, int>> legalmove = (*boardmap)[i][j]->legalMoves(i, j);
-                for (int k = 0; k < legalmove.size(); k++) {
+                for (size_t k = 0; k < legalmove.size(); k++) {
                     pair<pair<int, int>, pair<int, int>> temp = {{i,                  j},
                                                                  {legalmove[k].first, legalmove[k].second}};
                     legalmoves.emplace_back(temp);
@@ -27,7 +27,7 @@ pair<pair<int, int>, pair<int, int>> Level2::generateMove(string input) {
         for (int j = 0; j < 8; j++) {
             if ((*boardmap)[i][j] && (*boardmap)[i][j]->getColor() == *currentPlayer) {
                 vector<pair<int, int>> capmove = (*boardmap)[i][j]->captureMoves(i, j);
-                for (int k = 0; k < capmove.size(); k++) {
+                for (size_t k = 0; k < capmove.size(); k++) {
                     pair<pair<int, int>, pair<int, int>> temp = {{i,                j},
                                                                  {capmove[k].first, capmove[k].second}};
                     capmoves.emplace_back(temp);
@@ -41,7 +41,7 @@ pair<pair<int, int>, pair<int, int>> Level2::generateMove(string input) {
         for (int j = 0; j < 8; j++) {
             if ((*boardmap)[i][j] && (*boardmap)[i][j]->getColor() == *currentPlayer) {
                 vector<pair<int, int>> checkmove = (*boardmap)[i][j]->checkMoves(i, j);
-                for (int k = 0; k < checkmove.size(); k++) {
+                for (size_t k = 0; k < checkmove.size(); k++) {
                     pair<pair<int, int>, pair<int, int>> temp = {{i,                  j},
                                                                  {checkmove[k].first, checkmove[k].second}};
                     checkmoves.emplace_back(temp);

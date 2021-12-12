@@ -159,7 +159,7 @@ bool Board::isCheckMate(char kingcolor, int checkrow, int checkcol) {
             if ((*boardmap)[i][j] && (*boardmap)[i][j]->getColor() == kingcolor) {
                 vector<pair<int, int>> legalmoves = (*boardmap)[i][j]->legalMoves(i, j);
                 if (legalmoves.size() > 0) {
-                    for (int k = 0; k < legalmoves.size(); k++) {
+                    for (size_t k = 0; k < legalmoves.size(); k++) {
                         vector<vector<shared_ptr<Piece>>> newboard;
                         boardcopy((*boardmap), newboard);
                         newboard[legalmoves[k].first][legalmoves[k].second] = newboard[i][j];
@@ -308,9 +308,9 @@ bool Board::remPiece(string coord) {
 bool Board::setNextPlayer(char color) {
     if (color == 'W' || color == 'B') {
         currentPlayer = color;
-    } else {
-        return false;
+        return true;
     }
+    return false;
 }
 
 Board::Board(string i) {
@@ -342,6 +342,10 @@ void Board::clear() {
     Bkingrow = -1;
     Wkingcol = -1;
     Wkingrow = -1;
+    this->fromrow = -1;
+    this->fromcol = -1;
+    this->torow = -1;
+    this->tocol = -1;
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
             (*boardmap)[i][j] = nullptr;

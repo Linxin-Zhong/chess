@@ -12,7 +12,7 @@ pair<pair<int, int>, pair<int, int>> Level1::generateMove(string input) {
         for (int j = 0; j < 8; j++) {
             if ((*boardmap)[i][j] && (*boardmap)[i][j]->getColor() == *currentPlayer) {
                 vector<pair<int, int>> legalmoves = (*boardmap)[i][j]->legalMoves(i, j);
-                for (int k = 0; k < legalmoves.size(); k++) {
+                for (size_t k = 0; k < legalmoves.size(); k++) {
                     pair<int, int> temp = {i, j};
                     allmovefrom.emplace_back(temp);
                 }

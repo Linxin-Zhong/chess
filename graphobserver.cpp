@@ -24,9 +24,6 @@ GraphObserver::GraphObserver(Board *bd)
                 str = stream.str();
                 tmp->drawString((j + 1) * 50 + 25, 425, str);
             }
-            if ((i + j) % 2 != 0) {
-                tmp->fillRectangle((j + 1) * 50, (7 - i) * 50, 50, 50, Xwindow::Green);
-            }
         }
         char c = '1' + i;
         string str;
@@ -35,6 +32,8 @@ GraphObserver::GraphObserver(Board *bd)
         str = stream.str();
         tmp->drawString(25, (7 - i) * 50 + 25, str);
     }
+    tmp->drawString(100, 475, "Please use command 'game' to start a game");
+    tmp->drawString(100, 495, "or use 'setup' to enter the set up mode.");
     w = tmp;
     subject->attach(this);
 }
@@ -44,16 +43,16 @@ GraphObserver::~GraphObserver() {
 }
 
 void GraphObserver::notify() {
-    w->fillRectangle(0, 425, 450, 50, Xwindow::White); 
+    w->fillRectangle(0, 450, 475, 50, Xwindow::White); 
     char color = subject->getCurrentPlayer();
     if (subject->isResign()) {
         string info; 
         if (color == 'W') {
-            info = "White wins!";
+            info = "Black wins!";
         } else {
             info = "White wins!";
         }
-        w->drawString(200, 450, info);
+        w->drawString(200, 475, info);
         return;
     }
     vector<pair<int, int>> a = subject->getInput();
@@ -118,7 +117,7 @@ void GraphObserver::notify() {
         w->drawString((tocol + 1) * 50 + 25, (7 - torow) * 50 + 25, str);
     }
     if (subject->isstalemate()) {
-        w->drawString(200, 450, "Stalemate!");
+        w->drawString(200, 475, "Stalemate!");
         return;
     }
     if (subject->ischeckmate()) {
@@ -128,7 +127,7 @@ void GraphObserver::notify() {
         } else {
             info = "Checkmate! Black wins.";
         }
-        w->drawString(200, 450, info);
+        w->drawString(200, 475, info);
         return;
     } 
     if (subject->ischeck()) {
@@ -138,24 +137,40 @@ void GraphObserver::notify() {
         } else {
         info = "Black is in check.";
         }
-        w->drawString(200, 450, info);
+        w->drawString(200, 475, info);
         return;
     }
 }
 
 void GraphObserver::grade(int W, int B) {
-    w->fillRectangle(0, 0, 450, 500, Xwindow::White);
-    w->drawString(150, 200, "Final Score:");
+    w->fillRectangle(0, 0, 475, 500, Xwindow::White);
+    w->drawString(100, 200, "Final Score:");
     char c = '0' + W;
     string str;
     stringstream stream;
     stream << c;
     str = stream.str();
-    w->drawString(150, 250, "White: " + str);
+    w->drawString(100, 250, "White: " + str);
     c = '0' + B;
     stringstream stream2;
     stream2 << c;
     str = stream2.str();
-    w->drawString(150, 300, "Black: " + str);
-    w->drawString(150, 350, "Thank your for playing :) Game ended!");
+    w->drawString(100, 300, "Black: " + str);
+    w->drawString(100, 350, "Thank your for playing :) Game ended!");
+}
+
+void GraphObserver::clearGraph() {
+    w->fillRectangle(0, 450, 475, 50, Xwindow::White); 
+    w->fillRectangle(50, 0, 400, 400, Xwindow::White);
+    w->drawString(150, 475, "checkerboard loading...");
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
+            if ((i + j) % 2 != 0) {
+                w->fillRectangle((j + 1) * 50, (7 - i) * 50, 50, 50, Xwindow::Green);
+            }
+        }
+    }
+    w->fillRectangle(0, 450, 475, 50, Xwindow::White); 
+    w->drawString(150, 475, "checkerboard loading completed."); 
+    w->fillRectangle(0, 450, 475, 50, Xwindow::White); 
 }

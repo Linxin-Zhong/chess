@@ -4,8 +4,8 @@
 vector<pair<pair<int, int>, pair<int, int>>> Strategy::findIntersection(vector<pair<pair<int, int>, pair<int, int>>> v1,
                                                                         vector<pair<pair<int, int>, pair<int, int>>> v2) {
     vector<pair<pair<int, int>, pair<int, int>>> intersection;
-    for (int i = 0; i < v1.size(); i++) {
-        for (int j = 0; j < v2.size(); j++) {
+    for (size_t i = 0; i < v1.size(); i++) {
+        for (size_t j = 0; j < v2.size(); j++) {
             pair<pair<int, int>, pair<int, int>> move = v1[i];
             pair<pair<int, int>, pair<int, int>> move2 = v2[j];
             if (move == move2) {

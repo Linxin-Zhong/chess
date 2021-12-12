@@ -134,7 +134,7 @@ vector<pair<int, int>> King::legalMoves(int r, int c) {
 vector<pair<int, int>> King::captureMoves(int r, int c) {
     vector<pair<int, int>> listofCaptureMoves;
     vector<pair<int, int>> legalMoves = this->legalMoves(r, c);
-    for (int i = 0; i < legalMoves.size(); i++) {
+    for (size_t i = 0; i < legalMoves.size(); i++) {
         if ((*boardmap)[legalMoves[i].first][legalMoves[i].second]) {
             listofCaptureMoves.emplace_back(legalMoves[i]);
         }
@@ -152,7 +152,7 @@ vector<pair<int, int>> King::avoidMoves(int r, int c) {
     }
 
     vector<pair<int, int>> legalmoves = (*boardmap)[r][c]->legalMoves(r, c);
-    for (int i = 0; i < legalmoves.size(); i++) {
+    for (size_t i = 0; i < legalmoves.size(); i++) {
         int newrow = legalmoves[i].first;
         int newcol = legalmoves[i].second;
         vector<vector<shared_ptr<Piece>>> boardAfterMove;

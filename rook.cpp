@@ -169,7 +169,7 @@ vector<pair<int, int>> Rook::legalMoves(int r, int c) {
 
 
     vector<pair<int, int>> movesSavingKing;
-    for (int i = 0; i < listofLegalMoves.size(); i++) {
+    for (size_t i = 0; i < listofLegalMoves.size(); i++) {
         //check if making that move would eliminate the check on king
         vector<vector<shared_ptr<Piece>>> newboard;
         boardcopy2((*boardmap), newboard);
@@ -199,7 +199,7 @@ void Rook::setHaventMoved(bool b) {
 vector<pair<int, int>> Rook::captureMoves(int r, int c) {
     vector<pair<int, int>> listofCaptureMoves;
     vector<pair<int, int>> legalMoves = this->legalMoves(r, c);
-    for (int i = 0; i < legalMoves.size(); i++) {
+    for (size_t i = 0; i < legalMoves.size(); i++) {
         if ((*boardmap)[legalMoves[i].first][legalMoves[i].second]) {
             listofCaptureMoves.emplace_back(legalMoves[i]);
         }
@@ -216,7 +216,7 @@ vector<pair<int, int>> Rook::avoidMoves(int r, int c) {
     }
 
     vector<pair<int, int>> legalmoves = (*boardmap)[r][c]->legalMoves(r, c);
-    for (int i = 0; i < legalmoves.size(); i++) {
+    for (size_t i = 0; i < legalmoves.size(); i++) {
         int newrow = legalmoves[i].first;
         int newcol = legalmoves[i].second;
         vector<vector<shared_ptr<Piece>>> boardAfterMove;
@@ -236,7 +236,7 @@ vector<pair<int, int>> Rook::checkMoves(int r, int c) {
     vector<pair<int, int>> listofchecks;
     vector<pair<int, int>> legalmoves = (*boardmap)[r][c]->legalMoves(r, c);
 
-    for (int i = 0; i < legalmoves.size(); i++) {
+    for (size_t i = 0; i < legalmoves.size(); i++) {
         int newrow = legalmoves[i].first;
         int newcol = legalmoves[i].second;
         if ((*boardmap)[newrow][newcol] && (*boardmap)[newrow][newcol]->getColor() != color &&
