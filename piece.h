@@ -35,7 +35,6 @@ public:
     virtual vector<pair<int, int>> avoidMoves(int r, int c) = 0;
     virtual vector<pair<int, int>> checkMoves(int r, int c) = 0;
     
-//    virtual void move(char c, int i) = 0;
     virtual ~Piece() = default;
 
     char type(); //return what type of piece is that, one of: k, q, b, r, n, p
