@@ -506,17 +506,7 @@ void Board::move(int fromrow, int fromcol, int torow, int tocol) {
 
     }
 
-    //make the pawn available to be eaten in the situation of enpassant after first move of two grids
-    if ((*boardmap)[fromrow][fromcol]->type() == 'p'
-        || (*boardmap)[fromrow][fromcol]->type() == 'P') {
-        shared_ptr<Pawn> p = dynamic_pointer_cast<Pawn>((*boardmap)[fromrow][fromcol]);
-        if (p->getHaventMoved()) {
-            p->setHaventMoved(false);
-            if (abs(torow - fromrow) == 2) {
-                p->setEnpassant(true);
-            }
-        }
-    }
+
 
     //make the actual move
     if ((*boardmap)[fromrow][fromcol] != nullptr) {
@@ -586,12 +576,25 @@ void Board::move(int fromrow, int fromcol, int torow, int tocol) {
     //if move happens, en passant will be no longer valid
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
-            if ((*boardmap)[i][j]->type() == 'p'
-                || (*boardmap)[i][j]->type() == 'P') {
+            if ((*boardmap)[i][j] && ((*boardmap)[i][j]->type() == 'p'
+                                      || (*boardmap)[i][j]->type() == 'P')) {
                 shared_ptr<Pawn> p = dynamic_pointer_cast<Pawn>((*boardmap)[i][j]);
                 if (p->getEnpassant()) {
                     p->setEnpassant(false);
                 }
+            }
+        }
+    }
+
+
+    //make the pawn available to be eaten in the situation of enpassant after first move of two grids
+    if ((*boardmap)[torow][tocol]->type() == 'p'
+        || (*boardmap)[torow][tocol]->type() == 'P') {
+        shared_ptr<Pawn> p = dynamic_pointer_cast<Pawn>((*boardmap)[torow][tocol]);
+        if (p->getHaventMoved()) {
+            p->setHaventMoved(false);
+            if (abs(torow - fromrow) == 2) {
+                p->setEnpassant(true);
             }
         }
     }

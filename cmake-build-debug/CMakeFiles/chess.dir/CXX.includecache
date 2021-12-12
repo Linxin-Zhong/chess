@@ -6,13 +6,19 @@
 
 #IncludeRegexTransform: 
 
-/Users/lolazhong/CLionProjects/chess/bishop.cpp
-bishop.h
-/Users/lolazhong/CLionProjects/chess/bishop.h
-
 /Users/lolazhong/CLionProjects/chess/bishop.h
 piece.h
 /Users/lolazhong/CLionProjects/chess/piece.h
+
+/Users/lolazhong/CLionProjects/chess/board.cpp
+iostream
+-
+board.h
+/Users/lolazhong/CLionProjects/chess/board.h
+sstream
+-
+string
+-
 
 /Users/lolazhong/CLionProjects/chess/board.h
 strategy.h
@@ -52,12 +58,6 @@ strategy.h
 piece.h
 /Users/lolazhong/CLionProjects/chess/piece.h
 
-/Users/lolazhong/CLionProjects/chess/knight.cpp
-knight.h
-/Users/lolazhong/CLionProjects/chess/knight.h
-iostream
--
-
 /Users/lolazhong/CLionProjects/chess/knight.h
 piece.h
 /Users/lolazhong/CLionProjects/chess/piece.h
@@ -74,10 +74,6 @@ strategy.h
 strategy.h
 /Users/lolazhong/CLionProjects/chess/strategy.h
 
-/Users/lolazhong/CLionProjects/chess/pawn.cpp
-pawn.h
-/Users/lolazhong/CLionProjects/chess/pawn.h
-
 /Users/lolazhong/CLionProjects/chess/pawn.h
 piece.h
 /Users/lolazhong/CLionProjects/chess/piece.h
@@ -90,21 +86,9 @@ memory
 vector
 -
 
-/Users/lolazhong/CLionProjects/chess/queen.cpp
-queen.h
-/Users/lolazhong/CLionProjects/chess/queen.h
-
 /Users/lolazhong/CLionProjects/chess/queen.h
 piece.h
 /Users/lolazhong/CLionProjects/chess/piece.h
-
-/Users/lolazhong/CLionProjects/chess/rook.cpp
-rook.h
-/Users/lolazhong/CLionProjects/chess/rook.h
-king.h
-/Users/lolazhong/CLionProjects/chess/king.h
-board.h
-/Users/lolazhong/CLionProjects/chess/board.h
 
 /Users/lolazhong/CLionProjects/chess/rook.h
 piece.h

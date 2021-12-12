@@ -39,6 +39,11 @@ CMakeFiles/chess.dir/graphobserver.cpp.o: ../rook.h
 CMakeFiles/chess.dir/graphobserver.cpp.o: ../strategy.h
 CMakeFiles/chess.dir/graphobserver.cpp.o: ../subject.h
 CMakeFiles/chess.dir/graphobserver.cpp.o: ../window.h
+CMakeFiles/chess.dir/graphobserver.cpp.o: /opt/X11/include/X11/X.h
+CMakeFiles/chess.dir/graphobserver.cpp.o: /opt/X11/include/X11/Xfuncproto.h
+CMakeFiles/chess.dir/graphobserver.cpp.o: /opt/X11/include/X11/Xlib.h
+CMakeFiles/chess.dir/graphobserver.cpp.o: /opt/X11/include/X11/Xmd.h
+CMakeFiles/chess.dir/graphobserver.cpp.o: /opt/X11/include/X11/Xosdefs.h
 
 CMakeFiles/chess.dir/human.cpp.o: ../human.cpp
 CMakeFiles/chess.dir/human.cpp.o: ../human.h
@@ -71,6 +76,7 @@ CMakeFiles/chess.dir/level3.cpp.o: ../strategy.h
 
 CMakeFiles/chess.dir/main.cpp.o: ../bishop.h
 CMakeFiles/chess.dir/main.cpp.o: ../board.h
+CMakeFiles/chess.dir/main.cpp.o: ../graphobserver.h
 CMakeFiles/chess.dir/main.cpp.o: ../human.h
 CMakeFiles/chess.dir/main.cpp.o: ../king.h
 CMakeFiles/chess.dir/main.cpp.o: ../knight.h
@@ -78,12 +84,14 @@ CMakeFiles/chess.dir/main.cpp.o: ../level1.h
 CMakeFiles/chess.dir/main.cpp.o: ../level2.h
 CMakeFiles/chess.dir/main.cpp.o: ../level3.h
 CMakeFiles/chess.dir/main.cpp.o: ../main.cpp
+CMakeFiles/chess.dir/main.cpp.o: ../observer.h
 CMakeFiles/chess.dir/main.cpp.o: ../pawn.h
 CMakeFiles/chess.dir/main.cpp.o: ../piece.h
 CMakeFiles/chess.dir/main.cpp.o: ../queen.h
 CMakeFiles/chess.dir/main.cpp.o: ../rook.h
 CMakeFiles/chess.dir/main.cpp.o: ../strategy.h
 CMakeFiles/chess.dir/main.cpp.o: ../subject.h
+CMakeFiles/chess.dir/main.cpp.o: ../textobserver.h
 
 CMakeFiles/chess.dir/pawn.cpp.o: ../pawn.cpp
 CMakeFiles/chess.dir/pawn.cpp.o: ../pawn.h
