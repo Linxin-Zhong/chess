@@ -116,6 +116,42 @@ void GraphObserver::notify() {
         }
         w->drawString((tocol + 1) * 50 + 25, (7 - torow) * 50 + 25, str);
     }
+    pair<int, int> enpassent = subject->getenpassent();
+    if (enpassent.first != -1 && enpassent.second != -1) {
+        int row = enpassent.first;
+        int col = enpassent.second;
+        if ((row + col) % 2 == 0) {
+            w->fillRectangle((col + 1) * 50, (7 - row) * 50, 50, 50, Xwindow::White);
+        } else {
+            w->fillRectangle((col + 1) * 50, (7 - row) * 50, 50, 50, Xwindow::Green); 
+        }
+        subject->setenpassent(); 
+    }
+    pair<pair<int ,int >, pair<int, int>>castling = subject->getcastling();
+    if (castling.first.first != -1 && castling.first.second != -1 && castling.second.second != -1 && castling.second.first != -1) {
+        int row = castling.first.first;
+        int col = castling.first.second;
+        if ((row + col) % 2 == 0) {
+            w->fillRectangle((col + 1) * 50, (7 - row) * 50, 50, 50, Xwindow::White);
+        } else {
+            w->fillRectangle((col + 1) * 50, (7 - row) * 50, 50, 50, Xwindow::Green); 
+        }
+        std::shared_ptr<Piece> tmp= (*subject->boardmap)[row][col];
+        string str;
+        stringstream stream;
+        stream << tmp->type();
+        str = stream.str();
+        w->drawString((col + 1) * 50 + 25, (7 - row) * 50 + 25, str);
+        row = castling.second.first;
+        col = castling.second.second;
+        if ((row + col) % 2 == 0) {
+            w->fillRectangle((col + 1) * 50, (7 - row) * 50, 50, 50, Xwindow::White);
+        } else {
+            w->fillRectangle((col + 1) * 50, (7 - row) * 50, 50, 50, Xwindow::Green); 
+        }
+        subject->setcastling(); 
+    }
+
     if (subject->isstalemate()) {
         w->drawString(200, 475, "Stalemate!");
         return;
@@ -142,19 +178,21 @@ void GraphObserver::notify() {
     }
 }
 
-void GraphObserver::grade(int W, int B) {
+std::string to_string_precision(float a_value, float n = 1) {
+    std::ostringstream out;
+    out.precision(n);
+    out << std::fixed << a_value;
+    return out.str();
+}
+
+
+void GraphObserver::grade(float W, float B) {
     w->fillRectangle(0, 0, 475, 500, Xwindow::White);
     w->drawString(100, 200, "Final Score:");
-    char c = '0' + W;
     string str;
-    stringstream stream;
-    stream << c;
-    str = stream.str();
+    str = to_string_precision(W);
     w->drawString(100, 250, "White: " + str);
-    c = '0' + B;
-    stringstream stream2;
-    stream2 << c;
-    str = stream2.str();
+    str = to_string_precision(B);
     w->drawString(100, 300, "Black: " + str);
     w->drawString(100, 350, "Thank your for playing :) Game ended!");
 }

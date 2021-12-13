@@ -54,6 +54,8 @@ class Board : public Subject {
     int torow = -1;
     int tocol = -1;
     bool init = false;
+    pair<pair<int, int>, pair<int, int>> castling {{-1,-1}, {-1,-1}};
+    pair<int, int> enpassent = {-1, -1};
 
 
 public:
@@ -112,6 +114,14 @@ public:
     void setInit(bool b);
 
     bool getInit();
+
+    pair<pair<int, int>, pair<int, int>> getcastling();
+
+    pair<int, int> getenpassent();
+
+    void setcastling();
+
+    void setenpassent();
 
 };
 

@@ -445,23 +445,25 @@ void Board::move(int fromrow, int fromcol, int torow, int tocol) {
         //black king long castling
         (*boardmap)[7][3] = (*boardmap)[7][0];
         (*boardmap)[7][0] = nullptr;
-
+        this->castling = {{7, 3}, {7, 0}};
     } else if ((*boardmap)[fromrow][fromcol]->type() == 'k' && abs(fromcol - tocol) == 2
                && tocol == 6) {
         //black king short castling
         (*boardmap)[7][5] = (*boardmap)[7][7];
         (*boardmap)[7][7] = nullptr;
+        this->castling = {{7, 5}, {7, 7}};
     } else if ((*boardmap)[fromrow][fromcol]->type() == 'K' && abs(fromcol - tocol) == 2
                && tocol == 2) {
         //white king long castling
         (*boardmap)[0][3] = (*boardmap)[0][0];
         (*boardmap)[0][0] = nullptr;
-
+        this->castling = {{0, 3}, {0, 0}};
     } else if ((*boardmap)[fromrow][fromcol]->type() == 'K' && abs(fromcol - tocol) == 2
                && tocol == 6) {
         //white king short castling
         (*boardmap)[0][5] = (*boardmap)[0][7];
         (*boardmap)[0][7] = nullptr;
+        this->castling = {{0, 5}, {0, 7}};
     }
 
 
@@ -473,6 +475,7 @@ void Board::move(int fromrow, int fromcol, int torow, int tocol) {
             if (p->getEnpassant()) {
                 Bpiececount--;
                 (*boardmap)[fromrow][fromcol + 1] = nullptr;
+                this->enpassent = {fromrow, fromcol+1};
             }
         }
     } else if ((*boardmap)[fromrow][fromcol]->type() == 'P' && torow == fromrow + 1 && tocol == fromcol - 1) {
@@ -482,6 +485,7 @@ void Board::move(int fromrow, int fromcol, int torow, int tocol) {
             if (p->getEnpassant()) {
                 Bpiececount--;
                 (*boardmap)[fromrow][fromcol - 1] = nullptr;
+                this->enpassent = {fromrow, fromcol-1};
             }
         }
     } else if ((*boardmap)[fromrow][fromcol]->type() == 'p' && torow == fromrow - 1 && tocol == fromcol + 1) {
@@ -491,6 +495,7 @@ void Board::move(int fromrow, int fromcol, int torow, int tocol) {
             if (p->getEnpassant()) {
                 Wpiececount--;
                 (*boardmap)[fromrow][fromcol + 1] = nullptr;
+                this->enpassent = {fromrow, fromcol+1};
             }
         }
 
@@ -501,22 +506,13 @@ void Board::move(int fromrow, int fromcol, int torow, int tocol) {
             if (p->getEnpassant()) {
                 Wpiececount--;
                 (*boardmap)[fromrow][fromcol - 1] = nullptr;
+                this->enpassent = {fromrow, fromcol-1};
             }
         }
 
     }
 
-    //make the pawn available to be eaten in the situation of enpassant after first move of two grids
-    if ((*boardmap)[fromrow][fromcol]->type() == 'p'
-        || (*boardmap)[fromrow][fromcol]->type() == 'P') {
-        shared_ptr<Pawn> p = dynamic_pointer_cast<Pawn>((*boardmap)[fromrow][fromcol]);
-        if (p->getHaventMoved()) {
-            p->setHaventMoved(false);
-            if (abs(torow - fromrow) == 2) {
-                p->setEnpassant(true);
-            }
-        }
-    }
+
 
     //make the actual move
     if ((*boardmap)[fromrow][fromcol] != nullptr) {
@@ -586,12 +582,25 @@ void Board::move(int fromrow, int fromcol, int torow, int tocol) {
     //if move happens, en passant will be no longer valid
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
-            if ((*boardmap)[i][j]->type() == 'p'
-                || (*boardmap)[i][j]->type() == 'P') {
+            if ((*boardmap)[i][j] && ((*boardmap)[i][j]->type() == 'p'
+                                      || (*boardmap)[i][j]->type() == 'P')) {
                 shared_ptr<Pawn> p = dynamic_pointer_cast<Pawn>((*boardmap)[i][j]);
                 if (p->getEnpassant()) {
                     p->setEnpassant(false);
                 }
+            }
+        }
+    }
+
+
+    //make the pawn available to be eaten in the situation of enpassant after first move of two grids
+    if ((*boardmap)[torow][tocol]->type() == 'p'
+        || (*boardmap)[torow][tocol]->type() == 'P') {
+        shared_ptr<Pawn> p = dynamic_pointer_cast<Pawn>((*boardmap)[torow][tocol]);
+        if (p->getHaventMoved()) {
+            p->setHaventMoved(false);
+            if (abs(torow - fromrow) == 2) {
+                p->setEnpassant(true);
             }
         }
     }
@@ -680,4 +689,20 @@ void Board::setInit(bool b) {
 
 bool Board::getInit() {
     return this->init;
+}
+
+pair<pair<int, int>, pair<int, int>> Board::getcastling() {
+    return this->castling;
+}
+
+pair<int, int> Board::getenpassent() {
+    return this->enpassent;
+}
+
+void Board::setcastling() {
+    this->castling = {{-1, -1}, {-1, -1}};
+}
+
+void Board::setenpassent() {
+    this->enpassent = {-1, -1};
 }
