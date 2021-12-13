@@ -17,21 +17,9 @@
 #include <vector>
 
 const int cola = 0;
-const int colb = 1;
-const int colc = 2;
-const int cold = 3;
-const int cole = 4;
-const int colf = 5;
-const int colg = 6;
 const int colh = 7;
 
 const int row1 = 0;
-const int row2 = 1;
-const int row3 = 2;
-const int row4 = 3;
-const int row5 = 4;
-const int row6 = 5;
-const int row7 = 6;
 const int row8 = 7;
 
 class Board : public Subject {
@@ -59,6 +47,8 @@ class Board : public Subject {
 
 
 public:
+    
+    shared_ptr<std::vector<std::vector<std::shared_ptr<Piece>>>> boardmap;
 
     void clearCheck();
 
@@ -75,8 +65,6 @@ public:
     bool setNextPlayer(char color);
 
     void PlayersInit(char w, char b);
-
-    shared_ptr<std::vector<std::vector<std::shared_ptr<Piece>>>> boardmap;
 
     void default_init();
 

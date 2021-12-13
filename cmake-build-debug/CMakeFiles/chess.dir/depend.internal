@@ -40,6 +40,11 @@ CMakeFiles/chess.dir/graphobserver.cpp.o
  /Users/lolazhong/CLionProjects/chess/strategy.h
  /Users/lolazhong/CLionProjects/chess/subject.h
  /Users/lolazhong/CLionProjects/chess/window.h
+ /opt/X11/include/X11/X.h
+ /opt/X11/include/X11/Xfuncproto.h
+ /opt/X11/include/X11/Xlib.h
+ /opt/X11/include/X11/Xmd.h
+ /opt/X11/include/X11/Xosdefs.h
 CMakeFiles/chess.dir/human.cpp.o
  /Users/lolazhong/CLionProjects/chess/human.cpp
  /Users/lolazhong/CLionProjects/chess/human.h
@@ -72,6 +77,7 @@ CMakeFiles/chess.dir/level3.cpp.o
 CMakeFiles/chess.dir/main.cpp.o
  /Users/lolazhong/CLionProjects/chess/bishop.h
  /Users/lolazhong/CLionProjects/chess/board.h
+ /Users/lolazhong/CLionProjects/chess/graphobserver.h
  /Users/lolazhong/CLionProjects/chess/human.h
  /Users/lolazhong/CLionProjects/chess/king.h
  /Users/lolazhong/CLionProjects/chess/knight.h
@@ -79,12 +85,14 @@ CMakeFiles/chess.dir/main.cpp.o
  /Users/lolazhong/CLionProjects/chess/level2.h
  /Users/lolazhong/CLionProjects/chess/level3.h
  /Users/lolazhong/CLionProjects/chess/main.cpp
+ /Users/lolazhong/CLionProjects/chess/observer.h
  /Users/lolazhong/CLionProjects/chess/pawn.h
  /Users/lolazhong/CLionProjects/chess/piece.h
  /Users/lolazhong/CLionProjects/chess/queen.h
  /Users/lolazhong/CLionProjects/chess/rook.h
  /Users/lolazhong/CLionProjects/chess/strategy.h
  /Users/lolazhong/CLionProjects/chess/subject.h
+ /Users/lolazhong/CLionProjects/chess/textobserver.h
 CMakeFiles/chess.dir/pawn.cpp.o
  /Users/lolazhong/CLionProjects/chess/pawn.cpp
  /Users/lolazhong/CLionProjects/chess/pawn.h

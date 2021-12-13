@@ -18,6 +18,8 @@ public:
 
     void grade(int w, int b);
 
+    void clearGraph();
+
     ~GraphObserver();
 };
 
