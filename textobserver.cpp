@@ -43,9 +43,9 @@ void TextObserver::notify() {
     }
     if (subject->ischeckmate()) {
         if (color == 'W') {
-            cout << "Checkmate! White wins." << endl;
-        } else {
             cout << "Checkmate! Black wins." << endl;
+        } else {
+            cout << "Checkmate! White wins." << endl;
         }
         return;
     } 

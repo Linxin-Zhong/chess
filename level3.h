@@ -6,11 +6,13 @@
 
 class Level3 : public Strategy {
 public:
-    pair<pair<int, int>, pair<int, int>> generateMove(string input) override;
+    pair<pair<int, int>, pair<int, int>>
+    generateMove(vector<vector<shared_ptr<Piece>>> &boardmap, string input) override;
 
-    Level3(char *currentPlayer, int *Wpiececount, int *Bpiececount,
-           shared_ptr<vector<vector<shared_ptr<Piece>>>> boardmap) :
-            Strategy(currentPlayer, Wpiececount, Bpiececount, boardmap) {};
+    Level3(char *currentPlayer, int *Wpiececount, int *Bpiececount) :
+            Strategy(currentPlayer, Wpiececount, Bpiececount) {};
+
+
 };
 
 

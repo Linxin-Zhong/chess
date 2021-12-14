@@ -10,7 +10,7 @@ class Board;
 
 class Piece {
 protected:
-    shared_ptr<vector<vector<shared_ptr<Piece>>>> boardmap;
+    //shared_ptr<vector<vector<shared_ptr<Piece>>>> boardmap;
     int value;  // determine the value of a piece
     char color;
     int *Wkingrow;
@@ -25,17 +25,18 @@ public:
     bool isCheck(vector<vector<shared_ptr<Piece>>> &b, char kingcolor, int kingrow,
                  int kingcol, int *checkrow, int *checkcol);
 
-    Piece(int *Wkingrow, int *Wkingcol, int *Bkingrow, int *Bkingcol, char color, int value,
-          shared_ptr<std::vector<std::vector<std::shared_ptr<Piece>>>> boardmap);
+    Piece(int *Wkingrow, int *Wkingcol, int *Bkingrow, int *Bkingcol, char color, int value);
 
     virtual bool check(vector<vector<shared_ptr<Piece>>> &b, int torow, int tocol, int kingrow, int kingcol) = 0;
 
-    virtual vector<pair<int, int>> legalMoves(int r, int c) = 0;
-    virtual vector<pair<int, int>> captureMoves(int r, int c) = 0;
-    virtual vector<pair<int, int>> avoidMoves(int r, int c) = 0;
-    virtual vector<pair<int, int>> checkMoves(int r, int c) = 0;
-    
-    virtual ~Piece() = default;
+    virtual vector<pair<int, int>> legalMoves(vector<vector<shared_ptr<Piece>>> &boardmap, int r, int c) = 0;
+
+    virtual vector<pair<int, int>> captureMoves(vector<vector<shared_ptr<Piece>>> &boardmap, int r, int c) = 0;
+
+    virtual vector<pair<int, int>> avoidMoves(vector<vector<shared_ptr<Piece>>> &boardmap, int r, int c) = 0;
+
+    virtual vector<pair<int, int>> checkMoves(vector<vector<shared_ptr<Piece>>> &boardmap, int r, int c) = 0;
+
 
     char type(); //return what type of piece is that, one of: k, q, b, r, n, p
     char getColor(); // return the color of the piece

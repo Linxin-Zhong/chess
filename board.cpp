@@ -12,9 +12,9 @@ void Board::makeMove(string input) {
     //return tor, toc
     pair<pair<int, int>, pair<int, int>> wantmove;
     if (currentPlayer == 'W') {
-        wantmove = this->WPlayer->generateMove(input);
+        wantmove = this->WPlayer->generateMove(*boardmap, input);
     } else {
-        wantmove = this->BPlayer->generateMove(input);
+        wantmove = this->BPlayer->generateMove(*boardmap, input);
     }
     
     if (wantmove.first.first == -1) { // if wantmove is invalid
@@ -148,7 +148,7 @@ bool Board::isCheckMate(char kingcolor, int checkrow, int checkcol) {
         kingcol = Bkingcol;
     }
     //1. king can escape directlly (one legal move)
-    vector<pair<int, int>> escapeMoves = (*boardmap)[kingrow][kingcol]->legalMoves(kingrow, kingcol);
+    vector<pair<int, int>> escapeMoves = (*boardmap)[kingrow][kingcol]->legalMoves(*boardmap, kingrow, kingcol);
     if (escapeMoves.size() > 0) {
         return false;
     }
@@ -157,7 +157,7 @@ bool Board::isCheckMate(char kingcolor, int checkrow, int checkcol) {
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
             if ((*boardmap)[i][j] && (*boardmap)[i][j]->getColor() == kingcolor) {
-                vector<pair<int, int>> legalmoves = (*boardmap)[i][j]->legalMoves(i, j);
+                vector<pair<int, int>> legalmoves = (*boardmap)[i][j]->legalMoves(*boardmap, i, j);
                 if (legalmoves.size() > 0) {
                     for (size_t k = 0; k < legalmoves.size(); k++) {
                         vector<vector<shared_ptr<Piece>>> newboard;
@@ -186,7 +186,7 @@ bool Board::isStalemate(char kingcolor) {
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
             if ((*boardmap)[i][j] && (*boardmap)[i][j]->getColor() == kingcolor) {
-                vector<pair<int, int>> legalm = (*boardmap)[i][j]->legalMoves(i, j);
+                vector<pair<int, int>> legalm = (*boardmap)[i][j]->legalMoves(*boardmap, i, j);
                 if (legalm.size() > 0) {
                     return false;
                 }
@@ -212,53 +212,53 @@ bool Board::addPiece(char p, string coord) {
         case 'K':
             Wkingcol = col;
             Wkingrow = row;
-            newpiece = make_shared<King>(King(&Wkingrow, &Wkingcol, &Bkingrow, &Bkingcol, 'W', boardmap));
+            newpiece = make_shared<King>(King(&Wkingrow, &Wkingcol, &Bkingrow, &Bkingcol, 'W'));
             Wpiececount++;
             break;
         case 'Q':
-            newpiece = make_shared<Queen>(Queen(&Wkingrow, &Wkingcol, &Bkingrow, &Bkingcol, 'W', boardmap));
+            newpiece = make_shared<Queen>(Queen(&Wkingrow, &Wkingcol, &Bkingrow, &Bkingcol, 'W'));
             Wpiececount++;
             break;
         case 'B':
-            newpiece = make_shared<Bishop>(Bishop(&Wkingrow, &Wkingcol, &Bkingrow, &Bkingcol, 'W', boardmap));
+            newpiece = make_shared<Bishop>(Bishop(&Wkingrow, &Wkingcol, &Bkingrow, &Bkingcol, 'W'));
             Wpiececount++;
             break;
         case 'R':
-            newpiece = make_shared<Rook>(Rook(&Wkingrow, &Wkingcol, &Bkingrow, &Bkingcol, 'W', boardmap));
+            newpiece = make_shared<Rook>(Rook(&Wkingrow, &Wkingcol, &Bkingrow, &Bkingcol, 'W'));
             Wpiececount++;
             break;
         case 'N':
-            newpiece = make_shared<Knight>(Knight(&Wkingrow, &Wkingcol, &Bkingrow, &Bkingcol, 'W', boardmap));
+            newpiece = make_shared<Knight>(Knight(&Wkingrow, &Wkingcol, &Bkingrow, &Bkingcol, 'W'));
             Wpiececount++;
             break;
         case 'P':
-            newpiece = make_shared<Pawn>(Pawn(&Wkingrow, &Wkingcol, &Bkingrow, &Bkingcol, 'W', boardmap));
+            newpiece = make_shared<Pawn>(Pawn(&Wkingrow, &Wkingcol, &Bkingrow, &Bkingcol, 'W'));
             Wpiececount++;
             break;
         case 'k':
             Bkingcol = col;
             Bkingrow = row;
-            newpiece = make_shared<King>(King(&Wkingrow, &Wkingcol, &Bkingrow, &Bkingcol, 'B', boardmap));
+            newpiece = make_shared<King>(King(&Wkingrow, &Wkingcol, &Bkingrow, &Bkingcol, 'B'));
             Bpiececount++;
             break;
         case 'q':
-            newpiece = make_shared<Queen>(Queen(&Wkingrow, &Wkingcol, &Bkingrow, &Bkingcol, 'B', boardmap));
+            newpiece = make_shared<Queen>(Queen(&Wkingrow, &Wkingcol, &Bkingrow, &Bkingcol, 'B'));
             Bpiececount++;
             break;
         case 'b':
-            newpiece = make_shared<Bishop>(Bishop(&Wkingrow, &Wkingcol, &Bkingrow, &Bkingcol, 'B', boardmap));
+            newpiece = make_shared<Bishop>(Bishop(&Wkingrow, &Wkingcol, &Bkingrow, &Bkingcol, 'B'));
             Bpiececount++;
             break;
         case 'r':
-            newpiece = make_shared<Rook>(Rook(&Wkingrow, &Wkingcol, &Bkingrow, &Bkingcol, 'B', boardmap));
+            newpiece = make_shared<Rook>(Rook(&Wkingrow, &Wkingcol, &Bkingrow, &Bkingcol, 'B'));
             Bpiececount++;
             break;
         case 'n':
-            newpiece = make_shared<Knight>(Knight(&Wkingrow, &Wkingcol, &Bkingrow, &Bkingcol, 'B', boardmap));
+            newpiece = make_shared<Knight>(Knight(&Wkingrow, &Wkingcol, &Bkingrow, &Bkingcol, 'B'));
             Bpiececount++;
             break;
         case 'p':
-            newpiece = make_shared<Pawn>(Pawn(&Wkingrow, &Wkingcol, &Bkingrow, &Bkingcol, 'B', boardmap));
+            newpiece = make_shared<Pawn>(Pawn(&Wkingrow, &Wkingcol, &Bkingrow, &Bkingcol, 'B'));
             Bpiececount++;
             break;
         default:
@@ -409,36 +409,36 @@ void Board::default_init() {
 void Board::PlayersInit(char w, char b) {
     switch (w) {
         case 'h':
-            this->WPlayer = make_shared<Human>(Human(&currentPlayer, &Wpiececount, &Bpiececount, boardmap));
+            this->WPlayer = make_shared<Human>(Human(&currentPlayer, &Wpiececount, &Bpiececount));
             break;
         case '1':
-            this->WPlayer = make_shared<Level1>(Level1(&currentPlayer, &Wpiececount, &Bpiececount, boardmap));
+            this->WPlayer = make_shared<Level1>(Level1(&currentPlayer, &Wpiececount, &Bpiececount));
             break;
         case '2':
-            this->WPlayer = make_shared<Level2>(Level2(&currentPlayer, &Wpiececount, &Bpiececount, boardmap));
+            this->WPlayer = make_shared<Level2>(Level2(&currentPlayer, &Wpiececount, &Bpiececount));
             break;
         case '3':
-            this->WPlayer = make_shared<Level3>(Level3(&currentPlayer, &Wpiececount, &Bpiececount, boardmap));
+            this->WPlayer = make_shared<Level3>(Level3(&currentPlayer, &Wpiececount, &Bpiececount));
             break;
         case '4':
-            this->WPlayer = make_shared<Level4>(Level4(&currentPlayer, &Wpiececount, &Bpiececount, boardmap));
+            this->WPlayer = make_shared<Level4>(Level4(&currentPlayer, &Wpiececount, &Bpiececount));
             break;
     }
     switch (b) {
         case 'h':
-            this->BPlayer = make_shared<Human>(Human(&currentPlayer, &Wpiececount, &Bpiececount, boardmap));
+            this->BPlayer = make_shared<Human>(Human(&currentPlayer, &Wpiececount, &Bpiececount));
             break;
         case '1':
-            this->BPlayer = make_shared<Level1>(Level1(&currentPlayer, &Wpiececount, &Bpiececount, boardmap));
+            this->BPlayer = make_shared<Level1>(Level1(&currentPlayer, &Wpiececount, &Bpiececount));
             break;
         case '2':
-            this->BPlayer = make_shared<Level2>(Level2(&currentPlayer, &Wpiececount, &Bpiececount, boardmap));
+            this->BPlayer = make_shared<Level2>(Level2(&currentPlayer, &Wpiececount, &Bpiececount));
             break;
         case '3':
-            this->BPlayer = make_shared<Level3>(Level3(&currentPlayer, &Wpiececount, &Bpiececount, boardmap));
+            this->BPlayer = make_shared<Level3>(Level3(&currentPlayer, &Wpiececount, &Bpiececount));
             break;
         case '4':
-            this->BPlayer = make_shared<Level4>(Level4(&currentPlayer, &Wpiececount, &Bpiececount, boardmap));
+            this->BPlayer = make_shared<Level4>(Level4(&currentPlayer, &Wpiececount, &Bpiececount));
             break;
     }
 }

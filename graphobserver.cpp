@@ -159,9 +159,9 @@ void GraphObserver::notify() {
     if (subject->ischeckmate()) {
         string info; 
         if (color == 'W') {
-            info = "Checkmate! White wins.";
-        } else {
             info = "Checkmate! Black wins.";
+        } else {
+            info = "Checkmate! White wins.";
         }
         w->drawString(200, 475, info);
         return;

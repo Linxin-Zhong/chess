@@ -5,12 +5,12 @@
 
 using namespace std;
 
-pair<pair<int, int>, pair<int, int>> Level3::generateMove(string input) {
+pair<pair<int, int>, pair<int, int>> Level3::generateMove(vector<vector<shared_ptr<Piece>>> &boardmap, string input) {
     vector<pair<pair<int, int>, pair<int, int>>> legalmoves;
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
-            if ((*boardmap)[i][j] && (*boardmap)[i][j]->getColor() == *currentPlayer) {
-                vector<pair<int, int>> legalmove = (*boardmap)[i][j]->legalMoves(i, j);
+            if ((boardmap)[i][j] && (boardmap)[i][j]->getColor() == *currentPlayer) {
+                vector<pair<int, int>> legalmove = (boardmap)[i][j]->legalMoves(boardmap, i, j);
                 for (size_t k = 0; k < legalmove.size(); k++) {
                     pair<pair<int, int>, pair<int, int>> temp = {{i,                  j},
                                                                  {legalmove[k].first, legalmove[k].second}};
@@ -23,8 +23,8 @@ pair<pair<int, int>, pair<int, int>> Level3::generateMove(string input) {
     vector<pair<pair<int, int>, pair<int, int>>> capmoves;
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
-            if ((*boardmap)[i][j] && (*boardmap)[i][j]->getColor() == *currentPlayer) {
-                vector<pair<int, int>> capmove = (*boardmap)[i][j]->captureMoves(i, j);
+            if ((boardmap)[i][j] && (boardmap)[i][j]->getColor() == *currentPlayer) {
+                vector<pair<int, int>> capmove = (boardmap)[i][j]->captureMoves(boardmap, i, j);
                 for (size_t k = 0; k < capmove.size(); k++) {
                     pair<pair<int, int>, pair<int, int>> temp = {{i,                j},
                                                                  {capmove[k].first, capmove[k].second}};
@@ -37,8 +37,8 @@ pair<pair<int, int>, pair<int, int>> Level3::generateMove(string input) {
     vector<pair<pair<int, int>, pair<int, int>>> checkmoves;
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
-            if ((*boardmap)[i][j] && (*boardmap)[i][j]->getColor() == *currentPlayer) {
-                vector<pair<int, int>> checkmove = (*boardmap)[i][j]->checkMoves(i, j);
+            if ((boardmap)[i][j] && (boardmap)[i][j]->getColor() == *currentPlayer) {
+                vector<pair<int, int>> checkmove = (boardmap)[i][j]->checkMoves(boardmap, i, j);
                 for (size_t k = 0; k < checkmove.size(); k++) {
                     pair<pair<int, int>, pair<int, int>> temp = {{i,                  j},
                                                                  {checkmove[k].first, checkmove[k].second}};
@@ -51,8 +51,8 @@ pair<pair<int, int>, pair<int, int>> Level3::generateMove(string input) {
     vector<pair<pair<int, int>, pair<int, int>>> avoidmoves;
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
-            if ((*boardmap)[i][j] && (*boardmap)[i][j]->getColor() == *currentPlayer) {
-                vector<pair<int, int>> avoidmove = (*boardmap)[i][j]->avoidMoves(i, j);
+            if ((boardmap)[i][j] && (boardmap)[i][j]->getColor() == *currentPlayer) {
+                vector<pair<int, int>> avoidmove = (boardmap)[i][j]->avoidMoves(boardmap, i, j);
                 for (size_t k = 0; k < avoidmove.size(); k++) {
                     pair<pair<int, int>, pair<int, int>> temp = {{i,                  j},
                                                                  {avoidmove[k].first, avoidmove[k].second}};

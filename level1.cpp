@@ -4,14 +4,14 @@
 
 using namespace std;
 
-pair<pair<int, int>, pair<int, int>> Level1::generateMove(string input) {
+pair<pair<int, int>, pair<int, int>> Level1::generateMove(vector<vector<shared_ptr<Piece>>> &boardmap, string input) {
     vector<pair<int, int>> allmoveto;
 
     vector<pair<int, int>> allmovefrom;
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
-            if ((*boardmap)[i][j] && (*boardmap)[i][j]->getColor() == *currentPlayer) {
-                vector<pair<int, int>> legalmoves = (*boardmap)[i][j]->legalMoves(i, j);
+            if ((boardmap)[i][j] && (boardmap)[i][j]->getColor() == *currentPlayer) {
+                vector<pair<int, int>> legalmoves = (boardmap)[i][j]->legalMoves(boardmap, i, j);
                 for (size_t k = 0; k < legalmoves.size(); k++) {
                     pair<int, int> temp = {i, j};
                     allmovefrom.emplace_back(temp);

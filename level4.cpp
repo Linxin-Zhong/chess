@@ -71,7 +71,7 @@ bool isCheckMate(vector<vector<shared_ptr<Piece>>> &boardmap, char kingcolor, in
                  int checkcol) {
 
     //1. king can escape directlly (one legal move)
-    vector<pair<int, int>> escapeMoves = boardmap[kingrow][kingcol]->legalMoves(kingrow, kingcol);
+    vector<pair<int, int>> escapeMoves = boardmap[kingrow][kingcol]->legalMoves(boardmap, kingrow, kingcol);
     if (escapeMoves.size() > 0) {
         return false;
     }
@@ -80,7 +80,7 @@ bool isCheckMate(vector<vector<shared_ptr<Piece>>> &boardmap, char kingcolor, in
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
             if (boardmap[i][j] && boardmap[i][j]->getColor() == kingcolor) {
-                vector<pair<int, int>> legalmoves = boardmap[i][j]->legalMoves(i, j);
+                vector<pair<int, int>> legalmoves = boardmap[i][j]->legalMoves(boardmap, i, j);
                 if (legalmoves.size() > 0) {
                     for (size_t k = 0; k < legalmoves.size(); k++) {
                         vector<vector<shared_ptr<Piece>>> newboard;
@@ -102,7 +102,7 @@ bool isCheckMate(vector<vector<shared_ptr<Piece>>> &boardmap, char kingcolor, in
 
 using namespace std;
 
-pair<pair<int, int>, pair<int, int>> Level4::generateMove(string input) {
+pair<pair<int, int>, pair<int, int>> Level4::generateMove(vector<vector<shared_ptr<Piece>>> &boardmap, string input) {
 
 
 
@@ -110,8 +110,8 @@ pair<pair<int, int>, pair<int, int>> Level4::generateMove(string input) {
     vector<pair<pair<int, int>, pair<int, int>>> legalmoves;
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
-            if ((*boardmap)[i][j] && (*boardmap)[i][j]->getColor() == *currentPlayer) {
-                vector<pair<int, int>> legalmove = (*boardmap)[i][j]->legalMoves(i, j);
+            if ((boardmap)[i][j] && (boardmap)[i][j]->getColor() == *currentPlayer) {
+                vector<pair<int, int>> legalmove = (boardmap)[i][j]->legalMoves(boardmap, i, j);
                 for (size_t k = 0; k < legalmove.size(); k++) {
                     pair<pair<int, int>, pair<int, int>> temp = {{i,                  j},
                                                                  {legalmove[k].first, legalmove[k].second}};
@@ -121,7 +121,7 @@ pair<pair<int, int>, pair<int, int>> Level4::generateMove(string input) {
         }
     }
 
-    if (legalmoves.size() == 0) {
+    if (legalmoves.size() <= 0) {
         return {{-1, -1},
                 {-1, -1}};
     }
@@ -129,8 +129,8 @@ pair<pair<int, int>, pair<int, int>> Level4::generateMove(string input) {
     vector<pair<pair<int, int>, pair<int, int>>> capmoves;
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
-            if ((*boardmap)[i][j] && (*boardmap)[i][j]->getColor() == *currentPlayer) {
-                vector<pair<int, int>> capmove = (*boardmap)[i][j]->captureMoves(i, j);
+            if ((boardmap)[i][j] && (boardmap)[i][j]->getColor() == *currentPlayer) {
+                vector<pair<int, int>> capmove = (boardmap)[i][j]->captureMoves(boardmap, i, j);
                 for (size_t k = 0; k < capmove.size(); k++) {
                     pair<pair<int, int>, pair<int, int>> temp = {{i,                j},
                                                                  {capmove[k].first, capmove[k].second}};
@@ -143,8 +143,8 @@ pair<pair<int, int>, pair<int, int>> Level4::generateMove(string input) {
     vector<pair<pair<int, int>, pair<int, int>>> checkmoves;
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
-            if ((*boardmap)[i][j] && (*boardmap)[i][j]->getColor() == *currentPlayer) {
-                vector<pair<int, int>> checkmove = (*boardmap)[i][j]->checkMoves(i, j);
+            if ((boardmap)[i][j] && (boardmap)[i][j]->getColor() == *currentPlayer) {
+                vector<pair<int, int>> checkmove = (boardmap)[i][j]->checkMoves(boardmap, i, j);
                 for (size_t k = 0; k < checkmove.size(); k++) {
                     pair<pair<int, int>, pair<int, int>> temp = {{i,                  j},
                                                                  {checkmove[k].first, checkmove[k].second}};
@@ -157,8 +157,8 @@ pair<pair<int, int>, pair<int, int>> Level4::generateMove(string input) {
     vector<pair<pair<int, int>, pair<int, int>>> avoidmoves;
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
-            if ((*boardmap)[i][j] && (*boardmap)[i][j]->getColor() == *currentPlayer) {
-                vector<pair<int, int>> avoidmove = (*boardmap)[i][j]->avoidMoves(i, j);
+            if ((boardmap)[i][j] && (boardmap)[i][j]->getColor() == *currentPlayer) {
+                vector<pair<int, int>> avoidmove = (boardmap)[i][j]->avoidMoves(boardmap, i, j);
                 for (size_t k = 0; k < avoidmove.size(); k++) {
                     pair<pair<int, int>, pair<int, int>> temp = {{i,                  j},
                                                                  {avoidmove[k].first, avoidmove[k].second}};
@@ -168,21 +168,23 @@ pair<pair<int, int>, pair<int, int>> Level4::generateMove(string input) {
         }
     }
 
-    vector<int> movepoints;
-    for (int i = 0; i < legalmoves.size(); i++) {
-        int a = 0;
-        movepoints.push_back(a);
+    vector<int> movepoints = {0};
+    for (size_t i = 0; i < legalmoves.size(); i++) {
+        if (i == 0) {
+            continue;
+        }
+        movepoints.emplace_back(0);
     }
 
     //calculate points for each move
     for (int i = 0; i < legalmoves.size(); i++) {
         if (find(capmoves.begin(), capmoves.end(), legalmoves[i]) != capmoves.end()) {
             //inside capmoves
-            movepoints[i] += (*boardmap)[legalmoves[i].second.first][legalmoves[i].second.second]->getValue();
+            movepoints[i] += (boardmap)[legalmoves[i].second.first][legalmoves[i].second.second]->getValue();
         }
         if (find(avoidmoves.begin(), avoidmoves.end(), legalmoves[i]) != avoidmoves.end()) {
             //inside avoidmoves
-            movepoints[i] += (*boardmap)[legalmoves[i].first.first][legalmoves[i].first.second]->getValue();
+            movepoints[i] += (boardmap)[legalmoves[i].first.first][legalmoves[i].first.second]->getValue();
         }
         if (find(checkmoves.begin(), checkmoves.end(), legalmoves[i]) != checkmoves.end()) {
             //inside checkmoves
@@ -194,7 +196,7 @@ pair<pair<int, int>, pair<int, int>> Level4::generateMove(string input) {
         int newmovetorow = legalmoves[i].second.first;
         int newmovetocol = legalmoves[i].second.second;
         vector<vector<shared_ptr<Piece>>> newboard;
-        boardcopy((*boardmap), newboard);
+        boardcopy((boardmap), newboard);
         newboard[newmovetorow][newmovetocol] = newboard[newmovefromrow][newmovefromcol];
         newboard[newmovefromrow][newmovefromcol] = nullptr;
         int checkrow, checkcol;
@@ -203,8 +205,8 @@ pair<pair<int, int>, pair<int, int>> Level4::generateMove(string input) {
         int otherkingrow, otherkingcol;
         for (int j = 0; j < 8; j++) {
             for (int k = 0; k < 8; k++) {
-                if (((*boardmap)[j][k]->type() == 'k' || (*boardmap)[j][k]->type() == 'K')
-                    && (*boardmap)[j][k]->getColor() != *currentPlayer) {
+                if (((boardmap)[j][k]->type() == 'k' || (boardmap)[j][k]->type() == 'K')
+                    && (boardmap)[j][k]->getColor() != *currentPlayer) {
                     otherkingrow = j;
                     otherkingcol = k;
                 }

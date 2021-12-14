@@ -4,8 +4,8 @@
 using namespace std;;
 
 Knight::Knight(int *Wkingrow, int *Wkingcol, int *Bkingrow, int *Bkingcol,
-               char color, shared_ptr<std::vector<std::vector<std::shared_ptr<Piece>>>> boardmap) :
-        Piece(Wkingrow, Wkingcol, Bkingrow, Bkingcol, color, 3, boardmap) {}
+               char color) :
+        Piece(Wkingrow, Wkingcol, Bkingrow, Bkingcol, color, 3) {}
 
 
 bool Knight::check(vector<vector<shared_ptr<Piece>>> &b, int torow, int tocol, int kingrow, int kingcol) {
@@ -19,7 +19,7 @@ bool Knight::check(vector<vector<shared_ptr<Piece>>> &b, int torow, int tocol, i
 }
 
 
-vector<pair<int, int>> Knight::legalMoves(int r, int c) {
+vector<pair<int, int>> Knight::legalMoves(vector<vector<shared_ptr<Piece>>> &boardmap, int r, int c) {
     vector<pair<int, int>> listOfLegalMoves;
     vector<pair<int, int>> dir = {{1,  2},
                                   {1,  -2},
@@ -33,7 +33,7 @@ vector<pair<int, int>> Knight::legalMoves(int r, int c) {
         int newrow = r + dir[i].first;
         int newcol = c + dir[i].second;
         if ((newrow >= 0 && newrow < 8 && newcol >= 0 && newcol < 8) &&
-            (!(*boardmap)[newrow][newcol] || ((*boardmap)[newrow][newcol]->getColor() != this->color))) {
+            (!(boardmap)[newrow][newcol] || ((boardmap)[newrow][newcol]->getColor() != this->color))) {
             pair<int, int> temp = {newrow, newcol};
             listOfLegalMoves.emplace_back(temp);
         } else {
@@ -56,7 +56,7 @@ vector<pair<int, int>> Knight::legalMoves(int r, int c) {
     for (size_t i = 0; i < listOfLegalMoves.size(); i++) {
         //check if making that move would eliminate the check on king
         vector<vector<shared_ptr<Piece>>> newboard;
-        boardcopy2((*boardmap), newboard);
+        boardcopy2((boardmap), newboard);
         int fromrow, fromcol, torow, tocol;
         fromrow = r;
         fromcol = c;
@@ -71,30 +71,30 @@ vector<pair<int, int>> Knight::legalMoves(int r, int c) {
     return movesSavingKing;
 }
 
-vector<pair<int, int>> Knight::captureMoves(int r, int c) {
+vector<pair<int, int>> Knight::captureMoves(vector<vector<shared_ptr<Piece>>> &boardmap, int r, int c) {
     vector<pair<int, int>> listofCaptureMoves;
-    vector<pair<int, int>> legalMoves = this->legalMoves(r, c);
+    vector<pair<int, int>> legalMoves = this->legalMoves(boardmap, r, c);
     for (size_t i = 0; i < legalMoves.size(); i++) {
-        if ((*boardmap)[legalMoves[i].first][legalMoves[i].second]) {
+        if ((boardmap)[legalMoves[i].first][legalMoves[i].second]) {
             listofCaptureMoves.emplace_back(legalMoves[i]);
         }
     }
     return listofCaptureMoves;
 }
 
-vector<pair<int, int>> Knight::avoidMoves(int r, int c) {
+vector<pair<int, int>> Knight::avoidMoves(vector<vector<shared_ptr<Piece>>> &boardmap, int r, int c) {
     vector<pair<int, int>> listOfAvoidMoves;
     int checkrow, checkcol;
-    if (!(*boardmap)[r][c]->isCheck((*boardmap), this->color, r, c, &checkrow, &checkcol)) {
+    if (!(boardmap)[r][c]->isCheck((boardmap), this->color, r, c, &checkrow, &checkcol)) {
         return listOfAvoidMoves;
     }
 
-    vector<pair<int, int>> legalmoves = (*boardmap)[r][c]->legalMoves(r, c);
+    vector<pair<int, int>> legalmoves = (boardmap)[r][c]->legalMoves(boardmap, r, c);
     for (size_t i = 0; i < legalmoves.size(); i++) {
         int newrow = legalmoves[i].first;
         int newcol = legalmoves[i].second;
         vector<vector<shared_ptr<Piece>>> boardAfterMove;
-        boardcopy2(*boardmap, boardAfterMove);
+        boardcopy2(boardmap, boardAfterMove);
         boardAfterMove[newrow][newcol] = boardAfterMove[r][c];
         boardAfterMove[r][c] = nullptr;
         int checkrow, checkcol;
@@ -106,15 +106,15 @@ vector<pair<int, int>> Knight::avoidMoves(int r, int c) {
     return listOfAvoidMoves;
 }
 
-vector<pair<int, int>> Knight::checkMoves(int r, int c) {
+vector<pair<int, int>> Knight::checkMoves(vector<vector<shared_ptr<Piece>>> &boardmap, int r, int c) {
     vector<pair<int, int>> listofchecks;
-    vector<pair<int, int>> legalmoves = (*boardmap)[r][c]->legalMoves(r, c);
+    vector<pair<int, int>> legalmoves = (boardmap)[r][c]->legalMoves(boardmap, r, c);
 
     for (size_t i = 0; i < legalmoves.size(); i++) {
         int newrow = legalmoves[i].first;
         int newcol = legalmoves[i].second;
-        if ((*boardmap)[newrow][newcol] && (*boardmap)[newrow][newcol]->getColor() != color &&
-            ((*boardmap)[newrow][newcol]->type() == 'k' || (*boardmap)[newrow][newcol]->type() == 'K')) {
+        if ((boardmap)[newrow][newcol] && (boardmap)[newrow][newcol]->getColor() != color &&
+            ((boardmap)[newrow][newcol]->type() == 'k' || (boardmap)[newrow][newcol]->type() == 'K')) {
             pair<int, int> temp = {newrow, newcol};
             listofchecks.emplace_back(temp);
         }

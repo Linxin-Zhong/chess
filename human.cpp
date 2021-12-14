@@ -6,7 +6,7 @@
 
 using namespace std;
 
-pair<pair<int, int>, pair<int, int>> Human::generateMove(string input) {
+pair<pair<int, int>, pair<int, int>> Human::generateMove(vector<vector<shared_ptr<Piece>>> &boardmap, string input) {
     stringstream ss(input);
     string command;
     string movefrom;
@@ -24,21 +24,21 @@ pair<pair<int, int>, pair<int, int>> Human::generateMove(string input) {
         return {{-1, -1},
                 {-1, -1}};
     }
-    
-    if ((*boardmap)[fromrow][fromcol] == nullptr) { // input fromrow fromcol is empty
+
+    if ((boardmap)[fromrow][fromcol] == nullptr) { // input fromrow fromcol is empty
         cout << "Invalid input, please try again." << endl;
         return {{-1, -1},
                 {-1, -1}};
     }
-        
 
-    if ((*boardmap)[fromrow][fromcol]->getColor() != *currentPlayer) {
+
+    if ((boardmap)[fromrow][fromcol]->getColor() != *currentPlayer) {
         cout << "This is not the turn of this piece you want to move, please try again." << endl;
         return {{-1, -1},
                 {-1, -1}};
     }
 
-    vector<pair<int, int>> legalmoves = (*boardmap)[fromrow][fromcol]->legalMoves(fromrow, fromcol);
+    vector<pair<int, int>> legalmoves = (boardmap)[fromrow][fromcol]->legalMoves(boardmap, fromrow, fromcol);
     pair<pair<int, int>, pair<int, int>> wantmove = {{fromrow, fromcol},
                                                      {torow,   tocol}};
     pair<int, int> wantmoveto = {torow, tocol};

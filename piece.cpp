@@ -8,9 +8,9 @@
 #include "board.h"
 
 Piece::Piece(int *Wkingrow, int *Wkingcol, int *Bkingrow, int *Bkingcol,
-             char color, int value, shared_ptr<std::vector<std::vector<std::shared_ptr<Piece>>>> boardmap) :
+             char color, int value) :
         Wkingrow(Wkingrow), Wkingcol(Wkingcol), Bkingrow(Bkingrow), Bkingcol(Bkingcol), color(color),
-        value(value), boardmap(boardmap) {}
+        value(value) {}
 
 
 //copy content of a to b, b should be empty

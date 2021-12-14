@@ -15,3 +15,5 @@ vector<pair<pair<int, int>, pair<int, int>>> Strategy::findIntersection(vector<p
     }
     return intersection;
 }
+
+
