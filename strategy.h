@@ -18,11 +18,11 @@ public:
 
     vector<pair<pair<int, int>, pair<int, int>>> findIntersection(vector<pair<pair<int, int>, pair<int, int>>> v1,
                                                                   vector<pair<pair<int, int>, pair<int, int>>> v2);
-    Strategy(char *currentPlayer, int *Wpiececount, int *BPiececount,
+
+    Strategy(char *currentPlayer, int *Wpiececount, int *Bpiececount,
              shared_ptr<vector<vector<shared_ptr<Piece>>>> boardmap) : currentPlayer{currentPlayer},
                                                                        Wpiececount{Wpiececount},
                                                                        Bpiececount{Bpiececount}, boardmap(boardmap) {};
 };
-
 
 #endif

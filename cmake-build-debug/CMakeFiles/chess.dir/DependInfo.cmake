@@ -13,6 +13,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/lolazhong/CLionProjects/chess/level1.cpp" "/Users/lolazhong/CLionProjects/chess/cmake-build-debug/CMakeFiles/chess.dir/level1.cpp.o"
   "/Users/lolazhong/CLionProjects/chess/level2.cpp" "/Users/lolazhong/CLionProjects/chess/cmake-build-debug/CMakeFiles/chess.dir/level2.cpp.o"
   "/Users/lolazhong/CLionProjects/chess/level3.cpp" "/Users/lolazhong/CLionProjects/chess/cmake-build-debug/CMakeFiles/chess.dir/level3.cpp.o"
+  "/Users/lolazhong/CLionProjects/chess/level4.cpp" "/Users/lolazhong/CLionProjects/chess/cmake-build-debug/CMakeFiles/chess.dir/level4.cpp.o"
   "/Users/lolazhong/CLionProjects/chess/main.cpp" "/Users/lolazhong/CLionProjects/chess/cmake-build-debug/CMakeFiles/chess.dir/main.cpp.o"
   "/Users/lolazhong/CLionProjects/chess/pawn.cpp" "/Users/lolazhong/CLionProjects/chess/cmake-build-debug/CMakeFiles/chess.dir/pawn.cpp.o"
   "/Users/lolazhong/CLionProjects/chess/piece.cpp" "/Users/lolazhong/CLionProjects/chess/cmake-build-debug/CMakeFiles/chess.dir/piece.cpp.o"

@@ -136,6 +136,12 @@
 		<Unit filename="/Users/lolazhong/CLionProjects/chess/level3.h">
 			<Option target="chess"/>
 		</Unit>
+		<Unit filename="/Users/lolazhong/CLionProjects/chess/level4.cpp">
+			<Option target="chess"/>
+		</Unit>
+		<Unit filename="/Users/lolazhong/CLionProjects/chess/level4.h">
+			<Option target="chess"/>
+		</Unit>
 		<Unit filename="/Users/lolazhong/CLionProjects/chess/main.cpp">
 			<Option target="chess"/>
 		</Unit>

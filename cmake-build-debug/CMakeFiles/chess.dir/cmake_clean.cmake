@@ -17,6 +17,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/chess.dir/graphobserver.cpp.o"
   "CMakeFiles/chess.dir/textobserver.cpp.o"
   "CMakeFiles/chess.dir/window.cpp.o"
+  "CMakeFiles/chess.dir/level4.cpp.o"
   "chess.pdb"
   "chess"
 )

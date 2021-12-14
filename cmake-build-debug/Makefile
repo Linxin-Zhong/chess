@@ -366,6 +366,33 @@ level3.cpp.s:
 	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/level3.cpp.s
 .PHONY : level3.cpp.s
 
+level4.o: level4.cpp.o
+
+.PHONY : level4.o
+
+# target to build an object file
+level4.cpp.o:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/level4.cpp.o
+.PHONY : level4.cpp.o
+
+level4.i: level4.cpp.i
+
+.PHONY : level4.i
+
+# target to preprocess a source file
+level4.cpp.i:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/level4.cpp.i
+.PHONY : level4.cpp.i
+
+level4.s: level4.cpp.s
+
+.PHONY : level4.s
+
+# target to generate assembly for a file
+level4.cpp.s:
+	$(MAKE) -f CMakeFiles/chess.dir/build.make CMakeFiles/chess.dir/level4.cpp.s
+.PHONY : level4.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -645,6 +672,9 @@ help:
 	@echo "... level3.o"
 	@echo "... level3.i"
 	@echo "... level3.s"
+	@echo "... level4.o"
+	@echo "... level4.i"
+	@echo "... level4.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

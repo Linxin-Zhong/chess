@@ -3,7 +3,7 @@
 
 King::King(int *Wkingrow, int *Wkingcol, int *Bkingrow, int *Bkingcol,
            char color, shared_ptr<std::vector<std::vector<std::shared_ptr<Piece>>>> boardmap) :
-        Piece(Wkingrow, Wkingcol, Bkingrow, Bkingcol, color, 9, boardmap) {}
+        Piece(Wkingrow, Wkingcol, Bkingrow, Bkingcol, color, 100, boardmap) {}
 
 bool King::check(vector<vector<shared_ptr<Piece>>> &b, int torow, int tocol, int kingrow, int kingcol) {
     if ((abs(torow - kingrow) == 1 || abs(torow - kingrow) == 0) &&

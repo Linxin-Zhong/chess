@@ -40,6 +40,8 @@ int main() {
                 Wplayer = '2';
             } else if (command == "computer3") {
                 Wplayer = '3';
+            } else if (command == "computer4") {
+                Wplayer = '4';
             } else {
                 cout << "Invalid command";
                 continue;
@@ -54,6 +56,8 @@ int main() {
                 Bplayer = '2';
             } else if (command == "computer3") {
                 Bplayer = '3';
+            } else if (command == "computer4") {
+                Bplayer = '4';
             } else {
                 cout << "Invalid command";
                 continue;

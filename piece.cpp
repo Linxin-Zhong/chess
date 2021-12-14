@@ -96,3 +96,7 @@ bool Piece::isCheck(vector<vector<shared_ptr<Piece>>> &b, char kingcolor, int ki
     }
     return false;
 }
+
+int Piece::getValue() {
+    return value;
+}

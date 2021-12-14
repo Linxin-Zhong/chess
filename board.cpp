@@ -127,7 +127,7 @@ bool Board::isCheck(vector<vector<shared_ptr<Piece>>> &b, char kingcolor, int ki
 }
 
 //copy content of a to b, b should be empty
-void boardcopy(vector<vector<shared_ptr<Piece>>> &a, vector<vector<shared_ptr<Piece>>> &b) {
+void Board::boardcopy(vector<vector<shared_ptr<Piece>>> &a, vector<vector<shared_ptr<Piece>>> &b) {
     for (int i = 0; i < 8; i++) {
         vector<shared_ptr<Piece>> newrow;
         for (int j = 0; j < 8; j++) {
@@ -174,8 +174,6 @@ bool Board::isCheckMate(char kingcolor, int checkrow, int checkcol) {
         }
     }
     return true;
-
-
 }
 
 bool Board::isStalemate(char kingcolor) {
@@ -360,6 +358,8 @@ void Board::default_init() {
     Bkingrow = 7;
     Wkingcol = 4;
     Wkingrow = 0;
+    Bpiececount = 0;
+    Wpiececount = 0;
     for (int row = 1; row <= 8; row++) {
         for (char col = 'a'; col <= 'h'; col++) {
             stringstream stream;
@@ -420,6 +420,9 @@ void Board::PlayersInit(char w, char b) {
         case '3':
             this->WPlayer = make_shared<Level3>(Level3(&currentPlayer, &Wpiececount, &Bpiececount, boardmap));
             break;
+        case '4':
+            this->WPlayer = make_shared<Level4>(Level4(&currentPlayer, &Wpiececount, &Bpiececount, boardmap));
+            break;
     }
     switch (b) {
         case 'h':
@@ -433,6 +436,9 @@ void Board::PlayersInit(char w, char b) {
             break;
         case '3':
             this->BPlayer = make_shared<Level3>(Level3(&currentPlayer, &Wpiececount, &Bpiececount, boardmap));
+            break;
+        case '4':
+            this->BPlayer = make_shared<Level4>(Level4(&currentPlayer, &Wpiececount, &Bpiececount, boardmap));
             break;
     }
 }

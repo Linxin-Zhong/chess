@@ -16,7 +16,7 @@ public:
 
     void notify() override;
 
-    void grade(int w, int b);
+    void grade(float W, float B);
 
     void clearGraph();
 

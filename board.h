@@ -6,6 +6,7 @@
 #include "level1.h"
 #include "level2.h"
 #include "level3.h"
+#include "level4.h"
 #include "piece.h"
 #include "king.h"
 #include "queen.h"
@@ -110,6 +111,8 @@ public:
     void setcastling();
 
     void setenpassent();
+
+    void boardcopy(vector<vector<shared_ptr<Piece>>> &a, vector<vector<shared_ptr<Piece>>> &b);
 
 };
 
