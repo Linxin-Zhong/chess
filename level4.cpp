@@ -37,7 +37,6 @@ void quickSort(vector<int> &points, vector<pair<pair<int, int>, pair<int, int>>>
     quickSort(points, move, boundary + 1, end);
 }
 
-
 bool isCheck(vector<vector<shared_ptr<Piece>>> &b, char kingcolor, int kingrow,
              int kingcol, int *checkrow, int *checkcol) {
     *checkcol = -1;
@@ -106,8 +105,11 @@ pair<pair<int, int>, pair<int, int>> Level4::generateMove(vector<vector<shared_p
 
 
 
-    //读取legalmoves，capmoves，checkmoves，avoidmoves
     vector<pair<pair<int, int>, pair<int, int>>> legalmoves;
+    vector<pair<pair<int, int>, pair<int, int>>> capmoves;
+    vector<pair<pair<int, int>, pair<int, int>>> checkmoves;
+    vector<pair<pair<int, int>, pair<int, int>>> avoidmoves;
+
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
             if ((boardmap)[i][j] && (boardmap)[i][j]->getColor() == *currentPlayer) {
@@ -117,7 +119,30 @@ pair<pair<int, int>, pair<int, int>> Level4::generateMove(vector<vector<shared_p
                                                                  {legalmove[k].first, legalmove[k].second}};
                     legalmoves.emplace_back(temp);
                 }
+
+                vector<pair<int, int>> capmove = (boardmap)[i][j]->captureMoves(boardmap, i, j);
+                for (size_t k = 0; k < capmove.size(); k++) {
+                    pair<pair<int, int>, pair<int, int>> temp = {{i,                j},
+                                                                 {capmove[k].first, capmove[k].second}};
+                    capmoves.emplace_back(temp);
+                }
+
+                vector<pair<int, int>> checkmove = (boardmap)[i][j]->checkMoves(boardmap, i, j);
+                for (size_t k = 0; k < checkmove.size(); k++) {
+                    pair<pair<int, int>, pair<int, int>> temp = {{i,                  j},
+                                                                 {checkmove[k].first, checkmove[k].second}};
+                    checkmoves.emplace_back(temp);
+                }
+
+                vector<pair<int, int>> avoidmove = (boardmap)[i][j]->avoidMoves(boardmap, i, j);
+                for (size_t k = 0; k < avoidmove.size(); k++) {
+                    pair<pair<int, int>, pair<int, int>> temp = {{i,                  j},
+                                                                 {avoidmove[k].first, avoidmove[k].second}};
+                    avoidmoves.emplace_back(temp);
+                }
             }
+
+
         }
     }
 
@@ -126,53 +151,8 @@ pair<pair<int, int>, pair<int, int>> Level4::generateMove(vector<vector<shared_p
                 {-1, -1}};
     }
 
-    vector<pair<pair<int, int>, pair<int, int>>> capmoves;
-    for (int i = 0; i < 8; i++) {
-        for (int j = 0; j < 8; j++) {
-            if ((boardmap)[i][j] && (boardmap)[i][j]->getColor() == *currentPlayer) {
-                vector<pair<int, int>> capmove = (boardmap)[i][j]->captureMoves(boardmap, i, j);
-                for (size_t k = 0; k < capmove.size(); k++) {
-                    pair<pair<int, int>, pair<int, int>> temp = {{i,                j},
-                                                                 {capmove[k].first, capmove[k].second}};
-                    capmoves.emplace_back(temp);
-                }
-            }
-        }
-    }
-
-    vector<pair<pair<int, int>, pair<int, int>>> checkmoves;
-    for (int i = 0; i < 8; i++) {
-        for (int j = 0; j < 8; j++) {
-            if ((boardmap)[i][j] && (boardmap)[i][j]->getColor() == *currentPlayer) {
-                vector<pair<int, int>> checkmove = (boardmap)[i][j]->checkMoves(boardmap, i, j);
-                for (size_t k = 0; k < checkmove.size(); k++) {
-                    pair<pair<int, int>, pair<int, int>> temp = {{i,                  j},
-                                                                 {checkmove[k].first, checkmove[k].second}};
-                    checkmoves.emplace_back(temp);
-                }
-            }
-        }
-    }
-
-    vector<pair<pair<int, int>, pair<int, int>>> avoidmoves;
-    for (int i = 0; i < 8; i++) {
-        for (int j = 0; j < 8; j++) {
-            if ((boardmap)[i][j] && (boardmap)[i][j]->getColor() == *currentPlayer) {
-                vector<pair<int, int>> avoidmove = (boardmap)[i][j]->avoidMoves(boardmap, i, j);
-                for (size_t k = 0; k < avoidmove.size(); k++) {
-                    pair<pair<int, int>, pair<int, int>> temp = {{i,                  j},
-                                                                 {avoidmove[k].first, avoidmove[k].second}};
-                    avoidmoves.emplace_back(temp);
-                }
-            }
-        }
-    }
-
-    vector<int> movepoints = {0};
-    for (size_t i = 0; i < legalmoves.size(); i++) {
-        if (i == 0) {
-            continue;
-        }
+    vector<int> movepoints;
+    for (int i = 0; i < legalmoves.size(); i++) {
         movepoints.emplace_back(0);
     }
 
@@ -228,20 +208,25 @@ pair<pair<int, int>, pair<int, int>> Level4::generateMove(vector<vector<shared_p
             movepoints[i] -= newboard[newmovetorow][newmovetocol]->getValue();
         }
     }
+
     quickSort(movepoints, legalmoves, 0, movepoints.size());
-    int highestNumofMoves = 0;
+    int startIndex = movepoints.size() - 1;
     for (int ind = movepoints.size() - 2; ind >= 0; ind--) {
         if (movepoints[ind] == movepoints[movepoints.size() - 1]) {
-            highestNumofMoves++;
+            startIndex = ind;
         } else {
             break;
         }
     }
 
+    int endInd = legalmoves.size() - 1;
     srand(time(NULL));
-    int index = (highestNumofMoves) ? rand() % highestNumofMoves : 0;
-    int a = legalmoves.size() - index - 1;
+    int index = (startIndex == endInd) ? startIndex : (rand() % (endInd - startIndex + 1)) + startIndex;
 
-    return legalmoves[legalmoves.size() - index - 1];
+    vector<pair<pair<int, int>, pair<int, int>>> *a = &legalmoves;
+    vector<pair<pair<int, int>, pair<int, int>>> *b = &capmoves;
+    vector<pair<pair<int, int>, pair<int, int>>> *c = &avoidmoves;
+    vector<int> *e = &movepoints;
+    return legalmoves[index];
 
 }
