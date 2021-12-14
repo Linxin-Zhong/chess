@@ -48,9 +48,9 @@ void GraphObserver::notify() {
     if (subject->isResign()) {
         string info; 
         if (color == 'W') {
-            info = "Black wins!";
-        } else {
             info = "White wins!";
+        } else {
+            info = "Black wins!";
         }
         w->drawString(200, 475, info);
         return;

@@ -11,40 +11,17 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="35bad87e-d9a9-4f7e-81c4-ec2aebb8f001" name="Default Changelist" comment="en passant debugged">
-      <change afterPath="$PROJECT_DIR$/level4.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/level4.h" afterDir="false" />
+    <list default="true" id="35bad87e-d9a9-4f7e-81c4-ec2aebb8f001" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/chess.dir/board.cpp.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/chess.dir/graphobserver.cpp.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/chess.dir/main.cpp.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/chess.dir/rook.cpp.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/chess.dir/textobserver.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bishop.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/bishop.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/board.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/board.h" beforeDir="false" afterPath="$PROJECT_DIR$/board.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/Makefile2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/chess.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/chess.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/chess.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/chess.dir/DependInfo.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/chess.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/chess.dir/build.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/chess.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/chess.dir/cmake_clean.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/chess.dir/human.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/chess.dir/level1.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/chess.dir/level2.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/chess.dir/level3.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/chess.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/chess.dir/link.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/chess.dir/piece.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/chess.dir/progress.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/chess.dir/progress.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/chess.dir/strategy.cpp.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/progress.marks" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/chess" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/chess" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/chess.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/chess.cbp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graphobserver.h" beforeDir="false" afterPath="$PROJECT_DIR$/graphobserver.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/king.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/king.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/knight.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/knight.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pawn.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/pawn.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/piece.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/piece.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/piece.h" beforeDir="false" afterPath="$PROJECT_DIR$/piece.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rook.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/rook.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/strategy.h" beforeDir="false" afterPath="$PROJECT_DIR$/strategy.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/chess.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/chess.dir/depend.internal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/chess.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/chess.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graphobserver.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/graphobserver.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/level4.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/level4.cpp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -79,20 +56,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/board.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="93">
-              <caret line="24" selection-start-line="24" selection-end-line="24" />
+            <state relative-caret-position="120">
+              <caret line="16" selection-start-line="16" selection-end-line="16" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/level4.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="6" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
             </state>
           </provider>
         </entry>
@@ -100,20 +68,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file:///Library/Developer/CommandLineTools/usr/include/c++/v1/vector">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="110">
-              <caret line="1548" selection-start-line="1548" selection-end-line="1548" />
+            <state relative-caret-position="111">
+              <caret line="549" selection-start-line="549" selection-end-line="549" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/level1.cpp">
+        <entry file="file:///Library/Developer/CommandLineTools/usr/include/c++/v1/memory">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="25" column="32" lean-forward="true" selection-start-line="24" selection-start-column="3" selection-end-line="25" selection-end-column="32" />
-              <folding>
-                <element signature="e#0#19#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="156">
+              <caret line="1874" column="84" lean-forward="true" selection-start-line="1874" selection-start-column="84" selection-end-line="1874" selection-end-column="84" />
             </state>
           </provider>
         </entry>
@@ -121,8 +86,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/level4.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="159">
-              <caret line="237" selection-start-line="237" selection-end-line="237" />
+            <state relative-caret-position="93">
+              <caret line="233" column="18" lean-forward="true" selection-start-line="233" selection-start-column="18" selection-end-line="233" selection-end-column="18" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -131,12 +96,12 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/strategy.h">
+        <entry file="file://$PROJECT_DIR$/level3.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="149">
-              <caret line="20" selection-start-line="20" selection-end-line="20" />
+            <state relative-caret-position="-944">
+              <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
               <folding>
-                <element signature="e#39#56#0" expanded="true" />
+                <element signature="e#0#19#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -145,11 +110,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file:///Library/Developer/CommandLineTools/usr/include/c++/v1/new">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="94">
-              <caret line="333" selection-start-line="333" selection-end-line="333" />
+            <state relative-caret-position="111">
+              <caret line="339" selection-start-line="339" selection-end-line="339" />
               <folding>
                 <element signature="e#13068#13108#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="mock:///disassembly">
+          <provider selected="true" editor-type-id="memory-view">
+            <state relative-caret-position="128">
+              <caret line="127" selection-start-line="127" selection-end-line="127" />
             </state>
           </provider>
         </entry>
@@ -167,7 +141,7 @@
         <entry file="file://$PROJECT_DIR$/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="93">
-              <caret line="65" selection-start-line="65" selection-end-line="65" />
+              <caret line="106" selection-start-line="106" selection-end-line="106" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -176,10 +150,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/board.h">
+        <entry file="file://$PROJECT_DIR$/graphobserver.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+            <state relative-caret-position="148">
+              <caret line="52" column="25" selection-start-line="52" selection-start-column="25" selection-end-line="52" selection-end-column="25" />
+              <folding>
+                <element signature="e#0#19#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -210,6 +187,8 @@
       <find>WPiececount</find>
       <find>piece</find>
       <find>players</find>
+      <find>wins</find>
+      <find>movepoints</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -254,7 +233,6 @@
         <option value="$PROJECT_DIR$/queen.cpp" />
         <option value="$PROJECT_DIR$/human.cpp" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/graphobserver.cpp" />
         <option value="$PROJECT_DIR$/graphobserver.h" />
         <option value="$PROJECT_DIR$/level4.h" />
         <option value="$PROJECT_DIR$/piece.h" />
@@ -268,15 +246,16 @@
         <option value="$PROJECT_DIR$/board.h" />
         <option value="$PROJECT_DIR$/board.cpp" />
         <option value="$PROJECT_DIR$/strategy.h" />
+        <option value="$PROJECT_DIR$/graphobserver.cpp" />
         <option value="$PROJECT_DIR$/level4.cpp" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="232" />
+    <option name="x" value="668" />
     <option name="y" value="23" />
-    <option name="width" value="1136" />
-    <option name="height" value="809" />
+    <option name="width" value="1357" />
+    <option name="height" value="808" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -284,7 +263,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -296,6 +274,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -352,7 +331,8 @@
       <workItem from="1639237653177" duration="7709000" />
       <workItem from="1639320485286" duration="2504000" />
       <workItem from="1639324407442" duration="2986000" />
-      <workItem from="1639435291015" duration="8779000" />
+      <workItem from="1639435291015" duration="9177000" />
+      <workItem from="1639489067893" duration="3944000" />
     </task>
     <task id="LOCAL-00001" summary="try">
       <created>1638077216238</created>
@@ -501,11 +481,18 @@
       <option name="project" value="LOCAL" />
       <updated>1639323953935</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="level4">
+      <created>1639461209589</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1639461209589</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="161671000" />
+    <option name="totallyTimeSpent" value="166013000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -517,20 +504,21 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="304" y="23" width="1136" height="809" extended-state="0" />
+    <frame x="668" y="23" width="1357" height="808" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Structure" order="0" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="1" sideWeight="0.26695526" side_tool="true" weight="0.21057348" />
-      <window_info content_ui="combo" id="Project" order="2" sideWeight="0.73304474" visible="true" weight="0.1691042" />
+      <window_info content_ui="combo" id="Project" order="2" sideWeight="0.73304474" visible="true" weight="0.14296578" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.2795389" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.4855908" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.56277055" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.40981242" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49910393" weight="0.3020231" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
-      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.49910393" weight="0.6700288" />
+      <window_info anchor="bottom" id="Messages" order="8" sideWeight="0.49910393" weight="0.6695527" />
       <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4982079" weight="0.32756132" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50089604" side_tool="true" weight="0.7950938" />
       <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.4982079" weight="0.25553915" />
@@ -594,7 +582,8 @@
     <MESSAGE value="stalemate added" />
     <MESSAGE value="loop of games added" />
     <MESSAGE value="en passant debugged" />
-    <option name="LAST_COMMIT_MESSAGE" value="en passant debugged" />
+    <MESSAGE value="level4" />
+    <option name="LAST_COMMIT_MESSAGE" value="level4" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -639,11 +628,6 @@
           <url>file://$PROJECT_DIR$/human.cpp</url>
           <line>40</line>
           <option name="timeStamp" value="38" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/level4.cpp</url>
-          <line>237</line>
-          <option name="timeStamp" value="79" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -710,13 +694,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="2" selection-start-column="2" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///Library/Developer/CommandLineTools/usr/include/c++/v1/memory">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="3830" selection-start-line="3830" selection-end-line="3830" />
         </state>
       </provider>
     </entry>
@@ -848,16 +825,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/graphobserver.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="188" selection-start-line="188" selection-end-line="188" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/graphobserver.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -872,16 +839,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/level3.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -977,12 +934,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.cpp">
+    <entry file="file://$PROJECT_DIR$/level4.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="93">
-          <caret line="65" selection-start-line="65" selection-end-line="65" />
+        <state relative-caret-position="240">
+          <caret line="16" column="6" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/level1.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="25" column="32" selection-start-line="24" selection-start-column="3" selection-end-line="25" selection-end-column="32" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/strategy.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+          <folding>
+            <element signature="e#39#56#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -994,20 +968,47 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/strategy.h">
+    <entry file="file://$PROJECT_DIR$/graphobserver.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
+        <state relative-caret-position="148">
+          <caret line="52" column="25" selection-start-line="52" selection-start-column="25" selection-end-line="52" selection-end-column="25" />
           <folding>
-            <element signature="e#39#56#0" expanded="true" />
+            <element signature="e#0#19#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/level1.cpp">
+    <entry file="file://$PROJECT_DIR$/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="25" column="32" lean-forward="true" selection-start-line="24" selection-start-column="3" selection-end-line="25" selection-end-column="32" />
+        <state relative-caret-position="93">
+          <caret line="106" selection-start-line="106" selection-end-line="106" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Library/Developer/CommandLineTools/usr/include/c++/v1/vector">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="549" selection-start-line="549" selection-end-line="549" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/level3.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-944">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/board.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
@@ -1016,42 +1017,25 @@
     </entry>
     <entry file="file:///Library/Developer/CommandLineTools/usr/include/c++/v1/new">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="94">
-          <caret line="333" selection-start-line="333" selection-end-line="333" />
+        <state relative-caret-position="111">
+          <caret line="339" selection-start-line="339" selection-end-line="339" />
           <folding>
             <element signature="e#13068#13108#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file:///Library/Developer/CommandLineTools/usr/include/c++/v1/vector">
+    <entry file="file:///Library/Developer/CommandLineTools/usr/include/c++/v1/memory">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="1548" selection-start-line="1548" selection-end-line="1548" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/board.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="93">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/level4.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="6" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
+        <state relative-caret-position="156">
+          <caret line="1874" column="84" lean-forward="true" selection-start-line="1874" selection-start-column="84" selection-end-line="1874" selection-end-column="84" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/level4.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="237" selection-start-line="237" selection-end-line="237" />
+        <state relative-caret-position="93">
+          <caret line="233" column="18" lean-forward="true" selection-start-line="233" selection-start-column="18" selection-end-line="233" selection-end-column="18" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>

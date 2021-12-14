@@ -121,6 +121,10 @@ pair<pair<int, int>, pair<int, int>> Level4::generateMove(string input) {
         }
     }
 
+    if (legalmoves.size() == 0) {
+        return {{-1, -1},
+                {-1, -1}};
+    }
 
     vector<pair<pair<int, int>, pair<int, int>>> capmoves;
     for (int i = 0; i < 8; i++) {
@@ -165,7 +169,10 @@ pair<pair<int, int>, pair<int, int>> Level4::generateMove(string input) {
     }
 
     vector<int> movepoints;
-    for (int i = 0; i < legalmoves.size(); i++) { movepoints.emplace_back(0); }
+    for (int i = 0; i < legalmoves.size(); i++) {
+        int a = 0;
+        movepoints.push_back(a);
+    }
 
     //calculate points for each move
     for (int i = 0; i < legalmoves.size(); i++) {
@@ -219,9 +226,7 @@ pair<pair<int, int>, pair<int, int>> Level4::generateMove(string input) {
             movepoints[i] -= newboard[newmovetorow][newmovetocol]->getValue();
         }
     }
-
     quickSort(movepoints, legalmoves, 0, movepoints.size());
-
     int highestNumofMoves = 0;
     for (int ind = movepoints.size() - 2; ind >= 0; ind--) {
         if (movepoints[ind] == movepoints[movepoints.size() - 1]) {
@@ -233,7 +238,8 @@ pair<pair<int, int>, pair<int, int>> Level4::generateMove(string input) {
 
     srand(time(NULL));
     int index = (highestNumofMoves) ? rand() % highestNumofMoves : 0;
-    return legalmoves[movepoints.size() - index - 1];
+    int a = legalmoves.size() - index - 1;
 
+    return legalmoves[legalmoves.size() - index - 1];
 
 }

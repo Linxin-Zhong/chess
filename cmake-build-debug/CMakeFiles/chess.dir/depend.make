@@ -14,6 +14,7 @@ CMakeFiles/chess.dir/board.cpp.o: ../knight.h
 CMakeFiles/chess.dir/board.cpp.o: ../level1.h
 CMakeFiles/chess.dir/board.cpp.o: ../level2.h
 CMakeFiles/chess.dir/board.cpp.o: ../level3.h
+CMakeFiles/chess.dir/board.cpp.o: ../level4.h
 CMakeFiles/chess.dir/board.cpp.o: ../pawn.h
 CMakeFiles/chess.dir/board.cpp.o: ../piece.h
 CMakeFiles/chess.dir/board.cpp.o: ../queen.h
@@ -31,6 +32,7 @@ CMakeFiles/chess.dir/graphobserver.cpp.o: ../knight.h
 CMakeFiles/chess.dir/graphobserver.cpp.o: ../level1.h
 CMakeFiles/chess.dir/graphobserver.cpp.o: ../level2.h
 CMakeFiles/chess.dir/graphobserver.cpp.o: ../level3.h
+CMakeFiles/chess.dir/graphobserver.cpp.o: ../level4.h
 CMakeFiles/chess.dir/graphobserver.cpp.o: ../observer.h
 CMakeFiles/chess.dir/graphobserver.cpp.o: ../pawn.h
 CMakeFiles/chess.dir/graphobserver.cpp.o: ../piece.h
@@ -74,6 +76,11 @@ CMakeFiles/chess.dir/level3.cpp.o: ../level3.h
 CMakeFiles/chess.dir/level3.cpp.o: ../piece.h
 CMakeFiles/chess.dir/level3.cpp.o: ../strategy.h
 
+CMakeFiles/chess.dir/level4.cpp.o: ../level4.cpp
+CMakeFiles/chess.dir/level4.cpp.o: ../level4.h
+CMakeFiles/chess.dir/level4.cpp.o: ../piece.h
+CMakeFiles/chess.dir/level4.cpp.o: ../strategy.h
+
 CMakeFiles/chess.dir/main.cpp.o: ../bishop.h
 CMakeFiles/chess.dir/main.cpp.o: ../board.h
 CMakeFiles/chess.dir/main.cpp.o: ../graphobserver.h
@@ -83,6 +90,7 @@ CMakeFiles/chess.dir/main.cpp.o: ../knight.h
 CMakeFiles/chess.dir/main.cpp.o: ../level1.h
 CMakeFiles/chess.dir/main.cpp.o: ../level2.h
 CMakeFiles/chess.dir/main.cpp.o: ../level3.h
+CMakeFiles/chess.dir/main.cpp.o: ../level4.h
 CMakeFiles/chess.dir/main.cpp.o: ../main.cpp
 CMakeFiles/chess.dir/main.cpp.o: ../observer.h
 CMakeFiles/chess.dir/main.cpp.o: ../pawn.h
@@ -105,6 +113,7 @@ CMakeFiles/chess.dir/piece.cpp.o: ../knight.h
 CMakeFiles/chess.dir/piece.cpp.o: ../level1.h
 CMakeFiles/chess.dir/piece.cpp.o: ../level2.h
 CMakeFiles/chess.dir/piece.cpp.o: ../level3.h
+CMakeFiles/chess.dir/piece.cpp.o: ../level4.h
 CMakeFiles/chess.dir/piece.cpp.o: ../pawn.h
 CMakeFiles/chess.dir/piece.cpp.o: ../piece.cpp
 CMakeFiles/chess.dir/piece.cpp.o: ../piece.h
@@ -125,6 +134,7 @@ CMakeFiles/chess.dir/rook.cpp.o: ../knight.h
 CMakeFiles/chess.dir/rook.cpp.o: ../level1.h
 CMakeFiles/chess.dir/rook.cpp.o: ../level2.h
 CMakeFiles/chess.dir/rook.cpp.o: ../level3.h
+CMakeFiles/chess.dir/rook.cpp.o: ../level4.h
 CMakeFiles/chess.dir/rook.cpp.o: ../pawn.h
 CMakeFiles/chess.dir/rook.cpp.o: ../piece.h
 CMakeFiles/chess.dir/rook.cpp.o: ../queen.h
@@ -149,6 +159,7 @@ CMakeFiles/chess.dir/textobserver.cpp.o: ../knight.h
 CMakeFiles/chess.dir/textobserver.cpp.o: ../level1.h
 CMakeFiles/chess.dir/textobserver.cpp.o: ../level2.h
 CMakeFiles/chess.dir/textobserver.cpp.o: ../level3.h
+CMakeFiles/chess.dir/textobserver.cpp.o: ../level4.h
 CMakeFiles/chess.dir/textobserver.cpp.o: ../observer.h
 CMakeFiles/chess.dir/textobserver.cpp.o: ../pawn.h
 CMakeFiles/chess.dir/textobserver.cpp.o: ../piece.h

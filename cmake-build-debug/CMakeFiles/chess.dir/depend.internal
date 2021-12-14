@@ -15,6 +15,7 @@ CMakeFiles/chess.dir/board.cpp.o
  /Users/lolazhong/CLionProjects/chess/level1.h
  /Users/lolazhong/CLionProjects/chess/level2.h
  /Users/lolazhong/CLionProjects/chess/level3.h
+ /Users/lolazhong/CLionProjects/chess/level4.h
  /Users/lolazhong/CLionProjects/chess/pawn.h
  /Users/lolazhong/CLionProjects/chess/piece.h
  /Users/lolazhong/CLionProjects/chess/queen.h
@@ -32,6 +33,7 @@ CMakeFiles/chess.dir/graphobserver.cpp.o
  /Users/lolazhong/CLionProjects/chess/level1.h
  /Users/lolazhong/CLionProjects/chess/level2.h
  /Users/lolazhong/CLionProjects/chess/level3.h
+ /Users/lolazhong/CLionProjects/chess/level4.h
  /Users/lolazhong/CLionProjects/chess/observer.h
  /Users/lolazhong/CLionProjects/chess/pawn.h
  /Users/lolazhong/CLionProjects/chess/piece.h
@@ -74,6 +76,11 @@ CMakeFiles/chess.dir/level3.cpp.o
  /Users/lolazhong/CLionProjects/chess/level3.h
  /Users/lolazhong/CLionProjects/chess/piece.h
  /Users/lolazhong/CLionProjects/chess/strategy.h
+CMakeFiles/chess.dir/level4.cpp.o
+ /Users/lolazhong/CLionProjects/chess/level4.cpp
+ /Users/lolazhong/CLionProjects/chess/level4.h
+ /Users/lolazhong/CLionProjects/chess/piece.h
+ /Users/lolazhong/CLionProjects/chess/strategy.h
 CMakeFiles/chess.dir/main.cpp.o
  /Users/lolazhong/CLionProjects/chess/bishop.h
  /Users/lolazhong/CLionProjects/chess/board.h
@@ -84,6 +91,7 @@ CMakeFiles/chess.dir/main.cpp.o
  /Users/lolazhong/CLionProjects/chess/level1.h
  /Users/lolazhong/CLionProjects/chess/level2.h
  /Users/lolazhong/CLionProjects/chess/level3.h
+ /Users/lolazhong/CLionProjects/chess/level4.h
  /Users/lolazhong/CLionProjects/chess/main.cpp
  /Users/lolazhong/CLionProjects/chess/observer.h
  /Users/lolazhong/CLionProjects/chess/pawn.h
@@ -106,6 +114,7 @@ CMakeFiles/chess.dir/piece.cpp.o
  /Users/lolazhong/CLionProjects/chess/level1.h
  /Users/lolazhong/CLionProjects/chess/level2.h
  /Users/lolazhong/CLionProjects/chess/level3.h
+ /Users/lolazhong/CLionProjects/chess/level4.h
  /Users/lolazhong/CLionProjects/chess/pawn.h
  /Users/lolazhong/CLionProjects/chess/piece.cpp
  /Users/lolazhong/CLionProjects/chess/piece.h
@@ -126,6 +135,7 @@ CMakeFiles/chess.dir/rook.cpp.o
  /Users/lolazhong/CLionProjects/chess/level1.h
  /Users/lolazhong/CLionProjects/chess/level2.h
  /Users/lolazhong/CLionProjects/chess/level3.h
+ /Users/lolazhong/CLionProjects/chess/level4.h
  /Users/lolazhong/CLionProjects/chess/pawn.h
  /Users/lolazhong/CLionProjects/chess/piece.h
  /Users/lolazhong/CLionProjects/chess/queen.h
@@ -150,6 +160,7 @@ CMakeFiles/chess.dir/textobserver.cpp.o
  /Users/lolazhong/CLionProjects/chess/level1.h
  /Users/lolazhong/CLionProjects/chess/level2.h
  /Users/lolazhong/CLionProjects/chess/level3.h
+ /Users/lolazhong/CLionProjects/chess/level4.h
  /Users/lolazhong/CLionProjects/chess/observer.h
  /Users/lolazhong/CLionProjects/chess/pawn.h
  /Users/lolazhong/CLionProjects/chess/piece.h
