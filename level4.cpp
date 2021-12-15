@@ -104,7 +104,7 @@ using namespace std;
 pair<pair<int, int>, pair<int, int>> Level4::generateMove(vector<vector<shared_ptr<Piece>>> &boardmap, string input) {
 
 
-
+    //get the legalmoves, capture
     vector<pair<pair<int, int>, pair<int, int>>> legalmoves;
     vector<pair<pair<int, int>, pair<int, int>>> capmoves;
     vector<pair<pair<int, int>, pair<int, int>>> checkmoves;
@@ -209,7 +209,7 @@ pair<pair<int, int>, pair<int, int>> Level4::generateMove(vector<vector<shared_p
         }
     }
 
-    quickSort(movepoints, legalmoves, 0, movepoints.size());
+    quickSort(movepoints, legalmoves, 0, movepoints.size() - 1);
     int startIndex = movepoints.size() - 1;
     for (int ind = movepoints.size() - 2; ind >= 0; ind--) {
         if (movepoints[ind] == movepoints[movepoints.size() - 1]) {
