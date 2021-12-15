@@ -44,7 +44,7 @@ class Board : public Subject {
     int tocol = -1;
     bool init = false;
     pair<pair<int, int>, pair<int, int>> castling {{-1,-1}, {-1,-1}};
-    pair<int, int> enpassent = {-1, -1};
+    pair<int, int> enpassant = {-1, -1};
 
 
 public:
@@ -106,11 +106,11 @@ public:
 
     pair<pair<int, int>, pair<int, int>> getcastling();
 
-    pair<int, int> getenpassent();
+    pair<int, int> getenpassant();
 
     void setcastling();
 
-    void setenpassent();
+    void setenpassant();
 
     void boardcopy(vector<vector<shared_ptr<Piece>>> &a, vector<vector<shared_ptr<Piece>>> &b);
 
