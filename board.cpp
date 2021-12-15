@@ -481,7 +481,7 @@ void Board::move(int fromrow, int fromcol, int torow, int tocol) {
             if (p->getEnpassant()) {
                 Bpiececount--;
                 (*boardmap)[fromrow][fromcol + 1] = nullptr;
-                this->enpassent = {fromrow, fromcol+1};
+                this->enpassant = {fromrow, fromcol+1};
             }
         }
     } else if ((*boardmap)[fromrow][fromcol]->type() == 'P' && torow == fromrow + 1 && tocol == fromcol - 1) {
@@ -491,7 +491,7 @@ void Board::move(int fromrow, int fromcol, int torow, int tocol) {
             if (p->getEnpassant()) {
                 Bpiececount--;
                 (*boardmap)[fromrow][fromcol - 1] = nullptr;
-                this->enpassent = {fromrow, fromcol-1};
+                this->enpassant = {fromrow, fromcol-1};
             }
         }
     } else if ((*boardmap)[fromrow][fromcol]->type() == 'p' && torow == fromrow - 1 && tocol == fromcol + 1) {
@@ -501,7 +501,7 @@ void Board::move(int fromrow, int fromcol, int torow, int tocol) {
             if (p->getEnpassant()) {
                 Wpiececount--;
                 (*boardmap)[fromrow][fromcol + 1] = nullptr;
-                this->enpassent = {fromrow, fromcol+1};
+                this->enpassant = {fromrow, fromcol+1};
             }
         }
 
@@ -512,7 +512,7 @@ void Board::move(int fromrow, int fromcol, int torow, int tocol) {
             if (p->getEnpassant()) {
                 Wpiececount--;
                 (*boardmap)[fromrow][fromcol - 1] = nullptr;
-                this->enpassent = {fromrow, fromcol-1};
+                this->enpassant = {fromrow, fromcol-1};
             }
         }
 
@@ -701,14 +701,14 @@ pair<pair<int, int>, pair<int, int>> Board::getcastling() {
     return this->castling;
 }
 
-pair<int, int> Board::getenpassent() {
-    return this->enpassent;
+pair<int, int> Board::getenpassant() {
+    return this->enpassant;
 }
 
 void Board::setcastling() {
     this->castling = {{-1, -1}, {-1, -1}};
 }
 
-void Board::setenpassent() {
-    this->enpassent = {-1, -1};
+void Board::setenpassant() {
+    this->enpassant = {-1, -1};
 }
