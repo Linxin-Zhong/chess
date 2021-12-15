@@ -116,16 +116,16 @@ void GraphObserver::notify() {
         }
         w->drawString((tocol + 1) * 50 + 25, (7 - torow) * 50 + 25, str);
     }
-    pair<int, int> enpassent = subject->getenpassent();
-    if (enpassent.first != -1 && enpassent.second != -1) {
-        int row = enpassent.first;
-        int col = enpassent.second;
+    pair<int, int> enpassant = subject->getenpassant();
+    if (enpassant.first != -1 && enpassant.second != -1) {
+        int row = enpassant.first;
+        int col = enpassant.second;
         if ((row + col) % 2 == 0) {
             w->fillRectangle((col + 1) * 50, (7 - row) * 50, 50, 50, Xwindow::White);
         } else {
             w->fillRectangle((col + 1) * 50, (7 - row) * 50, 50, 50, Xwindow::Green); 
         }
-        subject->setenpassent(); 
+        subject->setenpassant(); 
     }
     pair<pair<int ,int >, pair<int, int>>castling = subject->getcastling();
     if (castling.first.first != -1 && castling.first.second != -1 && castling.second.second != -1 && castling.second.first != -1) {
